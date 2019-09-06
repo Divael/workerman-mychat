@@ -26,61 +26,61 @@ use Joomla\Registry\Registry;
  */
 class JMediawiki
 {
-	/**
-	 * @var    Registry  Options for the MediaWiki object.
-	 * @since  12.1
-	 */
-	protected $options;
+    /**
+     * @var    Registry  Options for the MediaWiki object.
+     * @since  12.1
+     */
+    protected $options;
 
-	/**
-	 * @var    JMediawikiHttp  The HTTP client object to use in sending HTTP requests.
-	 * @since  12.3
-	 */
-	protected $client;
+    /**
+     * @var    JMediawikiHttp  The HTTP client object to use in sending HTTP requests.
+     * @since  12.3
+     */
+    protected $client;
 
-	/**
-	 * @var    JMediawikiSites  MediaWiki API object for Site.
-	 * @since  12.3
-	 */
-	protected $sites;
+    /**
+     * @var    JMediawikiSites  MediaWiki API object for Site.
+     * @since  12.3
+     */
+    protected $sites;
 
-	/**
-	 * @var    JMediawikiPages  MediaWiki API object for pages.
-	 * @since  12.1
-	 */
-	protected $pages;
+    /**
+     * @var    JMediawikiPages  MediaWiki API object for pages.
+     * @since  12.1
+     */
+    protected $pages;
 
-	/**
-	 * @var    JMediawikiUsers  MediaWiki API object for users.
-	 * @since  12.3
-	 */
-	protected $users;
+    /**
+     * @var    JMediawikiUsers  MediaWiki API object for users.
+     * @since  12.3
+     */
+    protected $users;
 
-	/**
-	 * @var    JMediawikiLinks  MediaWiki API object for links.
-	 * @since  12.3
-	 */
-	protected $links;
+    /**
+     * @var    JMediawikiLinks  MediaWiki API object for links.
+     * @since  12.3
+     */
+    protected $links;
 
-	/**
-	 * @var    JMediawikiCategories  MediaWiki API object for categories.
-	 * @since  12.3
-	 */
-	protected $categories;
+    /**
+     * @var    JMediawikiCategories  MediaWiki API object for categories.
+     * @since  12.3
+     */
+    protected $categories;
 
-	/**
-	 * @var    JMediawikiImages  MediaWiki API object for images.
-	 * @since  12.3
-	 */
-	protected $images;
+    /**
+     * @var    JMediawikiImages  MediaWiki API object for images.
+     * @since  12.3
+     */
+    protected $images;
 
-	/**
-	 * @var    JMediawikiSearch  MediaWiki API object for search.
-	 * @since  12.1
-	 */
-	protected $search;
+    /**
+     * @var    JMediawikiSearch  MediaWiki API object for search.
+     * @since  12.1
+     */
+    protected $search;
 
-	/**
+    /**
      * Constructor.
      *
      * @param   Registry        $options  MediaWiki options object.
@@ -88,77 +88,75 @@ class JMediawiki
      *
      * @since   12.3
      */
-	public function __construct(Registry $options = null, JMediawikiHttp $client = null)
-	{
-		$this->options = isset($options) ? $options : new Registry;
-		$this->client = isset($client) ? $client : new JMediawikiHttp($this->options);
-	}
+    public function __construct(Registry $options = null, JMediawikiHttp $client = null)
+    {
+        $this->options = isset($options) ? $options : new Registry;
+        $this->client = isset($client) ? $client : new JMediawikiHttp($this->options);
+    }
 
-	/**
-	 * Magic method to lazily create API objects
-	 *
-	 * @param   string  $name  Name of property to retrieve
-	 *
-	 * @return  JMediaWikiObject  MediaWiki API object (users, reviews, etc).
-	 *
-	 * @since   12.3
-	 * @throws  InvalidArgumentException
-	 */
-	public function __get($name)
-	{
-		$name = strtolower($name);
-		$class = 'JMediawiki' . ucfirst($name);
-		$accessible = array(
-			'categories',
-			'images',
-			'links',
-			'pages',
-			'search',
-			'sites',
-			'users',
-		);
+    /**
+     * Magic method to lazily create API objects
+     *
+     * @param   string  $name  Name of property to retrieve
+     *
+     * @return  JMediaWikiObject  MediaWiki API object (users, reviews, etc).
+     *
+     * @since   12.3
+     * @throws  InvalidArgumentException
+     */
+    public function __get($name)
+    {
+        $name = strtolower($name);
+        $class = 'JMediawiki' . ucfirst($name);
+        $accessible = array(
+            'categories',
+            'images',
+            'links',
+            'pages',
+            'search',
+            'sites',
+            'users',
+        );
 
-		if (class_exists($class) && in_array($name, $accessible))
-		{
-			if (!isset($this->$name))
-			{
-				$this->$name = new $class($this->options, $this->client);
-			}
+        if (class_exists($class) && in_array($name, $accessible)) {
+            if (!isset($this->$name)) {
+                $this->$name = new $class($this->options, $this->client);
+            }
 
-			return $this->$name;
-		}
+            return $this->$name;
+        }
 
-		throw new InvalidArgumentException(sprintf('Property %s is not accessible.', $name));
-	}
+        throw new InvalidArgumentException(sprintf('Property %s is not accessible.', $name));
+    }
 
-	/**
-	 * Get an option from the JMediawiki instance.
-	 *
-	 * @param   string  $key  The name of the option to get.
-	 *
-	 * @return  mixed  The option value.
-	 *
-	 * @since   12.3
-	 */
-	public function getOption($key)
-	{
-		return $this->options->get($key);
-	}
+    /**
+     * Get an option from the JMediawiki instance.
+     *
+     * @param   string  $key  The name of the option to get.
+     *
+     * @return  mixed  The option value.
+     *
+     * @since   12.3
+     */
+    public function getOption($key)
+    {
+        return $this->options->get($key);
+    }
 
-	/**
-	 * Set an option for the JMediawiki instance.
-	 *
-	 * @param   string  $key    The name of the option to set.
-	 * @param   mixed   $value  The option value to set.
-	 *
-	 * @return  JMediawiki  This object for method chaining.
-	 *
-	 * @since   12.3
-	 */
-	public function setOption($key, $value)
-	{
-		$this->options->set($key, $value);
+    /**
+     * Set an option for the JMediawiki instance.
+     *
+     * @param   string  $key    The name of the option to set.
+     * @param   mixed   $value  The option value to set.
+     *
+     * @return  JMediawiki  This object for method chaining.
+     *
+     * @since   12.3
+     */
+    public function setOption($key, $value)
+    {
+        $this->options->set($key, $value);
 
-		return $this;
-	}
+        return $this;
+    }
 }

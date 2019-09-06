@@ -18,7 +18,6 @@ $displayFilters = count($filters);
 
 $hide = JFactory::getApplication()->input->getBool('hidemainmenu');
 
-if ($displayMenu || $displayFilters)
-{
-	require JModuleHelper::getLayoutPath('mod_submenu', $params->get('layout', 'default'));
+if ($displayMenu || $displayFilters) {
+    require JModuleHelper::getLayoutPath('mod_submenu', $params->get('layout', 'default'));
 }

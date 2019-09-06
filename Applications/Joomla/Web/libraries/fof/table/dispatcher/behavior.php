@@ -17,5 +17,4 @@ defined('FOF_INCLUDED') or die;
  */
 class FOFTableDispatcherBehavior extends FOFUtilsObservableDispatcher
 {
-
 }

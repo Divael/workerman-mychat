@@ -32,7 +32,7 @@ jQuery(document).ready(function($) {
 ?>
 <div id="installer-languages">
 	<form action="<?php echo JRoute::_('index.php?option=com_installer&view=languages');?>" method="post" name="adminForm" id="adminForm">
-	<?php if (!empty( $this->sidebar)) : ?>
+	<?php if (!empty($this->sidebar)) : ?>
 		<div id="j-sidebar-container" class="span2">
 			<?php echo $this->sidebar; ?>
 		</div>
@@ -63,9 +63,9 @@ jQuery(document).ready(function($) {
 				</thead>
 				<tbody>
 					<?php foreach ($this->items as $i => $language) :
-						preg_match('#^pkg_([a-z]{2,3}-[A-Z]{2})$#', $language->element, $element);
-						$language->code  = $element[1];
-						?>
+                        preg_match('#^pkg_([a-z]{2,3}-[A-Z]{2})$#', $language->element, $element);
+                        $language->code  = $element[1];
+                        ?>
 					<tr class="row<?php echo $i % 2; ?>">
 						<td>
 							<?php $buttonText = (isset($this->installedLang[0][$language->code]) || isset($this->installedLang[1][$language->code])) ? 'REINSTALL' : 'INSTALL'; ?>
@@ -75,9 +75,9 @@ jQuery(document).ready(function($) {
 						<td>
 							<?php echo $language->name; ?>
 
-							<?php // Display a Note if language pack version is not equal to Joomla version ?>
+							<?php // Display a Note if language pack version is not equal to Joomla version?>
 							<?php if (substr($language->version, 0, 3) != $version::RELEASE
-									|| substr($language->version, 0, 5) != $version->getShortVersion()) : ?>
+                                    || substr($language->version, 0, 5) != $version->getShortVersion()) : ?>
 								<div class="small"><?php echo JText::_('JGLOBAL_LANGUAGE_VERSION_NOT_PLATFORM'); ?></div>
 							<?php endif; ?>
 						</td>

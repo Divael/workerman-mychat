@@ -69,7 +69,7 @@ JFactory::getDocument()->addScriptDeclaration("
 	<?php echo JHtml::_('sliders.start', 'template-sliders-'.$this->item->id); ?>
 
 		<?php //get the menu parameters that are automatically set but may be modified.
-			echo $this->loadTemplate('options'); ?>
+            echo $this->loadTemplate('options'); ?>
 
 		<div class="clr"></div>
 

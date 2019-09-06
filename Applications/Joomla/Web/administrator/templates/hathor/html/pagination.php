@@ -64,90 +64,79 @@ defined('_JEXEC') or die;
 
 function pagination_list_footer($list)
 {
-	/**
-	 * Fix javascript jump menu
-	 *
-	 * Remove the onchange=Joomla.submitform from the select tag
-	 * Add in a button with onclick instead
-	 */
-	$fixlimit = $list['limitfield'];
-	$fixlimit = preg_replace('/onchange="Joomla.submitform\(\);"/', '', $fixlimit);
+    /**
+     * Fix javascript jump menu
+     *
+     * Remove the onchange=Joomla.submitform from the select tag
+     * Add in a button with onclick instead
+     */
+    $fixlimit = $list['limitfield'];
+    $fixlimit = preg_replace('/onchange="Joomla.submitform\(\);"/', '', $fixlimit);
 
-	$html = '<div class="containerpg"><div class="pagination">';
+    $html = '<div class="containerpg"><div class="pagination">';
 
-	$html .= '<div class="limit"><label for="limit">' . JText::_('JGLOBAL_DISPLAY_NUM') . ' </label>';
-	$html .= "\n" . $fixlimit;
-	$html .= "\n" . '<button id="pagination-go" type="button" onclick="Joomla.submitform()">' . JText::_('JSUBMIT') . '</button></div>';
-	$html .= "\n" . $list['pageslinks'];
-	$html .= "\n" . '<div class="limit">' . $list['pagescounter'] . '</div>';
+    $html .= '<div class="limit"><label for="limit">' . JText::_('JGLOBAL_DISPLAY_NUM') . ' </label>';
+    $html .= "\n" . $fixlimit;
+    $html .= "\n" . '<button id="pagination-go" type="button" onclick="Joomla.submitform()">' . JText::_('JSUBMIT') . '</button></div>';
+    $html .= "\n" . $list['pageslinks'];
+    $html .= "\n" . '<div class="limit">' . $list['pagescounter'] . '</div>';
 
-	$html .= "\n" . '<input type="hidden" name="' . $list['prefix'] . 'limitstart" value="' . $list['limitstart'] . '" />';
-	$html .= "\n" . '<div class="clr"></div></div></div>';
+    $html .= "\n" . '<input type="hidden" name="' . $list['prefix'] . 'limitstart" value="' . $list['limitstart'] . '" />';
+    $html .= "\n" . '<div class="clr"></div></div></div>';
 
-	return $html;
+    return $html;
 }
 
 function pagination_list_render($list)
 {
-	$html = null;
+    $html = null;
 
-	if ($list['start']['active'])
-	{
-		$html .= '<div class="button2-right"><div class="start">'. $list['start']['data']. '</div></div>';
-	} else {
-		$html .= '<div class="button2-right off"><div class="start">'. $list['start']['data']. '</div></div>';
-	}
-	if ($list['previous']['active'])
-	{
-		$html .= '<div class="button2-right"><div class="prev">'. $list['previous']['data']. '</div></div>';
-	} else {
-		$html .= '<div class="button2-right off"><div class="prev">'. $list['previous']['data']. '</div></div>';
-	}
+    if ($list['start']['active']) {
+        $html .= '<div class="button2-right"><div class="start">'. $list['start']['data']. '</div></div>';
+    } else {
+        $html .= '<div class="button2-right off"><div class="start">'. $list['start']['data']. '</div></div>';
+    }
+    if ($list['previous']['active']) {
+        $html .= '<div class="button2-right"><div class="prev">'. $list['previous']['data']. '</div></div>';
+    } else {
+        $html .= '<div class="button2-right off"><div class="prev">'. $list['previous']['data']. '</div></div>';
+    }
 
-	$html .= '<div class="button2-left"><div class="page">';
-	foreach ($list['pages'] as $page)
-	{
-		$html .= $page['data'];
-	}
-	$html .= '</div></div>';
+    $html .= '<div class="button2-left"><div class="page">';
+    foreach ($list['pages'] as $page) {
+        $html .= $page['data'];
+    }
+    $html .= '</div></div>';
 
-	if ($list['next']['active'])
-	{
-		$html .= '<div class="button2-left"><div class="next">'. $list['next']['data']. '</div></div>';
-	} else {
-		$html .= '<div class="button2-left off"><div class="next">'. $list['next']['data']. '</div></div>';
-	}
-	if ($list['end']['active'])
-	{
-		$html .= '<div class="button2-left"><div class="end">'. $list['end']['data']. '</div></div>';
-	} else {
-		$html .= '<div class="button2-left off"><div class="end">'. $list['end']['data']. '</div></div>';
-	}
+    if ($list['next']['active']) {
+        $html .= '<div class="button2-left"><div class="next">'. $list['next']['data']. '</div></div>';
+    } else {
+        $html .= '<div class="button2-left off"><div class="next">'. $list['next']['data']. '</div></div>';
+    }
+    if ($list['end']['active']) {
+        $html .= '<div class="button2-left"><div class="end">'. $list['end']['data']. '</div></div>';
+    } else {
+        $html .= '<div class="button2-left off"><div class="end">'. $list['end']['data']. '</div></div>';
+    }
 
-	return $html;
+    return $html;
 }
 
 function pagination_item_active(&$item)
 {
-	if ($item->base > 0)
-	{
-		return '<a href="#" title="'.$item->text.'" onclick="document.adminForm.' . $item->prefix . 'limitstart.value=' .$item->base.'; Joomla.submitform();return false;">'.$item->text. '</a>';
-	}
-	else
-	{
-		return '<a href="#" title="'.$item->text.'" onclick="document.adminForm.' . $item->prefix . 'limitstart.value=0; Joomla.submitform();return false;">'.$item->text. '</a>';
-	}
+    if ($item->base > 0) {
+        return '<a href="#" title="'.$item->text.'" onclick="document.adminForm.' . $item->prefix . 'limitstart.value=' .$item->base.'; Joomla.submitform();return false;">'.$item->text. '</a>';
+    } else {
+        return '<a href="#" title="'.$item->text.'" onclick="document.adminForm.' . $item->prefix . 'limitstart.value=0; Joomla.submitform();return false;">'.$item->text. '</a>';
+    }
 }
 
 function pagination_item_inactive(&$item)
 {
-	if ($item->active)
-	{
-		$class = 'class="active"';
-	}
-	else
-	{
-		$class = '';
-	}
-	return '<span ' . $class . '>' . $item->text . '</span>';
+    if ($item->active) {
+        $class = 'class="active"';
+    } else {
+        $class = '';
+    }
+    return '<span ' . $class . '>' . $item->text . '</span>';
 }

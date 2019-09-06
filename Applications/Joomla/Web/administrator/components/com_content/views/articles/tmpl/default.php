@@ -23,30 +23,24 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 $saveOrder = $listOrder == 'a.ordering';
 $columns   = 10;
 
-if (strpos($listOrder, 'publish_up') !== false)
-{
-	$orderingColumn = 'publish_up';
-}
-elseif (strpos($listOrder, 'publish_down') !== false)
-{
-	$orderingColumn = 'publish_down';
-}
-else
-{
-	$orderingColumn = 'created';
+if (strpos($listOrder, 'publish_up') !== false) {
+    $orderingColumn = 'publish_up';
+} elseif (strpos($listOrder, 'publish_down') !== false) {
+    $orderingColumn = 'publish_down';
+} else {
+    $orderingColumn = 'created';
 }
 
-if ($saveOrder)
-{
-	$saveOrderingUrl = 'index.php?option=com_content&task=articles.saveOrderAjax&tmpl=component';
-	JHtml::_('sortablelist.sortable', 'articleList', 'adminForm', strtolower($listDirn), $saveOrderingUrl);
+if ($saveOrder) {
+    $saveOrderingUrl = 'index.php?option=com_content&task=articles.saveOrderAjax&tmpl=component';
+    JHtml::_('sortablelist.sortable', 'articleList', 'adminForm', strtolower($listDirn), $saveOrderingUrl);
 }
 
 $assoc = JLanguageAssociations::isEnabled();
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_content&view=articles'); ?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -55,9 +49,9 @@ $assoc = JLanguageAssociations::isEnabled();
 	<div id="j-main-container">
 <?php endif; ?>
 		<?php
-		// Search tools bar
-		echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));
-		?>
+        // Search tools bar
+        echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));
+        ?>
 		<?php if (empty($this->items)) : ?>
 			<div class="alert alert-no-items">
 				<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
@@ -79,7 +73,7 @@ $assoc = JLanguageAssociations::isEnabled();
 							<?php echo JHtml::_('searchtools.sort', 'JGLOBAL_TITLE', 'a.title', $listDirn, $listOrder); ?>
 						</th>
 						<th width="10%" class="nowrap hidden-phone">
-							<?php echo JHtml::_('searchtools.sort',  'JGRID_HEADING_ACCESS', 'a.access', $listDirn, $listOrder); ?>
+							<?php echo JHtml::_('searchtools.sort', 'JGRID_HEADING_ACCESS', 'a.access', $listDirn, $listOrder); ?>
 						</th>
 						<?php if ($assoc) : ?>
 							<?php $columns++; ?>
@@ -88,7 +82,7 @@ $assoc = JLanguageAssociations::isEnabled();
 							</th>
 						<?php endif; ?>
 						<th width="10%" class="nowrap hidden-phone">
-							<?php echo JHtml::_('searchtools.sort',  'JAUTHOR', 'a.created_by', $listDirn, $listOrder); ?>
+							<?php echo JHtml::_('searchtools.sort', 'JAUTHOR', 'a.created_by', $listDirn, $listOrder); ?>
 						</th>
 						<th width="10%" class="nowrap hidden-phone">
 							<?php echo JHtml::_('searchtools.sort', 'JGRID_HEADING_LANGUAGE', 'language', $listDirn, $listOrder); ?>
@@ -122,27 +116,24 @@ $assoc = JLanguageAssociations::isEnabled();
 				</tfoot>
 				<tbody>
 				<?php foreach ($this->items as $i => $item) :
-					$item->max_ordering = 0;
-					$ordering   = ($listOrder == 'a.ordering');
-					$canCreate  = $user->authorise('core.create',     'com_content.category.' . $item->catid);
-					$canEdit    = $user->authorise('core.edit',       'com_content.article.' . $item->id);
-					$canCheckin = $user->authorise('core.manage',     'com_checkin') || $item->checked_out == $userId || $item->checked_out == 0;
-					$canEditOwn = $user->authorise('core.edit.own',   'com_content.article.' . $item->id) && $item->created_by == $userId;
-					$canChange  = $user->authorise('core.edit.state', 'com_content.article.' . $item->id) && $canCheckin;
-					?>
+                    $item->max_ordering = 0;
+                    $ordering   = ($listOrder == 'a.ordering');
+                    $canCreate  = $user->authorise('core.create', 'com_content.category.' . $item->catid);
+                    $canEdit    = $user->authorise('core.edit', 'com_content.article.' . $item->id);
+                    $canCheckin = $user->authorise('core.manage', 'com_checkin') || $item->checked_out == $userId || $item->checked_out == 0;
+                    $canEditOwn = $user->authorise('core.edit.own', 'com_content.article.' . $item->id) && $item->created_by == $userId;
+                    $canChange  = $user->authorise('core.edit.state', 'com_content.article.' . $item->id) && $canCheckin;
+                    ?>
 					<tr class="row<?php echo $i % 2; ?>" sortable-group-id="<?php echo $item->catid; ?>">
 						<td class="order nowrap center hidden-phone">
 							<?php
-							$iconClass = '';
-							if (!$canChange)
-							{
-								$iconClass = ' inactive';
-							}
-							elseif (!$saveOrder)
-							{
-								$iconClass = ' inactive tip-top hasTooltip" title="' . JHtml::_('tooltipText', 'JORDERINGDISABLED');
-							}
-							?>
+                            $iconClass = '';
+                            if (!$canChange) {
+                                $iconClass = ' inactive';
+                            } elseif (!$saveOrder) {
+                                $iconClass = ' inactive tip-top hasTooltip" title="' . JHtml::_('tooltipText', 'JORDERINGDISABLED');
+                            }
+                            ?>
 							<span class="sortable-handler<?php echo $iconClass ?>">
 								<span class="icon-menu" aria-hidden="true"></span>
 							</span>
@@ -158,13 +149,12 @@ $assoc = JLanguageAssociations::isEnabled();
 								<?php echo JHtml::_('jgrid.published', $item->state, $i, 'articles.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
 								<?php echo JHtml::_('contentadministrator.featured', $item->featured, $i, $canChange); ?>
 								<?php // Create dropdown items and render the dropdown list.
-								if ($canChange)
-								{
-									JHtml::_('actionsdropdown.' . ((int) $item->state === 2 ? 'un' : '') . 'archive', 'cb' . $i, 'articles');
-									JHtml::_('actionsdropdown.' . ((int) $item->state === -2 ? 'un' : '') . 'trash', 'cb' . $i, 'articles');
-									echo JHtml::_('actionsdropdown.render', $this->escape($item->title));
-								}
-								?>
+                                if ($canChange) {
+                                    JHtml::_('actionsdropdown.' . ((int) $item->state === 2 ? 'un' : '') . 'archive', 'cb' . $i, 'articles');
+                                    JHtml::_('actionsdropdown.' . ((int) $item->state === -2 ? 'un' : '') . 'trash', 'cb' . $i, 'articles');
+                                    echo JHtml::_('actionsdropdown.render', $this->escape($item->title));
+                                }
+                                ?>
 							</div>
 						</td>
 						<td class="has-context">
@@ -216,9 +206,9 @@ $assoc = JLanguageAssociations::isEnabled();
 						</td>
 						<td class="nowrap small hidden-phone">
 							<?php
-							$date = $item->{$orderingColumn};
-							echo $date > 0 ? JHtml::_('date', $date, JText::_('DATE_FORMAT_LC4')) : '-';
-							?>
+                            $date = $item->{$orderingColumn};
+                            echo $date > 0 ? JHtml::_('date', $date, JText::_('DATE_FORMAT_LC4')) : '-';
+                            ?>
 						</td>
 						<td class="hidden-phone center">
 							<span class="badge badge-info">
@@ -244,19 +234,19 @@ $assoc = JLanguageAssociations::isEnabled();
 					<?php endforeach; ?>
 				</tbody>
 			</table>
-			<?php // Load the batch processing form. ?>
+			<?php // Load the batch processing form.?>
 			<?php if ($user->authorise('core.create', 'com_content')
-				&& $user->authorise('core.edit', 'com_content')
-				&& $user->authorise('core.edit.state', 'com_content')) : ?>
+                && $user->authorise('core.edit', 'com_content')
+                && $user->authorise('core.edit.state', 'com_content')) : ?>
 				<?php echo JHtml::_(
-					'bootstrap.renderModal',
-					'collapseModal',
-					array(
-						'title' => JText::_('COM_CONTENT_BATCH_OPTIONS'),
-						'footer' => $this->loadTemplate('batch_footer')
-					),
-					$this->loadTemplate('batch_body')
-				); ?>
+                    'bootstrap.renderModal',
+                    'collapseModal',
+                    array(
+                        'title' => JText::_('COM_CONTENT_BATCH_OPTIONS'),
+                        'footer' => $this->loadTemplate('batch_footer')
+                    ),
+                    $this->loadTemplate('batch_body')
+                ); ?>
 			<?php endif; ?>
 		<?php endif; ?>
 

@@ -76,9 +76,9 @@ $afterDisplayContent = trim(implode("\n", $results));
 				<div class="leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?>"
 					itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
 					<?php
-					$this->item = & $item;
-					echo $this->loadTemplate('item');
-					?>
+                    $this->item = & $item;
+                    echo $this->loadTemplate('item');
+                    ?>
 				</div>
 				<?php $leadingcount++; ?>
 			<?php endforeach; ?>
@@ -86,9 +86,9 @@ $afterDisplayContent = trim(implode("\n", $results));
 	<?php endif; ?>
 
 	<?php
-	$introcount = count($this->intro_items);
-	$counter = 0;
-	?>
+    $introcount = count($this->intro_items);
+    $counter = 0;
+    ?>
 
 	<?php if (!empty($this->intro_items)) : ?>
 		<?php foreach ($this->intro_items as $key => &$item) : ?>
@@ -101,9 +101,9 @@ $afterDisplayContent = trim(implode("\n", $results));
 				<div class="item column-<?php echo $rowcount; ?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?>"
 					itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
 					<?php
-					$this->item = & $item;
-					echo $this->loadTemplate('item');
-					?>
+                    $this->item = & $item;
+                    echo $this->loadTemplate('item');
+                    ?>
 				</div>
 				<!-- end item -->
 				<?php $counter++; ?>

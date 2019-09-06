@@ -17,7 +17,7 @@ $userId   = $user->get('id');
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_languages&view=installed'); ?>" method="post" id="adminForm" name="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -33,11 +33,11 @@ $userId   = $user->get('id');
 			</label>
 			<select name="client_id" id="client_id">
 			<?php
-			$options   = array();
-			$options[] = JHtml::_('select.option', '0', JText::_('JSITE'));
-			$options[] = JHtml::_('select.option', '1', JText::_('JADMINISTRATOR'));
-			echo JHtml::_('select.options', $options, 'value', 'text', $this->state->get('client_id'));
-			?>
+            $options   = array();
+            $options[] = JHtml::_('select.option', '0', JText::_('JSITE'));
+            $options[] = JHtml::_('select.option', '1', JText::_('JADMINISTRATOR'));
+            echo JHtml::_('select.options', $options, 'value', 'text', $this->state->get('client_id'));
+            ?>
 			</select>
 
 			<button type="submit" id="filter-go">
@@ -80,10 +80,10 @@ $userId   = $user->get('id');
 
 		<tbody>
 		<?php foreach ($this->rows as $i => $row) :
-			$canCreate = $user->authorise('core.create',     'com_languages');
-			$canEdit   = $user->authorise('core.edit',       'com_languages');
-			$canChange = $user->authorise('core.edit.state', 'com_languages');
-		?>
+            $canCreate = $user->authorise('core.create', 'com_languages');
+            $canEdit   = $user->authorise('core.edit', 'com_languages');
+            $canChange = $user->authorise('core.edit.state', 'com_languages');
+        ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td>
 					<?php echo JHtml::_('languages.id', $i, $row->language);?>

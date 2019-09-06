@@ -11,27 +11,23 @@ defined('_JEXEC') or die;
 $value = $field->value;
 $class = $fieldParams->get('image_class');
 
-if ($class)
-{
-	$class = ' class="' . $class . '"';
+if ($class) {
+    $class = ' class="' . $class . '"';
 }
 
-if ($value == '')
-{
-	return;
+if ($value == '') {
+    return;
 }
 
 $value  = (array) $value;
 $buffer = '';
 
-foreach ($value as $path)
-{
-	if (!$path)
-	{
-		continue;
-	}
+foreach ($value as $path) {
+    if (!$path) {
+        continue;
+    }
 
-	$buffer .= '<img src="' . htmlentities($path) . '"' . $class . '/>';
+    $buffer .= '<img src="' . htmlentities($path) . '"' . $class . '/>';
 }
 
 echo $buffer;

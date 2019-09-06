@@ -10,16 +10,14 @@ defined('_JEXEC') or die;
 
 $value = $field->value;
 
-if ($value == '')
-{
-	return;
+if ($value == '') {
+    return;
 }
 
 $attributes = '';
 
-if (!JUri::isInternal($value))
-{
-	$attributes = 'rel="nofollow noopener noreferrer" target="_blank"';
+if (!JUri::isInternal($value)) {
+    $attributes = 'rel="nofollow noopener noreferrer" target="_blank"';
 }
 
 echo '<a href="' . htmlspecialchars($value) . '" ' . $attributes . '>' . htmlspecialchars($value) . '</a>';

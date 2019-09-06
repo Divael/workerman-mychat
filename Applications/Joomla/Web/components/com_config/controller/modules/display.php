@@ -18,111 +18,101 @@ defined('_JEXEC') or die;
 */
 class ConfigControllerModulesDisplay extends ConfigControllerDisplay
 {
-	/**
-	 * Method to display module editing.
-	 *
-	 * @return  bool	True on success, false on failure.
-	 *
-	 * @since   3.2
-	 */
-	public function execute()
-	{
+    /**
+     * Method to display module editing.
+     *
+     * @return  bool	True on success, false on failure.
+     *
+     * @since   3.2
+     */
+    public function execute()
+    {
 
-		// Get the application
-		$app = $this->getApplication();
+        // Get the application
+        $app = $this->getApplication();
 
-		// Get the document object.
-		$document     = JFactory::getDocument();
+        // Get the document object.
+        $document     = JFactory::getDocument();
 
-		$viewName     = $this->input->getWord('view', 'modules');
-		$viewFormat   = $document->getType();
-		$layoutName   = $this->input->getWord('layout', 'default');
-		$returnUri    = $this->input->get->get('return', null, 'base64');
+        $viewName     = $this->input->getWord('view', 'modules');
+        $viewFormat   = $document->getType();
+        $layoutName   = $this->input->getWord('layout', 'default');
+        $returnUri    = $this->input->get->get('return', null, 'base64');
 
-		// Construct redirect URI
-		if (!empty($returnUri))
-		{
-			$redirect = base64_decode(urldecode($returnUri));
+        // Construct redirect URI
+        if (!empty($returnUri)) {
+            $redirect = base64_decode(urldecode($returnUri));
 
-			// Don't redirect to an external URL.
-			if (!JUri::isInternal($redirect))
-			{
-				$redirect = JUri::base();
-			}
-		}
-		else
-		{
-			$redirect = JUri::base();
-		}
+            // Don't redirect to an external URL.
+            if (!JUri::isInternal($redirect)) {
+                $redirect = JUri::base();
+            }
+        } else {
+            $redirect = JUri::base();
+        }
 
-		// Access backend com_module
-		JLoader::register('ModulesController', JPATH_ADMINISTRATOR . '/components/com_modules/controller.php');
-		JLoader::register('ModulesViewModule', JPATH_ADMINISTRATOR . '/components/com_modules/views/module/view.json.php');
-		JLoader::register('ModulesModelModule', JPATH_ADMINISTRATOR . '/components/com_modules/models/module.php');
+        // Access backend com_module
+        JLoader::register('ModulesController', JPATH_ADMINISTRATOR . '/components/com_modules/controller.php');
+        JLoader::register('ModulesViewModule', JPATH_ADMINISTRATOR . '/components/com_modules/views/module/view.json.php');
+        JLoader::register('ModulesModelModule', JPATH_ADMINISTRATOR . '/components/com_modules/models/module.php');
 
-		$displayClass = new ModulesController;
+        $displayClass = new ModulesController;
 
-		// Get the parameters of the module with Id
-		$document->setType('json');
+        // Get the parameters of the module with Id
+        $document->setType('json');
 
-		// Execute backend controller
-		if (!($serviceData = json_decode($displayClass->display(), true)))
-		{
-			$app->redirect($redirect);
-		}
+        // Execute backend controller
+        if (!($serviceData = json_decode($displayClass->display(), true))) {
+            $app->redirect($redirect);
+        }
 
-		// Reset params back after requesting from service
-		$document->setType('html');
-		$app->input->set('view', $viewName);
+        // Reset params back after requesting from service
+        $document->setType('html');
+        $app->input->set('view', $viewName);
 
-		// Register the layout paths for the view
-		$paths = new SplPriorityQueue;
-		$paths->insert(JPATH_COMPONENT . '/view/' . $viewName . '/tmpl', 'normal');
+        // Register the layout paths for the view
+        $paths = new SplPriorityQueue;
+        $paths->insert(JPATH_COMPONENT . '/view/' . $viewName . '/tmpl', 'normal');
 
-		$viewClass  = 'ConfigView' . ucfirst($viewName) . ucfirst($viewFormat);
-		$modelClass = 'ConfigModel' . ucfirst($viewName);
+        $viewClass  = 'ConfigView' . ucfirst($viewName) . ucfirst($viewFormat);
+        $modelClass = 'ConfigModel' . ucfirst($viewName);
 
-		if (class_exists($viewClass))
-		{
+        if (class_exists($viewClass)) {
+            $model = new $modelClass;
 
-			$model = new $modelClass;
+            // Access check.
+            $user = JFactory::getUser();
 
-			// Access check.
-			$user = JFactory::getUser();
+            if (!$user->authorise('module.edit.frontend', 'com_modules.module.' . $serviceData['id'])
+                && !$user->authorise('module.edit.frontend', 'com_modules')) {
+                $app->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR'), 'error');
+                $app->redirect($redirect);
+            }
 
-			if (!$user->authorise('module.edit.frontend', 'com_modules.module.' . $serviceData['id'])
-				&& !$user->authorise('module.edit.frontend', 'com_modules'))
-			{
-				$app->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR'), 'error');
-				$app->redirect($redirect);
+            // Need to add module name to the state of model
+            $model->getState()->set('module.name', $serviceData['module']);
 
-			}
+            $view = new $viewClass($model, $paths);
 
-			// Need to add module name to the state of model
-			$model->getState()->set('module.name', $serviceData['module']);
+            $view->setLayout($layoutName);
 
-			$view = new $viewClass($model, $paths);
+            // Push document object into the view.
+            $view->document = $document;
 
-			$view->setLayout($layoutName);
+            // Load form and bind data
+            $form = $model->getForm();
 
-			// Push document object into the view.
-			$view->document = $document;
+            if ($form) {
+                $form->bind($serviceData);
+            }
 
-			// Load form and bind data
-			$form = $model->getForm();
+            // Set form and data to the view
+            $view->form = &$form;
+            $view->item = &$serviceData;
 
-			if ($form)
-			{
-				$form->bind($serviceData);
-			}
-
-			// Set form and data to the view
-			$view->form = &$form;
-			$view->item = &$serviceData;
-
-			// Render view.
-			echo $view->render();
-		}
-		return true;
-	}
+            // Render view.
+            echo $view->render();
+        }
+        return true;
+    }
 }

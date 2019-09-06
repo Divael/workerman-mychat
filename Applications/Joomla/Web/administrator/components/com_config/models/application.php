@@ -9,17 +9,14 @@
 
 defined('_JEXEC') or die;
 
-try
-{
-	JLog::add(
-		sprintf('ConfigModelApplication has moved from %1$s to %2$s', __FILE__, dirname(__DIR__) . '/model/application.php'),
-		JLog::WARNING,
-		'deprecated'
-	);
-}
-catch (RuntimeException $exception)
-{
-	// Informational log only
+try {
+    JLog::add(
+        sprintf('ConfigModelApplication has moved from %1$s to %2$s', __FILE__, dirname(__DIR__) . '/model/application.php'),
+        JLog::WARNING,
+        'deprecated'
+    );
+} catch (RuntimeException $exception) {
+    // Informational log only
 }
 
 include_once JPATH_ADMINISTRATOR . '/components/com_config/model/application.php';

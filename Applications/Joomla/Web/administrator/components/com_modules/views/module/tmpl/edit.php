@@ -21,9 +21,8 @@ $hasContent = empty($this->item->module) ||  isset($this->item->xml->customConte
 $hasContentFieldName = 'content';
 
 // For a later improvement
-if ($hasContent)
-{
-	$hasContentFieldName = 'content';
+if ($hasContent) {
+    $hasContentFieldName = 'content';
 }
 
 // Get Params Fieldsets
@@ -34,9 +33,8 @@ $script = "
 			if (task == 'module.cancel' || document.formvalidator.isValid(document.getElementById('module-form')))
 			{
 ";
-if ($hasContent)
-{
-	$script .= $this->form->getField($hasContentFieldName)->save();
+if ($hasContent) {
+    $script .= $this->form->getField($hasContentFieldName)->save();
 }
 $script .= "
 			Joomla.submitform(task, document.getElementById('module-form'));
@@ -174,15 +172,12 @@ $tmpl    = $isModal || $input->get('tmpl', '', 'cmd') === 'component' ? '&tmpl=c
 					<?php if ($this->item->xml->description) : ?>
 						<h3>
 							<?php
-							if ($this->item->xml)
-							{
-								echo ($text = (string) $this->item->xml->name) ? JText::_($text) : $this->item->module;
-							}
-							else
-							{
-								echo JText::_('COM_MODULES_ERR_XML');
-							}
-							?>
+                            if ($this->item->xml) {
+                                echo ($text = (string) $this->item->xml->name) ? JText::_($text) : $this->item->module;
+                            } else {
+                                echo JText::_('COM_MODULES_ERR_XML');
+                            }
+                            ?>
 						</h3>
 						<div class="info-labels">
 							<span class="label hasTooltip" title="<?php echo JHtml::_('tooltipText', 'COM_MODULES_FIELD_CLIENT_ID_LABEL'); ?>">
@@ -191,20 +186,20 @@ $tmpl    = $isModal || $input->get('tmpl', '', 'cmd') === 'component' ? '&tmpl=c
 						</div>
 						<div>
 							<?php
-							$short_description = JText::_($this->item->xml->description);
-							$this->fieldset = 'description';
-							$long_description = JLayoutHelper::render('joomla.edit.fieldset', $this);
-							if (!$long_description) {
-								$truncated = JHtmlString::truncate($short_description, 550, true, false);
-								if (strlen($truncated) > 500) {
-									$long_description = $short_description;
-									$short_description = JHtmlString::truncate($truncated, 250);
-									if ($short_description == $long_description) {
-										$long_description = '';
-									}
-								}
-							}
-							?>
+                            $short_description = JText::_($this->item->xml->description);
+                            $this->fieldset = 'description';
+                            $long_description = JLayoutHelper::render('joomla.edit.fieldset', $this);
+                            if (!$long_description) {
+                                $truncated = JHtmlString::truncate($short_description, 550, true, false);
+                                if (strlen($truncated) > 500) {
+                                    $long_description = $short_description;
+                                    $short_description = JHtmlString::truncate($truncated, 250);
+                                    if ($short_description == $long_description) {
+                                        $long_description = '';
+                                    }
+                                }
+                            }
+                            ?>
 							<p><?php echo $short_description; ?></p>
 							<?php if ($long_description) : ?>
 								<p class="readmore">
@@ -219,14 +214,13 @@ $tmpl    = $isModal || $input->get('tmpl', '', 'cmd') === 'component' ? '&tmpl=c
 					<div class="alert alert-error"><?php echo JText::_('COM_MODULES_ERR_XML'); ?></div>
 				<?php endif; ?>
 				<?php
-				if ($hasContent)
-				{
-					echo $this->form->getInput($hasContentFieldName);
-				}
-				$this->fieldset = 'basic';
-				$html = JLayoutHelper::render('joomla.edit.fieldset', $this);
-				echo $html ? '<hr />' . $html : '';
-				?>
+                if ($hasContent) {
+                    echo $this->form->getInput($hasContentFieldName);
+                }
+                $this->fieldset = 'basic';
+                $html = JLayoutHelper::render('joomla.edit.fieldset', $this);
+                echo $html ? '<hr />' . $html : '';
+                ?>
 			</div>
 			<div class="span3">
 				<fieldset class="form-vertical">
@@ -241,18 +235,18 @@ $tmpl    = $isModal || $input->get('tmpl', '', 'cmd') === 'component' ? '&tmpl=c
 					</div>
 				</fieldset>
 				<?php
-				// Set main fields.
-				$this->fields = array(
-					'published',
-					'publish_up',
-					'publish_down',
-					'access',
-					'ordering',
-					'language',
-					'note'
-				);
+                // Set main fields.
+                $this->fields = array(
+                    'published',
+                    'publish_up',
+                    'publish_down',
+                    'access',
+                    'ordering',
+                    'language',
+                    'note'
+                );
 
-				?>
+                ?>
 				<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>
 			</div>
 		</div>
@@ -271,10 +265,10 @@ $tmpl    = $isModal || $input->get('tmpl', '', 'cmd') === 'component' ? '&tmpl=c
 		<?php endif; ?>
 
 		<?php
-		$this->fieldsets = array();
-		$this->ignore_fieldsets = array('basic', 'description');
-		echo JLayoutHelper::render('joomla.edit.params', $this);
-		?>
+        $this->fieldsets = array();
+        $this->ignore_fieldsets = array('basic', 'description');
+        echo JLayoutHelper::render('joomla.edit.params', $this);
+        ?>
 
 		<?php if ($this->canDo->get('core.admin')) : ?>
 			<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'permissions', JText::_('COM_MODULES_FIELDSET_RULES')); ?>

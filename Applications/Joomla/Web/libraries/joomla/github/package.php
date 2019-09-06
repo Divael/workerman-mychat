@@ -17,42 +17,40 @@ defined('JPATH_PLATFORM') or die;
  */
 abstract class JGithubPackage extends JGithubObject
 {
-	/**
-	 * @var    string
-	 * @since  3.3 (CMS)
-	 */
-	protected $name = '';
+    /**
+     * @var    string
+     * @since  3.3 (CMS)
+     */
+    protected $name = '';
 
-	/**
-	 * @var    array
-	 * @since  3.3 (CMS)
-	 */
-	protected $packages = array();
+    /**
+     * @var    array
+     * @since  3.3 (CMS)
+     */
+    protected $packages = array();
 
-	/**
-	 * Magic method to lazily create API objects
-	 *
-	 * @param   string  $name  Name of property to retrieve
-	 *
-	 * @return  JGithubPackage  GitHub API package object.
-	 *
-	 * @since   3.3 (CMS)
-	 * @throws  RuntimeException
-	 */
-	public function __get($name)
-	{
-		if (false == in_array($name, $this->packages))
-		{
-			throw new RuntimeException(sprintf('%1$s - Unknown package %2$s', __METHOD__, $name));
-		}
+    /**
+     * Magic method to lazily create API objects
+     *
+     * @param   string  $name  Name of property to retrieve
+     *
+     * @return  JGithubPackage  GitHub API package object.
+     *
+     * @since   3.3 (CMS)
+     * @throws  RuntimeException
+     */
+    public function __get($name)
+    {
+        if (false == in_array($name, $this->packages)) {
+            throw new RuntimeException(sprintf('%1$s - Unknown package %2$s', __METHOD__, $name));
+        }
 
-		if (false == isset($this->$name))
-		{
-			$className = 'JGithubPackage' . ucfirst($this->name) . ucfirst($name);
+        if (false == isset($this->$name)) {
+            $className = 'JGithubPackage' . ucfirst($this->name) . ucfirst($name);
 
-			$this->$name = new $className($this->options, $this->client);
-		}
+            $this->$name = new $className($this->options, $this->client);
+        }
 
-		return $this->$name;
-	}
+        return $this->$name;
+    }
 }

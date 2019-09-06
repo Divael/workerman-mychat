@@ -57,8 +57,8 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 
 		<tbody>
 		<?php
-			$i = 0;
-			foreach ($this->items as $item) : ?>
+            $i = 0;
+            foreach ($this->items as $item) : ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td>
 					<a class="pointer"

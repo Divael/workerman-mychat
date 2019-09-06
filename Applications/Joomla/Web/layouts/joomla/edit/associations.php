@@ -11,8 +11,8 @@ defined('JPATH_BASE') or die;
 
 $form     = $displayData->getForm();
 $options  = array(
-	'formControl' => $form->getFormControl(),
-	'hidden'      => (int) ($form->getValue('language', null, '*') === '*'),
+    'formControl' => $form->getFormControl(),
+    'hidden'      => (int) ($form->getValue('language', null, '*') === '*'),
 );
 
 JHtml::_('behavior.core');

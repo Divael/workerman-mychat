@@ -38,24 +38,19 @@ $cpanel = ($option === 'com_cpanel');
 
 $showSubmenu = false;
 $this->submenumodules = JModuleHelper::getModules('submenu');
-foreach ($this->submenumodules as $submenumodule)
-{
-	$output = JModuleHelper::renderModule($submenumodule);
-	if (strlen($output))
-	{
-		$showSubmenu = true;
-		break;
-	}
+foreach ($this->submenumodules as $submenumodule) {
+    $output = JModuleHelper::renderModule($submenumodule);
+    if (strlen($output)) {
+        $showSubmenu = true;
+        break;
+    }
 }
 
 // Logo file
-if ($params->get('logoFile'))
-{
-	$logo = JUri::root() . $params->get('logoFile');
-}
-else
-{
-	$logo = $this->baseurl . '/templates/' . $this->template . '/images/logo.png';
+if ($params->get('logoFile')) {
+    $logo = JUri::root() . $params->get('logoFile');
+} else {
+    $logo = $this->baseurl . '/templates/' . $this->template . '/images/logo.png';
 }
 
 // Template Parameters
@@ -74,18 +69,18 @@ $stickyToolbar = $params->get('stickyToolbar', '1');
 		<!-- Load additional CSS styles for debug mode-->
 		<link href="<?php echo JUri::root(true); ?>/media/cms/css/debug.css" rel="stylesheet" />
 	<?php endif; ?>
-	<?php // If Right-to-Left ?>
+	<?php // If Right-to-Left?>
 	<?php if ($this->direction == 'rtl') : ?>
 		<link href="<?php echo JUri::root(true); ?>/media/jui/css/bootstrap-rtl.css" rel="stylesheet" />
 	<?php endif; ?>
-	<?php // Load specific language related CSS ?>
+	<?php // Load specific language related CSS?>
 	<?php $file = 'language/' . $lang->getTag() . '/' . $lang->getTag() . '.css'; ?>
 	<?php if (is_file($file)) : ?>
 		<link href="<?php echo $file; ?>" rel="stylesheet" />
 	<?php endif; ?>
-	<link href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/template<?php echo ($this->direction == 'rtl' ? '-rtl' : ''); ?>.css" rel="stylesheet" />
+	<link href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/css/template<?php echo($this->direction == 'rtl' ? '-rtl' : ''); ?>.css" rel="stylesheet" />
 	<link href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
-	<?php // Template color ?>
+	<?php // Template color?>
 	<?php if ($params->get('templateColor')) : ?>
 	<style>
 		.navbar-inner, .navbar-inverse .navbar-inner, .nav-list > .active > a, .nav-list > .active > a:hover, .dropdown-menu li > a:hover, .dropdown-menu .active > a, .dropdown-menu .active > a:hover, .navbar-inverse .nav li.dropdown.open > .dropdown-toggle, .navbar-inverse .nav li.dropdown.active > .dropdown-toggle, .navbar-inverse .nav li.dropdown.open.active > .dropdown-toggle
@@ -99,7 +94,7 @@ $stickyToolbar = $params->get('stickyToolbar', '1');
 		}
 	</style>
 	<?php endif; ?>
-	<?php // Template header color ?>
+	<?php // Template header color?>
 	<?php if ($params->get('headerColor')) : ?>
 	<style>
 		.header
@@ -108,7 +103,7 @@ $stickyToolbar = $params->get('stickyToolbar', '1');
 		}
 	</style>
 	<?php endif; ?>
-	<?php // Sidebar background color ?>
+	<?php // Sidebar background color?>
 	<?php if ($params->get('sidebarColor')) : ?>
 		<style>
 			.nav-list > .active > a, .nav-list > .active > a:hover {
@@ -145,7 +140,7 @@ $stickyToolbar = $params->get('stickyToolbar', '1');
 				<?php else : ?>
 				<div>
 				<?php endif; ?>
-					<?php // Display menu modules ?>
+					<?php // Display menu modules?>
 					<?php $this->menumodules = JModuleHelper::getModules('menu'); ?>
 					<?php foreach ($this->menumodules as $menumodule) : ?>
 						<?php $output = JModuleHelper::renderModule($menumodule, array('style' => 'none')); ?>
@@ -201,7 +196,7 @@ $stickyToolbar = $params->get('stickyToolbar', '1');
 						&copy; <?php echo date('Y'); ?> <?php echo $sitename; ?>
 					</p>
 				</div>
-				<?php // Display status modules ?>
+				<?php // Display status modules?>
 				<?php $this->statusmodules = JModuleHelper::getModules('status'); ?>
 				<?php foreach ($this->statusmodules as $statusmodule) : ?>
 					<?php $output = JModuleHelper::renderModule($statusmodule, array('style' => 'no')); ?>
@@ -228,11 +223,11 @@ $stickyToolbar = $params->get('stickyToolbar', '1');
 					<?php if ($this->debug) : ?>
 						<div>
 							<?php echo $this->renderBacktrace(); ?>
-							<?php // Check if there are more Exceptions and render their data as well ?>
+							<?php // Check if there are more Exceptions and render their data as well?>
 							<?php if ($this->error->getPrevious()) : ?>
 								<?php $loop = true; ?>
-								<?php // Reference $this->_error here and in the loop as setError() assigns errors to this property and we need this for the backtrace to work correctly ?>
-								<?php // Make the first assignment to setError() outside the loop so the loop does not skip Exceptions ?>
+								<?php // Reference $this->_error here and in the loop as setError() assigns errors to this property and we need this for the backtrace to work correctly?>
+								<?php // Make the first assignment to setError() outside the loop so the loop does not skip Exceptions?>
 								<?php $this->setError($this->_error->getPrevious()); ?>
 								<?php while ($loop === true) : ?>
 									<p><strong><?php echo JText::_('JERROR_LAYOUT_PREVIOUS_ERROR'); ?></strong></p>
@@ -240,7 +235,7 @@ $stickyToolbar = $params->get('stickyToolbar', '1');
 									<?php echo $this->renderBacktrace(); ?>
 									<?php $loop = $this->setError($this->_error->getPrevious()); ?>
 								<?php endwhile; ?>
-								<?php // Reset the main error object to the base error ?>
+								<?php // Reset the main error object to the base error?>
 								<?php $this->setError($this->error); ?>
 							<?php endif; ?>
 						</div>

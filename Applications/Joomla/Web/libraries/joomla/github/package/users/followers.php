@@ -19,126 +19,125 @@ defined('JPATH_PLATFORM') or die;
  */
 class JGithubPackageUsersFollowers extends JGithubPackage
 {
-	/**
-	 * List followers of a user.
-	 *
-	 * @param   string  $user  The name of the user. If not set the current authenticated user will be used.
-	 *
-	 * @since 3.3 (CMS)
-	 *
-	 * @return object
-	 */
-	public function getList($user = '')
-	{
-		// Build the request path.
-		$path = ($user)
-			? '/users/' . $user . '/followers'
-			: '/user/followers';
+    /**
+     * List followers of a user.
+     *
+     * @param   string  $user  The name of the user. If not set the current authenticated user will be used.
+     *
+     * @since 3.3 (CMS)
+     *
+     * @return object
+     */
+    public function getList($user = '')
+    {
+        // Build the request path.
+        $path = ($user)
+            ? '/users/' . $user . '/followers'
+            : '/user/followers';
 
-		return $this->processResponse(
-			$this->client->get($this->fetchUrl($path))
-		);
-	}
+        return $this->processResponse(
+            $this->client->get($this->fetchUrl($path))
+        );
+    }
 
-	/**
-	 * List users followed by another user.
-	 *
-	 * @param   string  $user  The name of the user. If not set the current authenticated user will be used.
-	 *
-	 * @since 3.3 (CMS)
-	 *
-	 * @return object
-	 */
-	public function getListFollowedBy($user = '')
-	{
-		// Build the request path.
-		$path = ($user)
-			? '/users/' . $user . '/following'
-			: '/user/following';
+    /**
+     * List users followed by another user.
+     *
+     * @param   string  $user  The name of the user. If not set the current authenticated user will be used.
+     *
+     * @since 3.3 (CMS)
+     *
+     * @return object
+     */
+    public function getListFollowedBy($user = '')
+    {
+        // Build the request path.
+        $path = ($user)
+            ? '/users/' . $user . '/following'
+            : '/user/following';
 
-		return $this->processResponse(
-			$this->client->get($this->fetchUrl($path))
-		);
-	}
+        return $this->processResponse(
+            $this->client->get($this->fetchUrl($path))
+        );
+    }
 
-	/**
-	 * Check if you are following a user.
-	 *
-	 * @param   string  $user  The name of the user.
-	 *
-	 * @throws UnexpectedValueException
-	 * @since 3.3 (CMS)
-	 *
-	 * @return boolean
-	 */
-	public function check($user)
-	{
-		// Build the request path.
-		$path = '/user/following/' . $user;
+    /**
+     * Check if you are following a user.
+     *
+     * @param   string  $user  The name of the user.
+     *
+     * @throws UnexpectedValueException
+     * @since 3.3 (CMS)
+     *
+     * @return boolean
+     */
+    public function check($user)
+    {
+        // Build the request path.
+        $path = '/user/following/' . $user;
 
-		$response = $this->client->get($this->fetchUrl($path));
+        $response = $this->client->get($this->fetchUrl($path));
 
-		switch ($response->code)
-		{
-			case '204' :
-				// You are following this user
-				return true;
-				break;
+        switch ($response->code) {
+            case '204':
+                // You are following this user
+                return true;
+                break;
 
-			case '404' :
-				// You are not following this user
-				return false;
-				break;
+            case '404':
+                // You are not following this user
+                return false;
+                break;
 
-			default :
-				throw new UnexpectedValueException('Unexpected response code: ' . $response->code);
-				break;
-		}
-	}
+            default:
+                throw new UnexpectedValueException('Unexpected response code: ' . $response->code);
+                break;
+        }
+    }
 
-	/**
-	 * Follow a user.
-	 *
-	 * Following a user requires the user to be logged in and authenticated with
-	 * basic auth or OAuth with the user:follow scope.
-	 *
-	 * @param   string  $user  The name of the user.
-	 *
-	 * @since 3.3 (CMS)
-	 *
-	 * @return object
-	 */
-	public function follow($user)
-	{
-		// Build the request path.
-		$path = '/user/following/' . $user;
+    /**
+     * Follow a user.
+     *
+     * Following a user requires the user to be logged in and authenticated with
+     * basic auth or OAuth with the user:follow scope.
+     *
+     * @param   string  $user  The name of the user.
+     *
+     * @since 3.3 (CMS)
+     *
+     * @return object
+     */
+    public function follow($user)
+    {
+        // Build the request path.
+        $path = '/user/following/' . $user;
 
-		return $this->processResponse(
-			$this->client->put($this->fetchUrl($path), ''),
-			204
-		);
-	}
+        return $this->processResponse(
+            $this->client->put($this->fetchUrl($path), ''),
+            204
+        );
+    }
 
-	/**
-	 * Unfollow a user.
-	 *
-	 * Unfollowing a user requires the user to be logged in and authenticated with
-	 * basic auth or OAuth with the user:follow scope.
-	 *
-	 * @param   string  $user  The name of the user.
-	 *
-	 * @since 3.3 (CMS)
-	 *
-	 * @return object
-	 */
-	public function unfollow($user)
-	{
-		// Build the request path.
-		$path = '/user/following/' . $user;
+    /**
+     * Unfollow a user.
+     *
+     * Unfollowing a user requires the user to be logged in and authenticated with
+     * basic auth or OAuth with the user:follow scope.
+     *
+     * @param   string  $user  The name of the user.
+     *
+     * @since 3.3 (CMS)
+     *
+     * @return object
+     */
+    public function unfollow($user)
+    {
+        // Build the request path.
+        $path = '/user/following/' . $user;
 
-		return $this->processResponse(
-			$this->client->delete($this->fetchUrl($path)),
-			204
-		);
-	}
+        return $this->processResponse(
+            $this->client->delete($this->fetchUrl($path)),
+            204
+        );
+    }
 }

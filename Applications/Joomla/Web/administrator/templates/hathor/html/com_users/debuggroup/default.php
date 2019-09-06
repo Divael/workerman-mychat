@@ -19,7 +19,7 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_users&view=debuggroup&group_id='.(int) $this->state->get('group_id'));?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -40,10 +40,9 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 			<label class="selectlabel" for="filter_component"><?php echo JText::_('COM_USERS_OPTION_SELECT_COMPONENT'); ?></label>
 			<select name="filter_component" id="filter_component">
 				<option value=""><?php echo JText::_('COM_USERS_OPTION_SELECT_COMPONENT');?></option>
-				<?php if (!empty($this->components))
-				{
-					echo JHtml::_('select.options', $this->components, 'value', 'text', $this->state->get('filter.component'));
-				}?>
+				<?php if (!empty($this->components)) {
+    echo JHtml::_('select.options', $this->components, 'value', 'text', $this->state->get('filter.component'));
+}?>
 			</select>
 
 			<label class="selectlabel" for="filter_level_start"><?php echo JText::_('COM_USERS_OPTION_SELECT_LEVEL_START'); ?></label>
@@ -107,22 +106,22 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 				</td>
 				<?php foreach ($this->actions as $action) : ?>
 					<?php
-					$name  = $action[0];
-					$check = $item->checks[$name];
-					if ($check === true) :
-						$class = 'check-a';
-						$text  = '&#10003;';
-					elseif ($check === false) :
-						$class = 'check-d';
-						$text  = '&#10007;';
-					elseif ($check === null) :
-						$class = 'check-0';
-						$text  = '-';
-					else :
-						$class = '';
-						$text  = '&#160;';
-					endif;
-					?>
+                    $name  = $action[0];
+                    $check = $item->checks[$name];
+                    if ($check === true) :
+                        $class = 'check-a';
+                        $text  = '&#10003;';
+                    elseif ($check === false) :
+                        $class = 'check-d';
+                        $text  = '&#10007;';
+                    elseif ($check === null) :
+                        $class = 'check-0';
+                        $text  = '-';
+                    else :
+                        $class = '';
+                        $text  = '&#160;';
+                    endif;
+                    ?>
 				<td class="center <?php echo $class;?>">
 					<?php echo $text; ?>
 				</td>

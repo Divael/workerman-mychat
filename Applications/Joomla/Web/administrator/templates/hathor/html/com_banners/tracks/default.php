@@ -20,7 +20,7 @@ $listOrder = $this->escape($this->state->get('list.ordering'));
 $listDirn  = $this->escape($this->state->get('list.direction'));
 ?>
 <form id="adminForm" name="adminForm" action="<?php echo JRoute::_('index.php?option=com_banners&view=tracks'); ?>" method="post">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div class="span2" id="j-sidebar-container">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -120,23 +120,23 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 			</tbody>
 		</table>
 
-		<?php // Load the export form ?>
+		<?php // Load the export form?>
 		<?php echo JHtml::_(
-			'bootstrap.renderModal',
-			'downloadModal',
-			array(
-				'title'       => JText::_('COM_BANNERS_TRACKS_DOWNLOAD'),
-				'url'         => JRoute::_('index.php?option=com_banners&amp;view=download&amp;tmpl=component'),
-				'width'       => '100%',
-				'height'      => '300px',
-				'footer'      => '<a class="btn" data-dismiss="modal" type="button"'
-						. ' onclick="jQuery(\'#downloadModal iframe\').contents().find(\'#closeBtn\').click();">'
-						. JText::_('COM_BANNERS_CANCEL') . '</a>'
-						. '<button class="btn btn-success" type="button"'
-						. ' onclick="jQuery(\'#downloadModal iframe\').contents().find(\'#exportBtn\').click();">'
-						. JText::_('COM_BANNERS_TRACKS_EXPORT') . '</button>',
-			)
-		); ?>
+    'bootstrap.renderModal',
+    'downloadModal',
+    array(
+                'title'       => JText::_('COM_BANNERS_TRACKS_DOWNLOAD'),
+                'url'         => JRoute::_('index.php?option=com_banners&amp;view=download&amp;tmpl=component'),
+                'width'       => '100%',
+                'height'      => '300px',
+                'footer'      => '<a class="btn" data-dismiss="modal" type="button"'
+                        . ' onclick="jQuery(\'#downloadModal iframe\').contents().find(\'#closeBtn\').click();">'
+                        . JText::_('COM_BANNERS_CANCEL') . '</a>'
+                        . '<button class="btn btn-success" type="button"'
+                        . ' onclick="jQuery(\'#downloadModal iframe\').contents().find(\'#exportBtn\').click();">'
+                        . JText::_('COM_BANNERS_TRACKS_EXPORT') . '</button>',
+            )
+); ?>
 
 		<?php echo $this->pagination->getListFooter(); ?>
 

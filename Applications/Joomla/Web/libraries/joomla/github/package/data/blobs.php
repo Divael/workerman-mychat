@@ -23,48 +23,48 @@ defined('JPATH_PLATFORM') or die;
  */
 class JGithubPackageDataBlobs extends JGithubPackage
 {
-	/**
-	 * Get a Blob.
-	 *
-	 * @param   string  $owner  Repository owner.
-	 * @param   string  $repo   Repository name.
-	 * @param   string  $sha    The commit SHA.
-	 *
-	 * @return object
-	 */
-	public function get($owner, $repo, $sha)
-	{
-		// Build the request path.
-		$path = '/repos/' . $owner . '/' . $repo . '/git/blobs/' . $sha;
+    /**
+     * Get a Blob.
+     *
+     * @param   string  $owner  Repository owner.
+     * @param   string  $repo   Repository name.
+     * @param   string  $sha    The commit SHA.
+     *
+     * @return object
+     */
+    public function get($owner, $repo, $sha)
+    {
+        // Build the request path.
+        $path = '/repos/' . $owner . '/' . $repo . '/git/blobs/' . $sha;
 
-		return $this->processResponse(
-			$this->client->get($this->fetchUrl($path))
-		);
-	}
+        return $this->processResponse(
+            $this->client->get($this->fetchUrl($path))
+        );
+    }
 
-	/**
-	 * Create a Blob.
-	 *
-	 * @param   string  $owner     Repository owner.
-	 * @param   string  $repo      Repository name.
-	 * @param   string  $content   The content of the blob.
-	 * @param   string  $encoding  The encoding to use.
-	 *
-	 * @return object
-	 */
-	public function create($owner, $repo, $content, $encoding = 'utf-8')
-	{
-		// Build the request path.
-		$path = '/repos/' . $owner . '/' . $repo . '/git/blobs';
+    /**
+     * Create a Blob.
+     *
+     * @param   string  $owner     Repository owner.
+     * @param   string  $repo      Repository name.
+     * @param   string  $content   The content of the blob.
+     * @param   string  $encoding  The encoding to use.
+     *
+     * @return object
+     */
+    public function create($owner, $repo, $content, $encoding = 'utf-8')
+    {
+        // Build the request path.
+        $path = '/repos/' . $owner . '/' . $repo . '/git/blobs';
 
-		$data = array(
-			'content'  => $content,
-			'encoding' => $encoding,
-		);
+        $data = array(
+            'content'  => $content,
+            'encoding' => $encoding,
+        );
 
-		return $this->processResponse(
-			$this->client->post($this->fetchUrl($path), json_encode($data)),
-			201
-		);
-	}
+        return $this->processResponse(
+            $this->client->post($this->fetchUrl($path), json_encode($data)),
+            201
+        );
+    }
 }

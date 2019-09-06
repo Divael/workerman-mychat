@@ -15,10 +15,9 @@ JHtml::addIncludePath(JPATH_COMPONENT.'/helpers/html');
 JHtml::_('bootstrap.tooltip');
 
 $input = JFactory::getApplication()->input;
-if ($this->type == 'image')
-{
-	JHtml::_('script', 'system/jquery.Jcrop.min.js', array('version' => 'auto', 'relative' => true));
-	JHtml::_('stylesheet', 'system/jquery.Jcrop.min.css', array('version' => 'auto', 'relative' => true));
+if ($this->type == 'image') {
+    JHtml::_('script', 'system/jquery.Jcrop.min.js', array('version' => 'auto', 'relative' => true));
+    JHtml::_('stylesheet', 'system/jquery.Jcrop.min.css', array('version' => 'auto', 'relative' => true));
 }
 JFactory::getDocument()->addScriptDeclaration("
 jQuery(document).ready(function($){
@@ -56,9 +55,8 @@ jQuery(document).ready(function($){
 		$(this).addClass('selected');
 	});
 });");
-if ($this->type == 'image')
-{
-	JFactory::getDocument()->addScriptDeclaration("
+if ($this->type == 'image') {
+    JFactory::getDocument()->addScriptDeclaration("
 		jQuery(document).ready(function() {
 			var jcrop_api;
 			// Configuration for image cropping
@@ -113,10 +111,9 @@ JFactory::getDocument()->addStyleDeclaration('
 		overflow-x: auto;
 	}
 ');
-if ($this->type == 'font')
-{
-	JFactory::getDocument()->addStyleDeclaration(
-			"/* Styles for font preview */
+if ($this->type == 'font') {
+    JFactory::getDocument()->addStyleDeclaration(
+        "/* Styles for font preview */
 		@font-face
 		{
 			font-family: previewFont;
@@ -125,7 +122,7 @@ if ($this->type == 'font')
 		.font-preview{
 			font-family: previewFont !important;
 		}"
-	);
+    );
 }
 ?>
 <div class="width-60 fltlft">

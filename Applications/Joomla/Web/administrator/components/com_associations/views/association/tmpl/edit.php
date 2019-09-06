@@ -17,10 +17,10 @@ JHtml::_('script', 'com_associations/sidebyside.js', false, true);
 JHtml::_('stylesheet', 'com_associations/sidebyside.css', array(), true);
 
 $options = array(
-			'layout'   => $this->app->input->get('layout', '', 'string'),
-			'itemtype' => $this->itemtype,
-			'id'       => $this->referenceId,
-		);
+            'layout'   => $this->app->input->get('layout', '', 'string'),
+            'itemtype' => $this->itemtype,
+            'id'       => $this->referenceId,
+        );
 ?>
 <button id="toogle-left-panel" class="btn btn-small"
 		data-show-reference="<?php echo JText::_('COM_ASSOCIATIONS_EDIT_SHOW_REFERENCE'); ?>"

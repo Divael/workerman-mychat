@@ -8,9 +8,8 @@
  */
 defined('_JEXEC') or die;
 
-if (!key_exists('field', $displayData))
-{
-	return;
+if (!key_exists('field', $displayData)) {
+    return;
 }
 
 $field = $displayData['field'];
@@ -18,9 +17,8 @@ $label = JText::_($field->label);
 $value = $field->value;
 $showLabel = $field->params->get('showlabel');
 
-if ($value == '')
-{
-	return;
+if ($value == '') {
+    return;
 }
 ?>
 <?php if ($showLabel == 1) : ?>

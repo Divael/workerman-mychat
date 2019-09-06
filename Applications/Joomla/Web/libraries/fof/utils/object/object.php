@@ -35,8 +35,7 @@ class FOFUtilsObject
      */
     public function __construct($properties = null)
     {
-        if ($properties !== null)
-        {
+        if ($properties !== null) {
             $this->setProperties($properties);
         }
     }
@@ -75,8 +74,7 @@ class FOFUtilsObject
      */
     public function get($property, $default = null)
     {
-        if (isset($this->$property))
-        {
+        if (isset($this->$property)) {
             return $this->$property;
         }
         return $default;
@@ -92,12 +90,9 @@ class FOFUtilsObject
     public function getProperties($public = true)
     {
         $vars = get_object_vars($this);
-        if ($public)
-        {
-            foreach ($vars as $key => $value)
-            {
-                if ('_' == substr($key, 0, 1))
-                {
+        if ($public) {
+            foreach ($vars as $key => $value) {
+                if ('_' == substr($key, 0, 1)) {
                     unset($vars[$key]);
                 }
             }
@@ -117,24 +112,18 @@ class FOFUtilsObject
     public function getError($i = null, $toString = true)
     {
         // Find the error
-        if ($i === null)
-        {
+        if ($i === null) {
             // Default, return the last message
             $error = end($this->_errors);
-        }
-        elseif (!array_key_exists($i, $this->_errors))
-        {
+        } elseif (!array_key_exists($i, $this->_errors)) {
             // If $i has been specified but does not exist, return false
             return false;
-        }
-        else
-        {
+        } else {
             $error = $this->_errors[$i];
         }
 
         // Check if only the string is requested
-        if ($error instanceof Exception && $toString)
-        {
+        if ($error instanceof Exception && $toString) {
             return (string) $error;
         }
 
@@ -175,10 +164,8 @@ class FOFUtilsObject
      */
     public function setProperties($properties)
     {
-        if (is_array($properties) || is_object($properties))
-        {
-            foreach ((array) $properties as $k => $v)
-            {
+        if (is_array($properties) || is_object($properties)) {
+            foreach ((array) $properties as $k => $v) {
                 // Use the set function which might be overridden.
                 $this->set($k, $v);
             }

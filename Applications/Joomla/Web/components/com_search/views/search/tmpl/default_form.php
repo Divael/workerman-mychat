@@ -53,8 +53,8 @@ $upper_limit = $lang->getUpperLimitSearchWord();
 		<fieldset class="only">
 			<legend><?php echo JText::_('COM_SEARCH_SEARCH_ONLY'); ?></legend>
 			<?php foreach ($this->searchareas['search'] as $val => $txt) :
-				$checked = is_array($this->searchareas['active']) && in_array($val, $this->searchareas['active']) ? 'checked="checked"' : '';
-			?>
+                $checked = is_array($this->searchareas['active']) && in_array($val, $this->searchareas['active']) ? 'checked="checked"' : '';
+            ?>
 			<label for="area-<?php echo $val; ?>" class="checkbox">
 				<input type="checkbox" name="areas[]" value="<?php echo $val; ?>" id="area-<?php echo $val; ?>" <?php echo $checked; ?> >
 				<?php echo JText::_($txt); ?>

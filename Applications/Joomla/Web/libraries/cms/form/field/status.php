@@ -18,25 +18,25 @@ JFormHelper::loadFieldClass('predefinedlist');
  */
 class JFormFieldStatus extends JFormFieldPredefinedList
 {
-	/**
-	 * The form field type.
-	 *
-	 * @var    string
-	 * @since  3.2
-	 */
-	public $type = 'Status';
+    /**
+     * The form field type.
+     *
+     * @var    string
+     * @since  3.2
+     */
+    public $type = 'Status';
 
-	/**
-	 * Available statuses
-	 *
-	 * @var  array
-	 * @since  3.2
-	 */
-	protected $predefinedOptions = array(
-		'-2' =>	'JTRASHED',
-		'0'  => 'JUNPUBLISHED',
-		'1'  => 'JPUBLISHED',
-		'2'  => 'JARCHIVED',
-		'*'  => 'JALL',
-	);
+    /**
+     * Available statuses
+     *
+     * @var  array
+     * @since  3.2
+     */
+    protected $predefinedOptions = array(
+        '-2' =>	'JTRASHED',
+        '0'  => 'JUNPUBLISHED',
+        '1'  => 'JPUBLISHED',
+        '2'  => 'JARCHIVED',
+        '*'  => 'JALL',
+    );
 }

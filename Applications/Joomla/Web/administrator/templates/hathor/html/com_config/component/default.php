@@ -26,18 +26,17 @@ JFactory::getDocument()->addScriptDeclaration("
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_config'); ?>" id="component-form" method="post" name="adminForm" autocomplete="off" class="form-validate">
 	<?php
-	echo JHtml::_('tabs.start', 'config-tabs-' . $this->component->option . '_configuration', array('useCookie' => 1));
-	$fieldSets = $this->form->getFieldsets();
-	?>
+    echo JHtml::_('tabs.start', 'config-tabs-' . $this->component->option . '_configuration', array('useCookie' => 1));
+    $fieldSets = $this->form->getFieldsets();
+    ?>
 	<?php foreach ($fieldSets as $name => $fieldSet) : ?>
 		<?php
-		$label = empty($fieldSet->label) ? 'COM_CONFIG_' . $name . '_FIELDSET_LABEL' : $fieldSet->label;
-		echo JHtml::_('tabs.panel', JText::_($label), 'publishing-details');
-		if (isset($fieldSet->description) && !empty($fieldSet->description))
-		{
-		echo '<p class="tab-description">' . JText::_($fieldSet->description) . '</p>';
-		}
-		?>
+        $label = empty($fieldSet->label) ? 'COM_CONFIG_' . $name . '_FIELDSET_LABEL' : $fieldSet->label;
+        echo JHtml::_('tabs.panel', JText::_($label), 'publishing-details');
+        if (isset($fieldSet->description) && !empty($fieldSet->description)) {
+            echo '<p class="tab-description">' . JText::_($fieldSet->description) . '</p>';
+        }
+        ?>
 		<ul class="config-option-list">
 			<?php foreach ($this->form->getFieldset($name) as $field): ?>
 				<li>

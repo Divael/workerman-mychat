@@ -16,111 +16,102 @@ defined('_JEXEC') or die;
  */
 class RedirectTableLink extends JTable
 {
-	/**
-	 * Constructor
-	 *
-	 * @param   JDatabaseDriver  $db  Database object.
-	 *
-	 * @since   1.6
-	 */
-	public function __construct($db)
-	{
-		parent::__construct('#__redirect_links', 'id', $db);
-	}
+    /**
+     * Constructor
+     *
+     * @param   JDatabaseDriver  $db  Database object.
+     *
+     * @since   1.6
+     */
+    public function __construct($db)
+    {
+        parent::__construct('#__redirect_links', 'id', $db);
+    }
 
-	/**
-	 * Overloaded check function
-	 *
-	 * @return  boolean
-	 *
-	 * @since   1.6
-	 */
-	public function check()
-	{
-		$this->old_url = trim(rawurldecode($this->old_url));
-		$this->new_url = trim(rawurldecode($this->new_url));
+    /**
+     * Overloaded check function
+     *
+     * @return  boolean
+     *
+     * @since   1.6
+     */
+    public function check()
+    {
+        $this->old_url = trim(rawurldecode($this->old_url));
+        $this->new_url = trim(rawurldecode($this->new_url));
 
-		// Check for valid name.
-		if (empty($this->old_url))
-		{
-			$this->setError(JText::_('COM_REDIRECT_ERROR_SOURCE_URL_REQUIRED'));
+        // Check for valid name.
+        if (empty($this->old_url)) {
+            $this->setError(JText::_('COM_REDIRECT_ERROR_SOURCE_URL_REQUIRED'));
 
-			return false;
-		}
-		// Check for NOT NULL.
-		if (empty($this->referer))
-		{
-			$this->referer = '';
-		}
+            return false;
+        }
+        // Check for NOT NULL.
+        if (empty($this->referer)) {
+            $this->referer = '';
+        }
 
-		// Check for valid name if not in advanced mode.
-		if (empty($this->new_url) && JComponentHelper::getParams('com_redirect')->get('mode', 0) == false)
-		{
-			$this->setError(JText::_('COM_REDIRECT_ERROR_DESTINATION_URL_REQUIRED'));
+        // Check for valid name if not in advanced mode.
+        if (empty($this->new_url) && JComponentHelper::getParams('com_redirect')->get('mode', 0) == false) {
+            $this->setError(JText::_('COM_REDIRECT_ERROR_DESTINATION_URL_REQUIRED'));
 
-			return false;
-		}
-		elseif (empty($this->new_url) && JComponentHelper::getParams('com_redirect')->get('mode', 0) == true)
-		{
-			// Else if an empty URL and in redirect mode only throw the same error if the code is a 3xx status code
-			if ($this->header < 400 && $this->header >= 300)
-			{
-				$this->setError(JText::_('COM_REDIRECT_ERROR_DESTINATION_URL_REQUIRED'));
+            return false;
+        } elseif (empty($this->new_url) && JComponentHelper::getParams('com_redirect')->get('mode', 0) == true) {
+            // Else if an empty URL and in redirect mode only throw the same error if the code is a 3xx status code
+            if ($this->header < 400 && $this->header >= 300) {
+                $this->setError(JText::_('COM_REDIRECT_ERROR_DESTINATION_URL_REQUIRED'));
 
-				return false;
-			}
-		}
+                return false;
+            }
+        }
 
-		// Check for duplicates
-		if ($this->old_url == $this->new_url)
-		{
-			$this->setError(JText::_('COM_REDIRECT_ERROR_DUPLICATE_URLS'));
+        // Check for duplicates
+        if ($this->old_url == $this->new_url) {
+            $this->setError(JText::_('COM_REDIRECT_ERROR_DUPLICATE_URLS'));
 
-			return false;
-		}
+            return false;
+        }
 
-		$db = $this->getDbo();
+        $db = $this->getDbo();
 
-		// Check for existing name
-		$query = $db->getQuery(true)
-			->select($db->quoteName('id'))
-			->from('#__redirect_links')
-			->where($db->quoteName('old_url') . ' = ' . $db->quote($this->old_url));
-		$db->setQuery($query);
+        // Check for existing name
+        $query = $db->getQuery(true)
+            ->select($db->quoteName('id'))
+            ->from('#__redirect_links')
+            ->where($db->quoteName('old_url') . ' = ' . $db->quote($this->old_url));
+        $db->setQuery($query);
 
-		$xid = (int) $db->loadResult();
+        $xid = (int) $db->loadResult();
 
-		if ($xid && $xid != (int) $this->id)
-		{
-			$this->setError(JText::_('COM_REDIRECT_ERROR_DUPLICATE_OLD_URL'));
+        if ($xid && $xid != (int) $this->id) {
+            $this->setError(JText::_('COM_REDIRECT_ERROR_DUPLICATE_OLD_URL'));
 
-			return false;
-		}
+            return false;
+        }
 
-		return true;
-	}
+        return true;
+    }
 
-	/**
-	 * Overriden store method to set dates.
-	 *
-	 * @param   boolean  $updateNulls  True to update fields even if they are null.
-	 *
-	 * @return  boolean  True on success.
-	 *
-	 * @since   1.6
-	 */
-	public function store($updateNulls = false)
-	{
-		$date = JFactory::getDate()->toSql();
+    /**
+     * Overriden store method to set dates.
+     *
+     * @param   boolean  $updateNulls  True to update fields even if they are null.
+     *
+     * @return  boolean  True on success.
+     *
+     * @since   1.6
+     */
+    public function store($updateNulls = false)
+    {
+        $date = JFactory::getDate()->toSql();
 
-		$this->modified_date = $date;
+        $this->modified_date = $date;
 
-		if (!$this->id)
-		{
-			// New record.
-			$this->created_date = $date;
-		}
+        if (!$this->id) {
+            // New record.
+            $this->created_date = $date;
+        }
 
-		return parent::store($updateNulls);
-	}
+        return parent::store($updateNulls);
+    }
 }

@@ -22,60 +22,58 @@ defined('JPATH_PLATFORM') or die;
  */
 class JGithubPackageGitignore extends JGithubPackage
 {
-	/**
-	 * Listing available templates
-	 *
-	 * List all templates available to pass as an option when creating a repository.
-	 *
-	 * @since 3.3 (CMS)
-	 *
-	 * @return object
-	 */
-	public function getList()
-	{
-		// Build the request path.
-		$path = '/gitignore/templates';
+    /**
+     * Listing available templates
+     *
+     * List all templates available to pass as an option when creating a repository.
+     *
+     * @since 3.3 (CMS)
+     *
+     * @return object
+     */
+    public function getList()
+    {
+        // Build the request path.
+        $path = '/gitignore/templates';
 
-		return $this->processResponse(
-			$this->client->get($this->fetchUrl($path))
-		);
-	}
+        return $this->processResponse(
+            $this->client->get($this->fetchUrl($path))
+        );
+    }
 
-	/**
-	 * Get a single template
-	 *
-	 * @param   string   $name  The name of the template
-	 * @param   boolean  $raw   Raw output
-	 *
-	 * @throws DomainException
-	 * @since  3.3 (CMS)
-	 *
-	 * @return mixed|string
-	 */
-	public function get($name, $raw = false)
-	{
-		// Build the request path.
-		$path = '/gitignore/templates/' . $name;
+    /**
+     * Get a single template
+     *
+     * @param   string   $name  The name of the template
+     * @param   boolean  $raw   Raw output
+     *
+     * @throws DomainException
+     * @since  3.3 (CMS)
+     *
+     * @return mixed|string
+     */
+    public function get($name, $raw = false)
+    {
+        // Build the request path.
+        $path = '/gitignore/templates/' . $name;
 
-		$headers = array();
+        $headers = array();
 
-		if ($raw)
-		{
-			$headers['Accept'] = 'application/vnd.github.raw+json';
-		}
+        if ($raw) {
+            $headers['Accept'] = 'application/vnd.github.raw+json';
+        }
 
-		$response = $this->client->get($this->fetchUrl($path), $headers);
+        $response = $this->client->get($this->fetchUrl($path), $headers);
 
-		// Validate the response code.
-		if ($response->code != 200)
-		{
-			// Decode the error response and throw an exception.
-			$error   = json_decode($response->body);
-			$message = (isset($error->message)) ? $error->message : 'Invalid response';
+        // Validate the response code.
+        if ($response->code != 200) {
+            // Decode the error response and throw an exception.
+            $error   = json_decode($response->body);
+            $message = (isset($error->message)) ? $error->message : 'Invalid response';
 
-			throw new DomainException($message, $response->code);
-		}
+            throw new DomainException($message, $response->code);
+        }
 
-		return ($raw) ? $response->body : json_decode($response->body);
-	}
+        return ($raw) ? $response->body : json_decode($response->body);
+    }
 }

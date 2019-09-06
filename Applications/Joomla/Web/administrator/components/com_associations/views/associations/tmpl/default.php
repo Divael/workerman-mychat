@@ -22,10 +22,10 @@ $canManageCheckin = JFactory::getUser()->authorise('core.manage', 'com_checkin')
 $colSpan          = 5;
 
 $iconStates = array(
-	-2 => 'icon-trash',
-	0  => 'icon-unpublish',
-	1  => 'icon-publish',
-	2  => 'icon-archive',
+    -2 => 'icon-trash',
+    0  => 'icon-unpublish',
+    1  => 'icon-publish',
+    2  => 'icon-archive',
 );
 
 JText::script('COM_ASSOCIATIONS_PURGE_CONFIRM_PROMPT');
@@ -52,7 +52,7 @@ JFactory::getDocument()->addScriptDeclaration('
 ');
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_associations&view=associations'); ?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -110,10 +110,10 @@ JFactory::getDocument()->addScriptDeclaration('
 			</tfoot>
 			<tbody>
 			<?php foreach ($this->items as $i => $item) :
-				$canEdit    = AssociationsHelper::allowEdit($this->extensionName, $this->typeName, $item->id);
-				$canCheckin = $canManageCheckin || AssociationsHelper::canCheckinItem($this->extensionName, $this->typeName, $item->id);
-				$isCheckout = AssociationsHelper::isCheckoutItem($this->extensionName, $this->typeName, $item->id);
-				?>
+                $canEdit    = AssociationsHelper::allowEdit($this->extensionName, $this->typeName, $item->id);
+                $canCheckin = $canManageCheckin || AssociationsHelper::canCheckinItem($this->extensionName, $this->typeName, $item->id);
+                $isCheckout = AssociationsHelper::isCheckoutItem($this->extensionName, $this->typeName, $item->id);
+                ?>
 				<tr class="row<?php echo $i % 2; ?>">
 					<?php if (!empty($this->typeSupports['state'])) : ?>
 						<td class="center">

@@ -22,7 +22,6 @@ $path       = $base->tree;
 $showAll    = $params->get('showAllChildren');
 $class_sfx  = htmlspecialchars($params->get('class_sfx'), ENT_COMPAT, 'UTF-8');
 
-if (count($list))
-{
-	require JModuleHelper::getLayoutPath('mod_menu', $params->get('layout', 'default'));
+if (count($list)) {
+    require JModuleHelper::getLayoutPath('mod_menu', $params->get('layout', 'default'));
 }

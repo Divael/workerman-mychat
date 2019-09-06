@@ -14,14 +14,12 @@ $anchor_css = $item->anchor_css ?: '';
 
 $linktype   = $item->title;
 
-if ($item->menu_image)
-{
-	$linktype = JHtml::_('image', $item->menu_image, $item->title);
+if ($item->menu_image) {
+    $linktype = JHtml::_('image', $item->menu_image, $item->title);
 
-	if ($item->params->get('menu_text', 1))
-	{
-		$linktype .= '<span class="image-title">' . $item->title . '</span>';
-	}
+    if ($item->params->get('menu_text', 1)) {
+        $linktype .= '<span class="image-title">' . $item->title . '</span>';
+    }
 }
 
 ?>

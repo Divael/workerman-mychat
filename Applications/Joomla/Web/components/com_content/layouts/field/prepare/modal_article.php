@@ -9,17 +9,15 @@
 
 defined('_JEXEC') or die;
 
-if (!key_exists('field', $displayData))
-{
-	return;
+if (!key_exists('field', $displayData)) {
+    return;
 }
 
 $field = $displayData['field'];
 $value = $field->value;
 
-if (!$value)
-{
-	return;
+if (!$value) {
+    return;
 }
 
 JLoader::import('joomla.application.component.model');
@@ -39,9 +37,8 @@ $article = $model->getItem($value);
 // Restoreing the old error handler
 JError::setErrorHandling(E_ERROR, $errorHandler['mode'], $errorHandler['options']);
 
-if ($article instanceof JException)
-{
-	return;
+if ($article instanceof JException) {
+    return;
 }
 
 echo htmlentities($article->title);

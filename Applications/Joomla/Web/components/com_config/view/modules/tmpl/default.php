@@ -18,9 +18,8 @@ JHtml::_('formbehavior.chosen', 'select');
 $hasContent = empty($this->item['module']) || $this->item['module'] === 'custom' || $this->item['module'] === 'mod_custom';
 
 // If multi-language site, make language read-only
-if (JLanguageMultilang::isEnabled())
-{
-	$this->form->setFieldAttribute('language', 'readonly', 'true');
+if (JLanguageMultilang::isEnabled()) {
+    $this->form->setFieldAttribute('language', 'readonly', 'true');
 }
 
 JFactory::getDocument()->addScriptDeclaration("
@@ -112,7 +111,7 @@ JFactory::getDocument()->addScriptDeclaration("
 						<hr />
 
 						<?php
-						if (JFactory::getUser()->authorise('core.edit.state', 'com_modules.module.' . $this->item['id'])) : ?>
+                        if (JFactory::getUser()->authorise('core.edit.state', 'com_modules.module.' . $this->item['id'])) : ?>
 						<div class="control-group">
 							<div class="control-label">
 								<?php echo $this->form->getLabel('published'); ?>

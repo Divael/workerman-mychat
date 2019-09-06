@@ -25,30 +25,22 @@ $task     = $app->input->getCmd('task', '');
 $itemid   = $app->input->getCmd('Itemid', '');
 $sitename = $app->get('sitename');
 
-if ($task ==='edit' || $layout === 'form')
-{
-	$fullWidth = 1;
-}
-else
-{
-	$fullWidth = 0;
+if ($task ==='edit' || $layout === 'form') {
+    $fullWidth = 1;
+} else {
+    $fullWidth = 0;
 }
 
 // Add JavaScript Frameworks
 JHtml::_('bootstrap.framework');
 
 // Logo file or site title param
-if ($params->get('logoFile'))
-{
-	$logo = '<img src="' . JUri::root() . $params->get('logoFile') . '" alt="' . $sitename . '" />';
-}
-elseif ($params->get('sitetitle'))
-{
-	$logo = '<span class="site-title" title="' . $sitename . '">' . htmlspecialchars($params->get('sitetitle')) . '</span>';
-}
-else
-{
-	$logo = '<span class="site-title" title="' . $sitename . '">' . $sitename . '</span>';
+if ($params->get('logoFile')) {
+    $logo = '<img src="' . JUri::root() . $params->get('logoFile') . '" alt="' . $sitename . '" />';
+} elseif ($params->get('sitetitle')) {
+    $logo = '<span class="site-title" title="' . $sitename . '">' . htmlspecialchars($params->get('sitetitle')) . '</span>';
+} else {
+    $logo = '<span class="site-title" title="' . $sitename . '">' . $sitename . '</span>';
 }
 ?>
 <!DOCTYPE html>
@@ -57,7 +49,7 @@ else
 	<meta charset="utf-8" />
 	<title><?php echo $this->title; ?> <?php echo htmlspecialchars($this->error->getMessage(), ENT_QUOTES, 'UTF-8'); ?></title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<?php // Use of Google Font ?>
+	<?php // Use of Google Font?>
 	<?php if ($params->get('googleFont')) : ?>
 		<link href="//fonts.googleapis.com/css?family=<?php echo $params->get('googleFontName'); ?>" rel="stylesheet" />
 		<style>
@@ -70,12 +62,12 @@ else
 	<?php if ($app->get('debug_lang', '0') == '1' || $app->get('debug', '0') == '1') : ?>
 		<link href="<?php echo JUri::root(true); ?>/media/cms/css/debug.css" rel="stylesheet" />
 	<?php endif; ?>
-	<?php // If Right-to-Left ?>
+	<?php // If Right-to-Left?>
 	<?php if ($this->direction === 'rtl') : ?>
 		<link href="<?php echo JUri::root(true); ?>/media/jui/css/bootstrap-rtl.css" rel="stylesheet" />
 	<?php endif; ?>
 	<link href="<?php echo $this->baseurl; ?>/templates/<?php echo $this->template; ?>/favicon.ico" rel="shortcut icon" type="image/vnd.microsoft.icon" />
-	<?php // Template color ?>
+	<?php // Template color?>
 	<?php if ($params->get('templateColor')) : ?>
 		<style>
 			body.site {
@@ -98,15 +90,15 @@ else
 	<!--[if lt IE 9]><script src="<?php echo JUri::root(true); ?>/media/jui/js/html5.js"></script><![endif]-->
 </head>
 <body class="site <?php echo $option
-	. ' view-' . $view
-	. ($layout ? ' layout-' . $layout : ' no-layout')
-	. ($task ? ' task-' . $task : ' no-task')
-	. ($itemid ? ' itemid-' . $itemid : '')
-	. ($params->get('fluidContainer') ? ' fluid' : '');
+    . ' view-' . $view
+    . ($layout ? ' layout-' . $layout : ' no-layout')
+    . ($task ? ' task-' . $task : ' no-task')
+    . ($itemid ? ' itemid-' . $itemid : '')
+    . ($params->get('fluidContainer') ? ' fluid' : '');
 ?>">
 	<!-- Body -->
 	<div class="body">
-		<div class="container<?php echo ($params->get('fluidContainer') ? '-fluid' : ''); ?>">
+		<div class="container<?php echo($params->get('fluidContainer') ? '-fluid' : ''); ?>">
 			<!-- Header -->
 			<header class="header" role="banner">
 				<div class="header-inner clearfix">
@@ -114,13 +106,13 @@ else
 						<?php echo $logo; ?>
 					</a>
 					<div class="header-search pull-right">
-						<?php // Display position-0 modules ?>
+						<?php // Display position-0 modules?>
 						<?php echo $this->getBuffer('modules', 'position-0', array('style' => 'none')); ?>
 					</div>
 				</div>
 			</header>
 			<div class="navigation">
-				<?php // Display position-1 modules ?>
+				<?php // Display position-1 modules?>
 				<?php echo $this->getBuffer('modules', 'position-1', array('style' => 'none')); ?>
 			</div>
 			<!-- Banner -->
@@ -161,11 +153,11 @@ else
 						<?php if ($this->debug) : ?>
 							<div>
 								<?php echo $this->renderBacktrace(); ?>
-								<?php // Check if there are more Exceptions and render their data as well ?>
+								<?php // Check if there are more Exceptions and render their data as well?>
 								<?php if ($this->error->getPrevious()) : ?>
 									<?php $loop = true; ?>
-									<?php // Reference $this->_error here and in the loop as setError() assigns errors to this property and we need this for the backtrace to work correctly ?>
-									<?php // Make the first assignment to setError() outside the loop so the loop does not skip Exceptions ?>
+									<?php // Reference $this->_error here and in the loop as setError() assigns errors to this property and we need this for the backtrace to work correctly?>
+									<?php // Make the first assignment to setError() outside the loop so the loop does not skip Exceptions?>
 									<?php $this->setError($this->_error->getPrevious()); ?>
 									<?php while ($loop === true) : ?>
 										<p><strong><?php echo JText::_('JERROR_LAYOUT_PREVIOUS_ERROR'); ?></strong></p>
@@ -173,7 +165,7 @@ else
 										<?php echo $this->renderBacktrace(); ?>
 										<?php $loop = $this->setError($this->_error->getPrevious()); ?>
 									<?php endwhile; ?>
-									<?php // Reset the main error object to the base error ?>
+									<?php // Reset the main error object to the base error?>
 									<?php $this->setError($this->error); ?>
 								<?php endif; ?>
 							</div>
@@ -186,7 +178,7 @@ else
 	</div>
 	<!-- Footer -->
 	<div class="footer">
-		<div class="container<?php echo ($params->get('fluidContainer') ? '-fluid' : ''); ?>">
+		<div class="container<?php echo($params->get('fluidContainer') ? '-fluid' : ''); ?>">
 			<hr />
 			<?php echo $this->getBuffer('modules', 'footer', array('style' => 'none')); ?>
 			<p class="pull-right">

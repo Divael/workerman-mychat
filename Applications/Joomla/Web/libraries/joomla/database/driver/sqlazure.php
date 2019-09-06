@@ -17,11 +17,11 @@ defined('JPATH_PLATFORM') or die;
  */
 class JDatabaseDriverSqlazure extends JDatabaseDriverSqlsrv
 {
-	/**
-	 * The name of the database driver.
-	 *
-	 * @var    string
-	 * @since  12.1
-	 */
-	public $name = 'sqlazure';
+    /**
+     * The name of the database driver.
+     *
+     * @var    string
+     * @since  12.1
+     */
+    public $name = 'sqlazure';
 }

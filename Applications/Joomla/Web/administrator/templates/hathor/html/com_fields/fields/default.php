@@ -28,10 +28,9 @@ $saveOrder = ($listOrder == 'a.ordering' && strtolower($listDirn) == 'asc');
 // The category object of the component
 $category = JCategories::getInstance(str_replace('com_', '', $component));
 
-if ($saveOrder)
-{
-	$saveOrderingUrl = 'index.php?option=com_fields&task=fields.saveOrderAjax&tmpl=component';
-	JHtml::_('sortablelist.sortable', 'fieldList', 'adminForm', strtolower($listDirn), $saveOrderingUrl, false, true);
+if ($saveOrder) {
+    $saveOrderingUrl = 'index.php?option=com_fields&task=fields.saveOrderAjax&tmpl=component';
+    JHtml::_('sortablelist.sortable', 'fieldList', 'adminForm', strtolower($listDirn), $saveOrderingUrl, false, true);
 }
 ?>
 
@@ -151,19 +150,19 @@ if ($saveOrder)
 					<?php endforeach; ?>
 				</tbody>
 			</table>
-			<?php //Load the batch processing form. ?>
+			<?php //Load the batch processing form.?>
 			<?php if ($user->authorise('core.create', $component)
-				&& $user->authorise('core.edit', $component)
-				&& $user->authorise('core.edit.state', $component)) : ?>
+                && $user->authorise('core.edit', $component)
+                && $user->authorise('core.edit.state', $component)) : ?>
 				<?php echo JHtml::_(
-						'bootstrap.renderModal',
-						'collapseModal',
-						array(
-							'title' => JText::_('COM_FIELDS_VIEW_FIELDS_BATCH_OPTIONS'),
-							'footer' => $this->loadTemplate('batch_footer')
-						),
-						$this->loadTemplate('batch_body')
-					); ?>
+                    'bootstrap.renderModal',
+                    'collapseModal',
+                    array(
+                            'title' => JText::_('COM_FIELDS_VIEW_FIELDS_BATCH_OPTIONS'),
+                            'footer' => $this->loadTemplate('batch_footer')
+                        ),
+                    $this->loadTemplate('batch_body')
+                ); ?>
 			<?php endif; ?>
 		<?php endif; ?>
 		<input type="hidden" name="task" value="" />

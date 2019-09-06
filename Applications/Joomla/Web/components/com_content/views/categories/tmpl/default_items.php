@@ -18,12 +18,11 @@ if ($this->maxLevelcat != 0 && count($this->items[$this->parent->id]) > 0) :
 ?>
 	<?php foreach ($this->items[$this->parent->id] as $id => $item) : ?>
 		<?php
-		if ($this->params->get('show_empty_categories_cat') || $item->numitems || count($item->getChildren())) :
-		if (!isset($this->items[$this->parent->id][$id + 1]))
-		{
-			$class = ' class="last"';
-		}
-		?>
+        if ($this->params->get('show_empty_categories_cat') || $item->numitems || count($item->getChildren())) :
+        if (!isset($this->items[$this->parent->id][$id + 1])) {
+            $class = ' class="last"';
+        }
+        ?>
 		<div <?php echo $class; ?> >
 		<?php $class = ''; ?>
 			<h3 class="page-header item-title">
@@ -54,13 +53,13 @@ if ($this->maxLevelcat != 0 && count($this->items[$this->parent->id]) > 0) :
 			<?php if (count($item->getChildren()) > 0 && $this->maxLevelcat > 1) : ?>
 				<div class="collapse fade" id="category-<?php echo $item->id; ?>">
 				<?php
-				$this->items[$item->id] = $item->getChildren();
-				$this->parent = $item;
-				$this->maxLevelcat--;
-				echo $this->loadTemplate('items');
-				$this->parent = $item->getParent();
-				$this->maxLevelcat++;
-				?>
+                $this->items[$item->id] = $item->getChildren();
+                $this->parent = $item;
+                $this->maxLevelcat--;
+                echo $this->loadTemplate('items');
+                $this->parent = $item->getParent();
+                $this->maxLevelcat++;
+                ?>
 				</div>
 			<?php endif; ?>
 		</div>

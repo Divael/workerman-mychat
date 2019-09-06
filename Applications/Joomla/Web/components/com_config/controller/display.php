@@ -16,94 +16,85 @@ defined('_JEXEC') or die;
  */
 class ConfigControllerDisplay extends JControllerBase
 {
-	/**
-	 * Application object - Redeclared for proper typehinting
-	 *
-	 * @var    JApplicationCms
-	 * @since  3.2
-	 */
-	protected $app;
+    /**
+     * Application object - Redeclared for proper typehinting
+     *
+     * @var    JApplicationCms
+     * @since  3.2
+     */
+    protected $app;
 
-	/**
-	 * Prefix for the view and model classes
-	 *
-	 * @var    string
-	 * @since  3.2
-	 */
-	public $prefix = 'Config';
+    /**
+     * Prefix for the view and model classes
+     *
+     * @var    string
+     * @since  3.2
+     */
+    public $prefix = 'Config';
 
-	/**
-	 * Execute the controller.
-	 *
-	 * @return  mixed  A rendered view or true
-	 *
-	 * @since   3.2
-	 */
-	public function execute()
-	{
-		// Get the document object.
-		$document = JFactory::getDocument();
+    /**
+     * Execute the controller.
+     *
+     * @return  mixed  A rendered view or true
+     *
+     * @since   3.2
+     */
+    public function execute()
+    {
+        // Get the document object.
+        $document = JFactory::getDocument();
 
-		$componentFolder = $this->input->getWord('option', 'com_config');
+        $componentFolder = $this->input->getWord('option', 'com_config');
 
-		if ($this->app->isClient('administrator'))
-		{
-			$viewName = $this->input->getWord('view', 'application');
-		}
-		else
-		{
-			$viewName = $this->input->getWord('view', 'config');
-		}
+        if ($this->app->isClient('administrator')) {
+            $viewName = $this->input->getWord('view', 'application');
+        } else {
+            $viewName = $this->input->getWord('view', 'config');
+        }
 
-		$viewFormat = $document->getType();
-		$layoutName = $this->input->getWord('layout', 'default');
+        $viewFormat = $document->getType();
+        $layoutName = $this->input->getWord('layout', 'default');
 
-		// Register the layout paths for the view
-		$paths = new SplPriorityQueue;
+        // Register the layout paths for the view
+        $paths = new SplPriorityQueue;
 
-		if ($this->app->isClient('administrator'))
-		{
-			$paths->insert(JPATH_ADMINISTRATOR . '/components/' . $componentFolder . '/view/' . $viewName . '/tmpl', 1);
-		}
-		else
-		{
-			$paths->insert(JPATH_BASE . '/components/' . $componentFolder . '/view/' . $viewName . '/tmpl', 1);
-		}
+        if ($this->app->isClient('administrator')) {
+            $paths->insert(JPATH_ADMINISTRATOR . '/components/' . $componentFolder . '/view/' . $viewName . '/tmpl', 1);
+        } else {
+            $paths->insert(JPATH_BASE . '/components/' . $componentFolder . '/view/' . $viewName . '/tmpl', 1);
+        }
 
-		$viewClass  = $this->prefix . 'View' . ucfirst($viewName) . ucfirst($viewFormat);
-		$modelClass = $this->prefix . 'Model' . ucfirst($viewName);
+        $viewClass  = $this->prefix . 'View' . ucfirst($viewName) . ucfirst($viewFormat);
+        $modelClass = $this->prefix . 'Model' . ucfirst($viewName);
 
-		if (class_exists($viewClass))
-		{
-			$model     = new $modelClass;
-			$component = $model->getState()->get('component.option');
+        if (class_exists($viewClass)) {
+            $model     = new $modelClass;
+            $component = $model->getState()->get('component.option');
 
-			// Access check.
-			if (!JFactory::getUser()->authorise('core.admin', $component)
-				&& !JFactory::getUser()->authorise('core.options', $component))
-			{
-				$this->app->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR'), 'error');
+            // Access check.
+            if (!JFactory::getUser()->authorise('core.admin', $component)
+                && !JFactory::getUser()->authorise('core.options', $component)) {
+                $this->app->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR'), 'error');
 
-				return;
-			}
+                return;
+            }
 
-			$view = new $viewClass($model, $paths);
+            $view = new $viewClass($model, $paths);
 
-			$view->setLayout($layoutName);
+            $view->setLayout($layoutName);
 
-			// Push document object into the view.
-			$view->document = $document;
+            // Push document object into the view.
+            $view->document = $document;
 
-			// Reply for service requests
-			if ($viewFormat === 'json')
-			{
-				return $view->render();
-			}
+            // Reply for service requests
+            if ($viewFormat === 'json') {
+                return $view->render();
+            }
 
-			// Render view.
-			echo $view->render();
-		}
+            // Render view.
+            echo $view->render();
+        }
 
-		return true;
-	}
+        return true;
+    }
 }

@@ -15,53 +15,43 @@ $form = $displayData->getForm();
 $name = $displayData->get('fieldset');
 $fieldSet = $form->getFieldset($name);
 
-if (empty($fieldSet))
-{
-	return;
+if (empty($fieldSet)) {
+    return;
 }
 
 $ignoreFields = $displayData->get('ignore_fields') ? : array();
 $extraFields = $displayData->get('extra_fields') ? : array();
 
-if ($displayData->get('show_options', 1))
-{
-	if (isset($extraFields[$name]))
-	{
-		foreach ($extraFields[$name] as $f)
-		{
-			if (in_array($f, $ignoreFields))
-			{
-				continue;
-			}
-			if ($form->getField($f))
-			{
-				$fieldSet[] = $form->getField($f);
-			}
-		}
-	}
+if ($displayData->get('show_options', 1)) {
+    if (isset($extraFields[$name])) {
+        foreach ($extraFields[$name] as $f) {
+            if (in_array($f, $ignoreFields)) {
+                continue;
+            }
+            if ($form->getField($f)) {
+                $fieldSet[] = $form->getField($f);
+            }
+        }
+    }
 
-	$html = array();
-	$html[] = '<fieldset class="panelform">';
-	$html[] = '<ul class="adminformlist">';
+    $html = array();
+    $html[] = '<fieldset class="panelform">';
+    $html[] = '<ul class="adminformlist">';
 
-	foreach ($fieldSet as $field)
-	{
-		$html[] = '<li> ' . $field->label . $field->input . '</li>';
-	}
-	$html[] = '</ul>';
-	$html[] = '</fieldset>';
-	
-	echo implode('', $html);
-}
-else
-{
-	$html = array();
-	$html[] = '<div style="display:none;">';
-	foreach ($fieldSet as $field)
-	{
-		$html[] = $field->input;
-	}
-	$html[] = '</div>';
+    foreach ($fieldSet as $field) {
+        $html[] = '<li> ' . $field->label . $field->input . '</li>';
+    }
+    $html[] = '</ul>';
+    $html[] = '</fieldset>';
+    
+    echo implode('', $html);
+} else {
+    $html = array();
+    $html[] = '<div style="display:none;">';
+    foreach ($fieldSet as $field) {
+        $html[] = $field->input;
+    }
+    $html[] = '</div>';
 
-	echo implode('', $html);
+    echo implode('', $html);
 }

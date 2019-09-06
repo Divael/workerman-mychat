@@ -20,5 +20,5 @@ defined('_JEXEC') or die;
  */
 function admin_postinstall_phpversion_condition()
 {
-	return version_compare(PHP_VERSION, '5.3.10', 'lt');
+    return version_compare(PHP_VERSION, '5.3.10', 'lt');
 }

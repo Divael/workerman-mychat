@@ -11,9 +11,8 @@ defined('_JEXEC') or die;
 
 $app = JFactory::getApplication();
 
-if ($app->isClient('site'))
-{
-	JSession::checkToken('get') or die(JText::_('JINVALID_TOKEN'));
+if ($app->isClient('site')) {
+    JSession::checkToken('get') or die(JText::_('JINVALID_TOKEN'));
 }
 
 JHtml::_('jquery.framework');
@@ -28,14 +27,14 @@ $canManageCheckin = JFactory::getUser()->authorise('core.manage', 'com_checkin')
 $colSpan          = 4;
 
 $iconStates = array(
-	-2 => 'icon-trash',
-	0  => 'icon-unpublish',
-	1  => 'icon-publish',
-	2  => 'icon-archive',
+    -2 => 'icon-trash',
+    0  => 'icon-unpublish',
+    1  => 'icon-publish',
+    2  => 'icon-archive',
 );
 
 $app->getDocument()->addScriptDeclaration(
-	"jQuery(document).ready(function($) {
+    "jQuery(document).ready(function($) {
 		// Run function on parent window.
 		$('.select-link').on('click', function() {
 			if (self != top)
@@ -49,7 +48,7 @@ $app->getDocument()->addScriptDeclaration(
 <form action="<?php echo JRoute::_('index.php?option=com_associations&view=associations&layout=modal&tmpl=component&function=' . $function . '&' . JSession::getFormToken() . '=1');
  ?>" method="post" name="adminForm" id="adminForm">
 
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -104,10 +103,10 @@ $app->getDocument()->addScriptDeclaration(
 			</tfoot>
 			<tbody>
 			<?php foreach ($this->items as $i => $item) :
-				$canEdit    = AssociationsHelper::allowEdit($this->extensionName, $this->typeName, $item->id);
-				$canCheckin = $canManageCheckin || AssociationsHelper::canCheckinItem($this->extensionName, $this->typeName, $item->id);
-				$isCheckout = AssociationsHelper::isCheckoutItem($this->extensionName, $this->typeName, $item->id);
-				?>
+                $canEdit    = AssociationsHelper::allowEdit($this->extensionName, $this->typeName, $item->id);
+                $canCheckin = $canManageCheckin || AssociationsHelper::canCheckinItem($this->extensionName, $this->typeName, $item->id);
+                $isCheckout = AssociationsHelper::isCheckoutItem($this->extensionName, $this->typeName, $item->id);
+                ?>
 				<tr class="row<?php echo $i % 2; ?>">
 					<?php if (!empty($this->typeSupports['state'])) : ?>
 						<td class="center">

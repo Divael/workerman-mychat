@@ -17,11 +17,11 @@ defined('_JEXEC') or die;
  */
 class ConfigControllerApplicationDisplay extends ConfigControllerDisplay
 {
-	/**
-	 * Prefix for the view and model classes
-	 *
-	 * @var    string
-	 * @since  3.2
-	 */
-	public $prefix = 'Config';
+    /**
+     * Prefix for the view and model classes
+     *
+     * @var    string
+     * @since  3.2
+     */
+    public $prefix = 'Config';
 }

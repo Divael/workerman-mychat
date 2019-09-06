@@ -21,18 +21,18 @@
  */
 function twofactorauth_postinstall_condition()
 {
-	$db = JFactory::getDbo();
+    $db = JFactory::getDbo();
 
-	$query = $db->getQuery(true)
-		->select('*')
-		->from($db->qn('#__extensions'))
-		->where($db->qn('type') . ' = ' . $db->q('plugin'))
-		->where($db->qn('enabled') . ' = ' . $db->q('1'))
-		->where($db->qn('folder') . ' = ' . $db->q('twofactorauth'));
-	$db->setQuery($query);
-	$enabled_plugins = $db->loadObjectList();
+    $query = $db->getQuery(true)
+        ->select('*')
+        ->from($db->qn('#__extensions'))
+        ->where($db->qn('type') . ' = ' . $db->q('plugin'))
+        ->where($db->qn('enabled') . ' = ' . $db->q('1'))
+        ->where($db->qn('folder') . ' = ' . $db->q('twofactorauth'));
+    $db->setQuery($query);
+    $enabled_plugins = $db->loadObjectList();
 
-	return count($enabled_plugins) == 0;
+    return count($enabled_plugins) == 0;
 }
 
 /**
@@ -46,18 +46,18 @@ function twofactorauth_postinstall_condition()
  */
 function twofactorauth_postinstall_action()
 {
-	// Enable the plugin
-	$db = JFactory::getDbo();
+    // Enable the plugin
+    $db = JFactory::getDbo();
 
-	$query = $db->getQuery(true)
-		->update($db->qn('#__extensions'))
-		->set($db->qn('enabled') . ' = ' . $db->q(1))
-		->where($db->qn('type') . ' = ' . $db->q('plugin'))
-		->where($db->qn('folder') . ' = ' . $db->q('twofactorauth'));
-	$db->setQuery($query);
-	$db->execute();
+    $query = $db->getQuery(true)
+        ->update($db->qn('#__extensions'))
+        ->set($db->qn('enabled') . ' = ' . $db->q(1))
+        ->where($db->qn('type') . ' = ' . $db->q('plugin'))
+        ->where($db->qn('folder') . ' = ' . $db->q('twofactorauth'));
+    $db->setQuery($query);
+    $db->execute();
 
-	// Redirect the user to their profile editor page
-	$url = 'index.php?option=com_users&task=user.edit&id=' . JFactory::getUser()->id;
-	JFactory::getApplication()->redirect($url);
+    // Redirect the user to their profile editor page
+    $url = 'index.php?option=com_users&task=user.edit&id=' . JFactory::getUser()->id;
+    JFactory::getApplication()->redirect($url);
 }

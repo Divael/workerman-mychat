@@ -18,19 +18,19 @@ use Joomla\Registry\Registry;
  */
 abstract class JMediawikiObject
 {
-	/**
-	 * @var    Registry  Options for the MediaWiki object.
-	 * @since  12.3
-	 */
-	protected $options;
+    /**
+     * @var    Registry  Options for the MediaWiki object.
+     * @since  12.3
+     */
+    protected $options;
 
-	/**
-	 * @var    JMediawikiHttp  The HTTP client object to use in sending HTTP requests.
-	 * @since  12.3
-	 */
-	protected $client;
+    /**
+     * @var    JMediawikiHttp  The HTTP client object to use in sending HTTP requests.
+     * @since  12.3
+     */
+    protected $client;
 
-	/**
+    /**
      * Constructor.
      *
      * @param   Registry        $options  Mediawiki options object.
@@ -38,92 +38,86 @@ abstract class JMediawikiObject
      *
      * @since   12.3
      */
-	public function __construct(Registry $options = null, JMediawikiHttp $client = null)
-	{
-		$this->options = isset($options) ? $options : new Registry;
-		$this->client = isset($client) ? $client : new JMediawikiHttp($this->options);
-	}
+    public function __construct(Registry $options = null, JMediawikiHttp $client = null)
+    {
+        $this->options = isset($options) ? $options : new Registry;
+        $this->client = isset($client) ? $client : new JMediawikiHttp($this->options);
+    }
 
-	/**
-	 * Method to build and return a full request URL for the request.
-	 *
-	 * @param   string  $path  URL to inflect
-	 *
-	 * @return  string   The request URL.
-	 *
-	 * @since   12.3
-	 */
-	protected function fetchUrl($path)
-	{
-		// Append the path with output format
-		$path .= '&format=xml';
+    /**
+     * Method to build and return a full request URL for the request.
+     *
+     * @param   string  $path  URL to inflect
+     *
+     * @return  string   The request URL.
+     *
+     * @since   12.3
+     */
+    protected function fetchUrl($path)
+    {
+        // Append the path with output format
+        $path .= '&format=xml';
 
-		$uri = new JUri($this->options->get('api.url') . '/api.php' . $path);
+        $uri = new JUri($this->options->get('api.url') . '/api.php' . $path);
 
-		if ($this->options->get('api.username', false))
-		{
-			$uri->setUser($this->options->get('api.username'));
-		}
+        if ($this->options->get('api.username', false)) {
+            $uri->setUser($this->options->get('api.username'));
+        }
 
-		if ($this->options->get('api.password', false))
-		{
-			$uri->setPass($this->options->get('api.password'));
-		}
+        if ($this->options->get('api.password', false)) {
+            $uri->setPass($this->options->get('api.password'));
+        }
 
-		return (string) $uri;
-	}
+        return (string) $uri;
+    }
 
-	/**
-	 * Method to build request parameters from a string array.
-	 *
-	 * @param   array  $params  string array that contains the parameters
-	 *
-	 * @return  string   request parameter
-	 *
-	 * @since   12.3
-	 */
-	public function buildParameter(array $params)
-	{
-		$path = '';
+    /**
+     * Method to build request parameters from a string array.
+     *
+     * @param   array  $params  string array that contains the parameters
+     *
+     * @return  string   request parameter
+     *
+     * @since   12.3
+     */
+    public function buildParameter(array $params)
+    {
+        $path = '';
 
-		foreach ($params as $param)
-		{
-			$path .= $param;
+        foreach ($params as $param) {
+            $path .= $param;
 
-			if (next($params) == true)
-			{
-				$path .= '|';
-			}
-		}
+            if (next($params) == true) {
+                $path .= '|';
+            }
+        }
 
-		return $path;
-	}
+        return $path;
+    }
 
-	/**
-	 * Method to validate response for errors
-	 *
-	 * @param   JHttpresponse  $response  reponse from the mediawiki server
-	 *
-	 * @return  Object
-	 *
-	 * @since   12.3
-	 *
-	 * @throws  DomainException
-	 */
-	public function validateResponse($response)
-	{
-		$xml = simplexml_load_string($response->body);
+    /**
+     * Method to validate response for errors
+     *
+     * @param   JHttpresponse  $response  reponse from the mediawiki server
+     *
+     * @return  Object
+     *
+     * @since   12.3
+     *
+     * @throws  DomainException
+     */
+    public function validateResponse($response)
+    {
+        $xml = simplexml_load_string($response->body);
 
-		if (isset($xml->warnings))
-		{
-			throw new DomainException($xml->warnings->info);
-		}
+        if (isset($xml->warnings)) {
+            throw new DomainException($xml->warnings->info);
+        }
 
-		if (isset($xml->error))
-		{
-			throw new DomainException($xml->error['info']);
-		}
+        if (isset($xml->error)) {
+            throw new DomainException($xml->error['info']);
+        }
 
-		return $xml;
-	}
+        return $xml;
+    }
 }

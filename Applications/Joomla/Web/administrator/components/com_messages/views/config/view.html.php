@@ -16,38 +16,37 @@ defined('_JEXEC') or die;
  */
 class MessagesViewConfig extends JViewLegacy
 {
-	protected $form;
+    protected $form;
 
-	protected $item;
+    protected $item;
 
-	protected $state;
+    protected $state;
 
-	/**
-	 * Execute and display a template script.
-	 *
-	 * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
-	 *
-	 * @return  mixed  A string if successful, otherwise an Error object.
-	 *
-	 * @since   1.6
-	 */
-	public function display($tpl = null)
-	{
-		$this->form  = $this->get('Form');
-		$this->item  = $this->get('Item');
-		$this->state = $this->get('State');
+    /**
+     * Execute and display a template script.
+     *
+     * @param   string  $tpl  The name of the template file to parse; automatically searches through the template paths.
+     *
+     * @return  mixed  A string if successful, otherwise an Error object.
+     *
+     * @since   1.6
+     */
+    public function display($tpl = null)
+    {
+        $this->form  = $this->get('Form');
+        $this->item  = $this->get('Item');
+        $this->state = $this->get('State');
 
-		// Check for errors.
-		if (count($errors = $this->get('Errors')))
-		{
-			JError::raiseError(500, implode("\n", $errors));
+        // Check for errors.
+        if (count($errors = $this->get('Errors'))) {
+            JError::raiseError(500, implode("\n", $errors));
 
-			return false;
-		}
+            return false;
+        }
 
-		// Bind the record to the form.
-		$this->form->bind($this->item);
+        // Bind the record to the form.
+        $this->form->bind($this->item);
 
-		parent::display($tpl);
-	}
+        parent::display($tpl);
+    }
 }

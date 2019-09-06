@@ -88,7 +88,9 @@ JFactory::getDocument()->addScriptDeclaration("
 					<?php else : ?>
 					<tr class="cat-list-row<?php echo $i % 2; ?>" >
 					<?php endif; ?>
-						<td <?php if ($this->params->get('show_headings')) echo "headers=\"categorylist_header_title\""; ?> class="list-title">
+						<td <?php if ($this->params->get('show_headings')) {
+    echo "headers=\"categorylist_header_title\"";
+} ?> class="list-title">
 							<a href="<?php echo JRoute::_(TagsHelperRoute::getItemRoute($item->content_item_id, $item->core_alias, $item->core_catid, $item->core_language, $item->type_alias, $item->router)); ?>">
 								<?php echo $this->escape($item->core_title); ?>
 							</a>
@@ -101,10 +103,11 @@ JFactory::getDocument()->addScriptDeclaration("
 						<?php if ($this->params->get('tag_list_show_date')) : ?>
 							<td headers="categorylist_header_date" class="list-date small">
 								<?php
-								echo JHtml::_(
-									'date', $item->displayDate,
-									$this->escape($this->params->get('date_format', JText::_('DATE_FORMAT_LC3')))
-								); ?>
+                                echo JHtml::_(
+    'date',
+    $item->displayDate,
+    $this->escape($this->params->get('date_format', JText::_('DATE_FORMAT_LC3')))
+); ?>
 							</td>
 						<?php endif; ?>
 
@@ -114,7 +117,7 @@ JFactory::getDocument()->addScriptDeclaration("
 		</table>
 	<?php endif; ?>
 
-<?php // Add pagination links ?>
+<?php // Add pagination links?>
 <?php if (!empty($this->items)) : ?>
 	<?php if (($this->params->def('show_pagination', 2) == 1 || ($this->params->get('show_pagination') == 2)) && ($this->pagination->pagesTotal > 1)) : ?>
 	<div class="pagination">

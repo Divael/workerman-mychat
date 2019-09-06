@@ -10,15 +10,13 @@
 const _JEXEC = 1;
 
 // Load system defines
-if (file_exists(dirname(__DIR__) . '/defines.php'))
-{
-	require_once dirname(__DIR__) . '/defines.php';
+if (file_exists(dirname(__DIR__) . '/defines.php')) {
+    require_once dirname(__DIR__) . '/defines.php';
 }
 
-if (!defined('_JDEFINES'))
-{
-	define('JPATH_BASE', dirname(__DIR__));
-	require_once JPATH_BASE . '/includes/defines.php';
+if (!defined('_JDEFINES')) {
+    define('JPATH_BASE', dirname(__DIR__));
+    require_once JPATH_BASE . '/includes/defines.php';
 }
 
 // Get the framework.
@@ -46,28 +44,28 @@ $lang->load('files_joomla.sys', JPATH_SITE, null, false, false)
  */
 class DeletefilesCli extends JApplicationCli
 {
-	/**
-	 * Entry point for CLI script
-	 *
-	 * @return  void
-	 *
-	 * @since   3.0
-	 */
-	public function doExecute()
-	{
-		// Import the dependencies
-		jimport('joomla.filesystem.file');
-		jimport('joomla.filesystem.folder');
+    /**
+     * Entry point for CLI script
+     *
+     * @return  void
+     *
+     * @since   3.0
+     */
+    public function doExecute()
+    {
+        // Import the dependencies
+        jimport('joomla.filesystem.file');
+        jimport('joomla.filesystem.folder');
 
-		// We need the update script
-		JLoader::register('JoomlaInstallerScript', JPATH_ADMINISTRATOR . '/components/com_admin/script.php');
+        // We need the update script
+        JLoader::register('JoomlaInstallerScript', JPATH_ADMINISTRATOR . '/components/com_admin/script.php');
 
-		// Instantiate the class
-		$class = new JoomlaInstallerScript;
+        // Instantiate the class
+        $class = new JoomlaInstallerScript;
 
-		// Run the delete method
-		$class->deleteUnexistingFiles();
-	}
+        // Run the delete method
+        $class->deleteUnexistingFiles();
+    }
 }
 
 // Instantiate the application object, passing the class name to JCli::getInstance

@@ -26,12 +26,12 @@ $script = array();
 $script[] = 'jQuery(document).ready(function() {';
 
 foreach ($this->items as $item) :
-	if ($user->authorise('core.edit', 'com_menus')) :
-		$script[] = '	function jSelectPosition_' . $item->id . '(name) {';
-		$script[] = '		document.getElementById("' . $item->id . '").value = name;';
-		$script[] = '		jQuery(".modal").modal("hide");';
-		$script[] = '	};';
-	endif;
+    if ($user->authorise('core.edit', 'com_menus')) :
+        $script[] = '	function jSelectPosition_' . $item->id . '(name) {';
+        $script[] = '		document.getElementById("' . $item->id . '").value = name;';
+        $script[] = '		jQuery(".modal").modal("hide");';
+        $script[] = '	};';
+    endif;
 endforeach;
 
 $script[] = '	jQuery(".modal").on("hidden", function () {';
@@ -44,7 +44,7 @@ $script[] = '});';
 JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_menus&view=menus');?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -96,11 +96,11 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
 
 		<tbody>
 		<?php foreach ($this->items as $i => $item) :
-			$canCreate = $user->authorise('core.create',     'com_menus');
-			$canEdit   = $user->authorise('core.edit',       'com_menus');
-			$canChange = $user->authorise('core.edit.state', 'com_menus');
-			$canManageItems = $user->authorise('core.manage', 'com_menus.menu.' . (int) $item->id);
-		?>
+            $canCreate = $user->authorise('core.create', 'com_menus');
+            $canEdit   = $user->authorise('core.edit', 'com_menus');
+            $canChange = $user->authorise('core.edit.state', 'com_menus');
+            $canManageItems = $user->authorise('core.manage', 'com_menus.menu.' . (int) $item->id);
+        ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td class="center">
 					<?php echo JHtml::_('grid.id', $i, $item->id); ?>
@@ -115,7 +115,7 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
 					<p class="smallsub">(<span><?php echo JText::_('COM_MENUS_MENU_MENUTYPE_LABEL') ?></span>
 						<?php if ($canEdit) : ?>
 							<?php echo '<a href="'.JRoute::_('index.php?option=com_menus&task=menu.edit&id='.$item->id).' title='.$this->escape($item->description).'">'.
-							$this->escape($item->menutype).'</a>'; ?>)
+                            $this->escape($item->menutype).'</a>'; ?>)
 						<?php else : ?>
 							<?php echo $this->escape($item->menutype)?>)
 						<?php endif; ?>
@@ -136,9 +136,9 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
 				<td class="left">
 				<ul class="menu-module-list">
 					<?php
-					if (isset($this->modules[$item->menutype])) :
-						foreach ($this->modules[$item->menutype] as &$module) :
-						?>
+                    if (isset($this->modules[$item->menutype])) :
+                        foreach ($this->modules[$item->menutype] as &$module) :
+                        ?>
 						<li>
 							<?php if ($canEdit) : ?>
 								<?php $link = JRoute::_('index.php?option=com_modules&task=module.edit&id='.$module->id.'&return='.$return.'&tmpl=component&layout=modal'); ?>
@@ -154,37 +154,37 @@ JFactory::getDocument()->addScriptDeclaration(implode("\n", $script));
 						<?php if ($canEdit) : ?>
 							<?php $link = JRoute::_('index.php?option=com_modules&task=module.edit&id='.$module->id.'&return='.$return.'&tmpl=component&layout=modal'); ?>
 							<?php echo JHtml::_(
-									'bootstrap.renderModal',
-									'module' . $module->id . 'Modal',
-									array(
-										'url'    => $link,
-										'title'  => JText::_('COM_MENUS_EDIT_MODULE_SETTINGS'),
-										'height' => '300px',
-										'width'  => '800px',
-										'footer' => '<a class="btn" type="button" data-dismiss="modal" aria-hidden="true">'
-											. JText::_('JLIB_HTML_BEHAVIOR_CLOSE') . '</a>'
-											. '<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" onclick="jQuery(\'#module'
-											. $module->id . 'Modal iframe\').contents().find(\'#saveBtn\').click();">'
-											. JText::_('JSAVE') . '</button>',
-									)
-								); ?>
+                            'bootstrap.renderModal',
+                            'module' . $module->id . 'Modal',
+                            array(
+                                        'url'    => $link,
+                                        'title'  => JText::_('COM_MENUS_EDIT_MODULE_SETTINGS'),
+                                        'height' => '300px',
+                                        'width'  => '800px',
+                                        'footer' => '<a class="btn" type="button" data-dismiss="modal" aria-hidden="true">'
+                                            . JText::_('JLIB_HTML_BEHAVIOR_CLOSE') . '</a>'
+                                            . '<button class="btn btn-success" data-dismiss="modal" aria-hidden="true" onclick="jQuery(\'#module'
+                                            . $module->id . 'Modal iframe\').contents().find(\'#saveBtn\').click();">'
+                                            . JText::_('JSAVE') . '</button>',
+                                    )
+                        ); ?>
 						<?php endif; ?>
 					<?php endforeach; ?>
 					<?php elseif ($modMenuId) : ?>
 						<?php $link = JRoute::_('index.php?option=com_modules&task=module.add&eid=' . $modMenuId . '&params[menutype]=' . $item->menutype); ?>
 						<a href="<?php echo $link; ?>"><?php echo JText::_('COM_MENUS_ADD_MENU_MODULE'); ?></a>
 						<?php echo JHtml::_(
-							'bootstrap.renderModal',
-							'moduleModal',
-							array(
-								'url'    => $link,
-								'title'  => JText::_('COM_MENUS_EDIT_MODULE_SETTINGS'),
-								'height' => '500px',
-								'width'  => '800px',
-								'footer' => '<a class="btn" type="button" data-dismiss="modal" aria-hidden="true">'
-									. JText::_('JLIB_HTML_BEHAVIOR_CLOSE') . '</a>',
-							)
-						); ?>
+                                    'bootstrap.renderModal',
+                                    'moduleModal',
+                                    array(
+                                'url'    => $link,
+                                'title'  => JText::_('COM_MENUS_EDIT_MODULE_SETTINGS'),
+                                'height' => '500px',
+                                'width'  => '800px',
+                                'footer' => '<a class="btn" type="button" data-dismiss="modal" aria-hidden="true">'
+                                    . JText::_('JLIB_HTML_BEHAVIOR_CLOSE') . '</a>',
+                            )
+                                ); ?>
 					<?php endif; ?>
 				</td>
 				<td class="center">

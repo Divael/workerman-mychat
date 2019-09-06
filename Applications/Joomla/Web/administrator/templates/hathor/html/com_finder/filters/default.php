@@ -36,7 +36,7 @@ Joomla.submitbutton = function(pressbutton)
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_finder&view=filters');?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -98,42 +98,41 @@ Joomla.submitbutton = function(pressbutton)
 			<tr class="row0">
 				<td class="center" colspan="7">
 					<?php
-					if ($this->total == 0):
-						echo JText::_('COM_FINDER_NO_FILTERS');
-						?>
+                    if ($this->total == 0):
+                        echo JText::_('COM_FINDER_NO_FILTERS');
+                        ?>
 						<a href="<?php echo JRoute::_('index.php?option=com_finder&task=filter.add'); ?>" title="<?php echo JText::_('COM_FINDER_CREATE_FILTER'); ?>">
 							<?php echo JText::_('COM_FINDER_CREATE_FILTER'); ?>
 						</a>
 						<?php
-					else:
-						echo JText::_('COM_FINDER_NO_RESULTS');
-					endif;
-					?>
+                    else:
+                        echo JText::_('COM_FINDER_NO_RESULTS');
+                    endif;
+                    ?>
 				</td>
 			</tr>
 		<?php endif; ?>
 
 		<?php foreach ($this->items as $i => $item) :
-			$canCreate  = $user->authorise('core.create',     'com_finder');
-			$canEdit    = $user->authorise('core.edit',       'com_finder');
-			$canCheckin = $user->authorise('core.manage',     'com_checkin') || $filter->checked_out == $user->get('id') || $filter->checked_out == 0;
-			$canChange  = $user->authorise('core.edit.state', 'com_finder') && $canCheckin;
-			?>
+            $canCreate  = $user->authorise('core.create', 'com_finder');
+            $canEdit    = $user->authorise('core.edit', 'com_finder');
+            $canCheckin = $user->authorise('core.manage', 'com_checkin') || $filter->checked_out == $user->get('id') || $filter->checked_out == 0;
+            $canChange  = $user->authorise('core.edit.state', 'com_finder') && $canCheckin;
+            ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<th class="center">
 					<?php echo JHtml::_('grid.id', $i, $item->filter_id); ?>
 				</th>
 				<td>
-					<?php if ($item->checked_out)
-					{
-						echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'filters.', $canCheckin);
-					} ?>
+					<?php if ($item->checked_out) {
+                echo JHtml::_('jgrid.checkedout', $i, $item->editor, $item->checked_out_time, 'filters.', $canCheckin);
+            } ?>
 					<?php if ($canEdit) { ?>
 						<a href="<?php echo JRoute::_('index.php?option=com_finder&task=filter.edit&filter_id=' . (int) $item->filter_id); ?>">
 							<?php echo $this->escape($item->title); ?></a>
 					<?php } else {
-							echo $this->escape($item->title);
-					} ?>
+                echo $this->escape($item->title);
+            } ?>
 				</td>
 				<td class="center nowrap">
 					<?php echo JHtml::_('jgrid.published', $item->state, $i, 'filters.', $canChange); ?>

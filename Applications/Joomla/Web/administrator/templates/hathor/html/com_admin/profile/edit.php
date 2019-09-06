@@ -42,13 +42,13 @@ JFactory::getDocument()->addScriptDeclaration("
 
 	<div class="col options-section">
 		<?php
-		echo JHtml::_('sliders.start');
-		foreach ($fieldsets as $fieldset) :
-			if ($fieldset->name == 'user_details') :
-				continue;
-			endif;
-			echo JHtml::_('sliders.panel', JText::_($fieldset->label), $fieldset->name);
-		?>
+        echo JHtml::_('sliders.start');
+        foreach ($fieldsets as $fieldset) :
+            if ($fieldset->name == 'user_details') :
+                continue;
+            endif;
+            echo JHtml::_('sliders.panel', JText::_($fieldset->label), $fieldset->name);
+        ?>
 		<fieldset class="panelform">
 		<legend class="element-invisible"><?php echo JText::_($fieldset->label); ?></legend>
 		<ul class="adminformlist">

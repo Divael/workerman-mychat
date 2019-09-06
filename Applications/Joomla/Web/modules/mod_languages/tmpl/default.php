@@ -11,9 +11,8 @@ defined('_JEXEC') or die;
 
 JHtml::_('stylesheet', 'mod_languages/template.css', array('version' => 'auto', 'relative' => true));
 
-if ($params->get('dropdown', 1) && !$params->get('dropdownimage', 0))
-{
-	JHtml::_('formbehavior.chosen');
+if ($params->get('dropdown', 1) && !$params->get('dropdownimage', 0)) {
+    JHtml::_('formbehavior.chosen');
 }
 ?>
 <div class="mod-languages<?php echo $moduleclass_sfx; ?>">

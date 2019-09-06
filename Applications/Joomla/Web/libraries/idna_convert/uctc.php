@@ -15,7 +15,8 @@
  * @copyright 2003-2009 phlyLabs Berlin, http://phlylabs.de
  * @version 0.0.6 2009-05-10
  */
-class uctc {
+class uctc
+{
     private static $mechs = array('ucs4', /*'ucs4le', 'ucs4be', */'ucs4array', /*'utf16', 'utf16le', 'utf16be', */'utf8', 'utf7', 'utf7imap');
     private static $allow_overlong = false;
     private static $safe_mode;
@@ -36,11 +37,21 @@ class uctc {
     {
         self::$safe_mode = ($safe_mode) ? true : false;
         self::$safe_char = ($safe_char) ? $safe_char : 0xFFFC;
-        if (self::$safe_mode) self::$allow_overlong = true;
-        if (!in_array($from, self::$mechs)) throw new Exception('Invalid input format specified');
-        if (!in_array($to, self::$mechs)) throw new Exception('Invalid output format specified');
-        if ($from != 'ucs4array') eval('$data = self::'.$from.'_ucs4array($data);');
-        if ($to != 'ucs4array') eval('$data = self::ucs4array_'.$to.'($data);');
+        if (self::$safe_mode) {
+            self::$allow_overlong = true;
+        }
+        if (!in_array($from, self::$mechs)) {
+            throw new Exception('Invalid input format specified');
+        }
+        if (!in_array($to, self::$mechs)) {
+            throw new Exception('Invalid output format specified');
+        }
+        if ($from != 'ucs4array') {
+            eval('$data = self::'.$from.'_ucs4array($data);');
+        }
+        if ($to != 'ucs4array') {
+            eval('$data = self::ucs4array_'.$to.'($data);');
+        }
         return $data;
     }
 
@@ -177,7 +188,9 @@ class uctc {
 
         for ($k = 0; $k < $inp_len; ++$k) {
             $c = $input{$k};
-            if (0 == ord($c)) continue; // Ignore zero bytes
+            if (0 == ord($c)) {
+                continue;
+            } // Ignore zero bytes
             if ('b' == $mode) {
                 // Sequence got terminated
                 if (!preg_match('![A-Za-z0-9/'.preg_quote($sc, '!').']!', $c)) {
@@ -253,7 +266,9 @@ class uctc {
                     $mode = 'b';
                 }
             }
-            if (false === $v && $b64 == '') break;
+            if (false === $v && $b64 == '') {
+                break;
+            }
         }
         return $output;
     }
@@ -285,16 +300,17 @@ class uctc {
             throw new Exception('Input UCS4 string is broken');
         }
         // Empty input - return empty output
-        if (!$inp_len) return $output;
+        if (!$inp_len) {
+            return $output;
+        }
 
         for ($i = 0, $out_len = -1; $i < $inp_len; ++$i) {
             if (!($i % 4)) { // Increment output position every 4 input bytes
                 $out_len++;
                 $output[$out_len] = 0;
             }
-            $output[$out_len] += ord($input{$i}) << (8 * (3 - ($i % 4) ) );
+            $output[$out_len] += ord($input{$i}) << (8 * (3 - ($i % 4)));
         }
         return $output;
     }
 }
-?>

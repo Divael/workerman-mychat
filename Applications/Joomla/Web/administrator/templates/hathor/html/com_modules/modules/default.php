@@ -24,7 +24,7 @@ $saveOrder = $listOrder == 'ordering';
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_modules'); ?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -137,12 +137,12 @@ $saveOrder = $listOrder == 'ordering';
 
 		<tbody>
 		<?php foreach ($this->items as $i => $item) :
-			$ordering  = ($listOrder == 'ordering');
-			$canCreate  = $user->authorise('core.create',     'com_modules');
-			$canEdit    = $user->authorise('core.edit',       'com_modules');
-			$canCheckin = $user->authorise('core.manage',     'com_checkin') || $item->checked_out == $user->get('id') || $item->checked_out == 0;
-			$canChange  = $user->authorise('core.edit.state', 'com_modules') && $canCheckin;
-		?>
+            $ordering  = ($listOrder == 'ordering');
+            $canCreate  = $user->authorise('core.create', 'com_modules');
+            $canEdit    = $user->authorise('core.edit', 'com_modules');
+            $canCheckin = $user->authorise('core.manage', 'com_checkin') || $item->checked_out == $user->get('id') || $item->checked_out == 0;
+            $canChange  = $user->authorise('core.edit.state', 'com_modules') && $canCheckin;
+        ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td class="center">
 					<?php echo JHtml::_('grid.id', $i, $item->id); ?>
@@ -163,11 +163,11 @@ $saveOrder = $listOrder == 'ordering';
 					<?php endif; ?>
 				</td>
 				<td class="center">
-					<?php // Check if extension is enabled ?>
+					<?php // Check if extension is enabled?>
 					<?php if ($item->enabled > 0) : ?>
 						<?php echo JHtml::_('modules.state', $item->published, $i, $canChange, 'cb'); ?>
 					<?php else : ?>
-						<?php // Extension is not enabled, show a message that indicates this. ?>
+						<?php // Extension is not enabled, show a message that indicates this.?>
 							<button class="btn btn-micro hasTooltip" title="<?php echo JText::_('COM_MODULES_MSG_MANAGE_EXTENSION_DISABLED'); ?>">
 								<span class="icon-ban-circle" aria-hidden="true"></span>
 							</button>
@@ -220,19 +220,19 @@ $saveOrder = $listOrder == 'ordering';
 		</tbody>
 	</table>
 
-	<?php // Load the batch processing form. ?>
+	<?php // Load the batch processing form.?>
 	<?php if ($user->authorise('core.create', 'com_modules')
-		&& $user->authorise('core.edit', 'com_modules')
-		&& $user->authorise('core.edit.state', 'com_modules')) : ?>
+        && $user->authorise('core.edit', 'com_modules')
+        && $user->authorise('core.edit.state', 'com_modules')) : ?>
 		<?php echo JHtml::_(
-			'bootstrap.renderModal',
-			'collapseModal',
-			array(
-				'title' => JText::_('COM_MODULES_BATCH_OPTIONS'),
-				'footer' => $this->loadTemplate('batch_footer')
-			),
-			$this->loadTemplate('batch_body')
-		); ?>
+            'bootstrap.renderModal',
+            'collapseModal',
+            array(
+                'title' => JText::_('COM_MODULES_BATCH_OPTIONS'),
+                'footer' => $this->loadTemplate('batch_footer')
+            ),
+            $this->loadTemplate('batch_body')
+        ); ?>
 	<?php endif; ?>
 
 	<?php echo $this->pagination->getListFooter(); ?>

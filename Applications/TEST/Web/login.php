@@ -8,8 +8,8 @@ use \Workerman\Lib\Timer;
 if (isset($_POST["submit"]) && $_POST["submit"] == '  确 定  ') {
     $user  = $_POST["username"];
     $pwd =$_POST["password"];
-    var_dump("用户名{$user}  -   密码{$pwd}"); 
-}else{
+    var_dump("用户名{$user}  -   密码{$pwd}");
+} else {
     echo "<script>alert('提交未成功！'); window.location.href = 'index.php'</script>";//history.go(-1);
 }
 
@@ -27,11 +27,11 @@ printf('数据库连接成功!'."\n");
 
 $flag = false;
 
-foreach($datas as $data){
-    if ($user == $data['username'] && $pwd == $data['userpwd']){
-        try{
+foreach ($datas as $data) {
+    if ($user == $data['username'] && $pwd == $data['userpwd']) {
+        try {
             Timer::del($GLOBALS['timer_id']);
-        }catch(Exception $ex){
+        } catch (Exception $ex) {
             Utils::_log("Timer::del {$ex->getMessage()}");
         }
         print '登录成功!'."\n";
@@ -46,8 +46,6 @@ foreach($datas as $data){
         $flag  = true;
     }
 }
-if(!$flag){
+if (!$flag) {
     echo "<script>alert('密码错误,请重新输入！'); history.go(-1);</script>";
 }
-
-?>

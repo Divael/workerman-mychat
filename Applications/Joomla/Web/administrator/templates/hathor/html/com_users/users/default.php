@@ -21,7 +21,7 @@ $loggeduser = JFactory::getUser();
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_users&view=users');?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -125,16 +125,15 @@ $loggeduser = JFactory::getUser();
 
 		<tbody>
 		<?php foreach ($this->items as $i => $item) :
-			$canEdit   = $this->canDo->get('core.edit');
-			$canChange = $loggeduser->authorise('core.edit.state',	'com_users');
+            $canEdit   = $this->canDo->get('core.edit');
+            $canChange = $loggeduser->authorise('core.edit.state', 'com_users');
 
-			// If this group is super admin and this user is not super admin, $canEdit is false
-			if ((!$loggeduser->authorise('core.admin')) && JAccess::check($item->id, 'core.admin'))
-			{
-				$canEdit   = false;
-				$canChange = false;
-			}
-		?>
+            // If this group is super admin and this user is not super admin, $canEdit is false
+            if ((!$loggeduser->authorise('core.admin')) && JAccess::check($item->id, 'core.admin')) {
+                $canEdit   = false;
+                $canChange = false;
+            }
+        ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td>
 					<?php if ($canEdit) : ?>
@@ -207,19 +206,19 @@ $loggeduser = JFactory::getUser();
 		</tbody>
 	</table>
 
-	<?php // Load the batch processing form if user is allowed ?>
+	<?php // Load the batch processing form if user is allowed?>
 	<?php if ($loggeduser->authorise('core.create', 'com_users')
-		&& $loggeduser->authorise('core.edit', 'com_users')
-		&& $loggeduser->authorise('core.edit.state', 'com_users')) : ?>
+        && $loggeduser->authorise('core.edit', 'com_users')
+        && $loggeduser->authorise('core.edit.state', 'com_users')) : ?>
 		<?php echo JHtml::_(
-			'bootstrap.renderModal',
-			'collapseModal',
-			array(
-				'title'  => JText::_('COM_USERS_BATCH_OPTIONS'),
-				'footer' => $this->loadTemplate('batch_footer'),
-			),
-			$this->loadTemplate('batch_body')
-		); ?>
+            'bootstrap.renderModal',
+            'collapseModal',
+            array(
+                'title'  => JText::_('COM_USERS_BATCH_OPTIONS'),
+                'footer' => $this->loadTemplate('batch_footer'),
+            ),
+            $this->loadTemplate('batch_body')
+        ); ?>
 	<?php endif;?>
 
 	<?php echo $this->pagination->getListFooter(); ?>

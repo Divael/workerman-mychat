@@ -13,15 +13,13 @@ JLoader::register('ContactHelperRoute', JPATH_COMPONENT . '/helpers/route.php');
 
 $input = JFactory::getApplication()->input;
 
-if ($input->get('view') === 'contacts' && $input->get('layout') === 'modal')
-{
-	if (!JFactory::getUser()->authorise('core.create', 'com_contact'))
-	{
-		JFactory::getApplication()->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR'), 'warning');
-		return;
-	}
+if ($input->get('view') === 'contacts' && $input->get('layout') === 'modal') {
+    if (!JFactory::getUser()->authorise('core.create', 'com_contact')) {
+        JFactory::getApplication()->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR'), 'warning');
+        return;
+    }
 
-	JFactory::getLanguage()->load('com_contact', JPATH_ADMINISTRATOR);
+    JFactory::getLanguage()->load('com_contact', JPATH_ADMINISTRATOR);
 }
 
 $controller = JControllerLegacy::getInstance('Contact');

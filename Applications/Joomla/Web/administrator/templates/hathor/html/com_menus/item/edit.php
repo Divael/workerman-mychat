@@ -160,7 +160,7 @@ $clientId = $this->state->get('item.client_id', 0);
 <div class="col options-section">
 	<?php echo JHtml::_('sliders.start', 'menu-sliders-'.$this->item->id); ?>
 	<?php //Load  parameters.
-		echo $this->loadTemplate('options'); ?>
+        echo $this->loadTemplate('options'); ?>
 
 		<div class="clr"></div>
 

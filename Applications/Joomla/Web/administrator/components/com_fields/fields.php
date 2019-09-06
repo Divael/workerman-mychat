@@ -12,17 +12,16 @@ JLoader::register('FieldsHelper', JPATH_ADMINISTRATOR . '/components/com_fields/
 
 $app       = JFactory::getApplication();
 $context   = $app->getUserStateFromRequest(
-	'com_fields.groups.context',
-	'context',
-	$app->getUserStateFromRequest('com_fields.fields.context', 'context', 'com_content.article', 'CMD'),
-	'CMD'
+    'com_fields.groups.context',
+    'context',
+    $app->getUserStateFromRequest('com_fields.fields.context', 'context', 'com_content.article', 'CMD'),
+    'CMD'
 );
 
 $parts = FieldsHelper::extract($context);
 
-if (!$parts || !JFactory::getUser()->authorise('core.manage', $parts[0]))
-{
-	return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
+if (!$parts || !JFactory::getUser()->authorise('core.manage', $parts[0])) {
+    return JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
 }
 
 $controller = JControllerLegacy::getInstance('Fields');

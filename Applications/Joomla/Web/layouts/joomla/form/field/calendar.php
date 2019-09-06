@@ -72,24 +72,21 @@ empty($class)     ? null : $attributes['class'] = $class;
 !$disabled        ? null : $attributes['disabled'] = 'disabled';
 empty($onchange)  ? null : $attributes['onchange'] = $onchange;
 
-if ($required)
-{
-	$attributes['required'] = '';
-	$attributes['aria-required'] = 'true';
+if ($required) {
+    $attributes['required'] = '';
+    $attributes['aria-required'] = 'true';
 }
 
 // Handle the special case for "now".
-if (strtoupper($value) == 'NOW')
-{
-	$value = JFactory::getDate()->format('Y-m-d H:i:s');
+if (strtoupper($value) == 'NOW') {
+    $value = JFactory::getDate()->format('Y-m-d H:i:s');
 }
 
 $readonly = isset($attributes['readonly']) && $attributes['readonly'] == 'readonly';
 $disabled = isset($attributes['disabled']) && $attributes['disabled'] == 'disabled';
 
-if (is_array($attributes))
-{
-	$attributes = ArrayHelper::toString($attributes);
+if (is_array($attributes)) {
+    $attributes = ArrayHelper::toString($attributes);
 }
 
 $cssFileExt = ($direction === 'rtl') ? '-rtl.css' : '.css';
@@ -108,10 +105,10 @@ JHtml::_('stylesheet', 'system/fields/calendar' . $cssFileExt, array(), true);
 	<div class="input-append">
 		<?php endif; ?>
 		<input type="text" id="<?php echo $id; ?>" name="<?php
-		echo $name; ?>" value="<?php
-		echo htmlspecialchars(($value != "0000-00-00 00:00:00") ? $value : '', ENT_COMPAT, 'UTF-8'); ?>" <?php echo $attributes; ?>
+        echo $name; ?>" value="<?php
+        echo htmlspecialchars(($value != "0000-00-00 00:00:00") ? $value : '', ENT_COMPAT, 'UTF-8'); ?>" <?php echo $attributes; ?>
 		<?php echo !empty($hint) ? 'placeholder="' . htmlspecialchars($hint, ENT_COMPAT, 'UTF-8') . '"' : ''; ?> data-alt-value="<?php
-		echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>" autocomplete="off"/>
+        echo htmlspecialchars($value, ENT_COMPAT, 'UTF-8'); ?>" autocomplete="off"/>
 		<button type="button" class="<?php echo ($readonly || $disabled) ? "hidden " : ''; ?>btn btn-secondary"
 			id="<?php echo  $id; ?>_btn"
 			data-inputfield="<?php echo $id; ?>"

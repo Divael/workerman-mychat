@@ -18,23 +18,23 @@ defined('_JEXEC') or die;
  */
 class ConfigViewModulesHtml extends ConfigViewCmsHtml
 {
-	public $item;
+    public $item;
 
-	public $form;
+    public $form;
 
-	/**
-	 * Display the view
-	 *
-	 * @return  string  The rendered view.
-	 *
-	 * @since   3.2
-	 */
-	public function render()
-	{
-		$lang = JFactory::getApplication()->getLanguage();
-		$lang->load('', JPATH_ADMINISTRATOR, $lang->getTag());
-		$lang->load('com_modules', JPATH_ADMINISTRATOR, $lang->getTag());
+    /**
+     * Display the view
+     *
+     * @return  string  The rendered view.
+     *
+     * @since   3.2
+     */
+    public function render()
+    {
+        $lang = JFactory::getApplication()->getLanguage();
+        $lang->load('', JPATH_ADMINISTRATOR, $lang->getTag());
+        $lang->load('com_modules', JPATH_ADMINISTRATOR, $lang->getTag());
 
-		return parent::render();
-	}
+        return parent::render();
+    }
 }

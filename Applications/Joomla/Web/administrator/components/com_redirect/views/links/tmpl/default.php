@@ -69,9 +69,9 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 				</tfoot>
 				<tbody>
 				<?php foreach ($this->items as $i => $item) :
-					$canEdit   = $user->authorise('core.edit',       'com_redirect');
-					$canChange = $user->authorise('core.edit.state', 'com_redirect');
-					?>
+                    $canEdit   = $user->authorise('core.edit', 'com_redirect');
+                    $canChange = $user->authorise('core.edit.state', 'com_redirect');
+                    ?>
 					<tr class="row<?php echo $i % 2; ?>">
 						<td class="center">
 							<?php echo JHtml::_('grid.id', $i, $item->id); ?>
@@ -80,13 +80,12 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 							<div class="btn-group">
 								<?php echo JHtml::_('redirect.published', $item->published, $i); ?>
 								<?php // Create dropdown items and render the dropdown list.
-								if ($canChange)
-								{
-									JHtml::_('actionsdropdown.' . ((int) $item->published === 2 ? 'un' : '') . 'archive', 'cb' . $i, 'links');
-									JHtml::_('actionsdropdown.' . ((int) $item->published === -2 ? 'un' : '') . 'trash', 'cb' . $i, 'links');
-									echo JHtml::_('actionsdropdown.render', $this->escape($item->old_url));
-								}
-								?>
+                                if ($canChange) {
+                                    JHtml::_('actionsdropdown.' . ((int) $item->published === 2 ? 'un' : '') . 'archive', 'cb' . $i, 'links');
+                                    JHtml::_('actionsdropdown.' . ((int) $item->published === -2 ? 'un' : '') . 'trash', 'cb' . $i, 'links');
+                                    echo JHtml::_('actionsdropdown.render', $this->escape($item->old_url));
+                                }
+                                ?>
 							</div>
 						</td>
 						<td class="break-word">
@@ -124,19 +123,19 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 		<?php if (!empty($this->items)) : ?>
 			<?php echo $this->loadTemplate('addform'); ?>
 		<?php endif; ?>
-		<?php // Load the batch processing form if user is allowed ?>
+		<?php // Load the batch processing form if user is allowed?>
 			<?php if ($user->authorise('core.create', 'com_redirect')
-				&& $user->authorise('core.edit', 'com_redirect')
-				&& $user->authorise('core.edit.state', 'com_redirect')) : ?>
+                && $user->authorise('core.edit', 'com_redirect')
+                && $user->authorise('core.edit.state', 'com_redirect')) : ?>
 				<?php echo JHtml::_(
-					'bootstrap.renderModal',
-					'collapseModal',
-					array(
-						'title' => JText::_('COM_REDIRECT_BATCH_OPTIONS'),
-						'footer' => $this->loadTemplate('batch_footer')
-					),
-					$this->loadTemplate('batch_body')
-				); ?>
+                    'bootstrap.renderModal',
+                    'collapseModal',
+                    array(
+                        'title' => JText::_('COM_REDIRECT_BATCH_OPTIONS'),
+                        'footer' => $this->loadTemplate('batch_footer')
+                    ),
+                    $this->loadTemplate('batch_body')
+                ); ?>
 			<?php endif; ?>
 
 		<input type="hidden" name="task" value="" />

@@ -18,23 +18,23 @@ use Joomla\Registry\Registry;
  */
 interface JModel
 {
-	/**
-	 * Get the model state.
-	 *
-	 * @return  Registry  The state object.
-	 *
-	 * @since   12.1
-	 */
-	public function getState();
+    /**
+     * Get the model state.
+     *
+     * @return  Registry  The state object.
+     *
+     * @since   12.1
+     */
+    public function getState();
 
-	/**
-	 * Set the model state.
-	 *
-	 * @param   Registry  $state  The state object.
-	 *
-	 * @return  void
-	 *
-	 * @since   12.1
-	 */
-	public function setState(Registry $state);
+    /**
+     * Set the model state.
+     *
+     * @param   Registry  $state  The state object.
+     *
+     * @return  void
+     *
+     * @since   12.1
+     */
+    public function setState(Registry $state);
 }

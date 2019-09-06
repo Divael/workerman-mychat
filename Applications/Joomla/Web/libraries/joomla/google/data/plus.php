@@ -19,81 +19,76 @@ use Joomla\Registry\Registry;
  */
 class JGoogleDataPlus extends JGoogleData
 {
-	/**
-	 * @var    JGoogleDataPlusPeople  Google+ API object for people.
-	 * @since  12.3
-	 */
-	protected $people;
+    /**
+     * @var    JGoogleDataPlusPeople  Google+ API object for people.
+     * @since  12.3
+     */
+    protected $people;
 
-	/**
-	 * @var    JGoogleDataPlusActivities  Google+ API object for people.
-	 * @since  12.3
-	 */
-	protected $activities;
+    /**
+     * @var    JGoogleDataPlusActivities  Google+ API object for people.
+     * @since  12.3
+     */
+    protected $activities;
 
-	/**
-	 * @var    JGoogleDataPlusComments  Google+ API object for people.
-	 * @since  12.3
-	 */
-	protected $comments;
+    /**
+     * @var    JGoogleDataPlusComments  Google+ API object for people.
+     * @since  12.3
+     */
+    protected $comments;
 
-	/**
-	 * Constructor.
-	 *
-	 * @param   Registry     $options  Google options object
-	 * @param   JGoogleAuth  $auth     Google data http client object
-	 *
-	 * @since   12.3
-	 */
-	public function __construct(Registry $options = null, JGoogleAuth $auth = null)
-	{
-		// Setup the default API url if not already set.
-		$options->def('api.url', 'https://www.googleapis.com/plus/v1/');
+    /**
+     * Constructor.
+     *
+     * @param   Registry     $options  Google options object
+     * @param   JGoogleAuth  $auth     Google data http client object
+     *
+     * @since   12.3
+     */
+    public function __construct(Registry $options = null, JGoogleAuth $auth = null)
+    {
+        // Setup the default API url if not already set.
+        $options->def('api.url', 'https://www.googleapis.com/plus/v1/');
 
-		parent::__construct($options, $auth);
+        parent::__construct($options, $auth);
 
-		if (isset($this->auth) && !$this->auth->getOption('scope'))
-		{
-			$this->auth->setOption('scope', 'https://www.googleapis.com/auth/plus.me');
-		}
-	}
+        if (isset($this->auth) && !$this->auth->getOption('scope')) {
+            $this->auth->setOption('scope', 'https://www.googleapis.com/auth/plus.me');
+        }
+    }
 
-	/**
-	 * Magic method to lazily create API objects
-	 *
-	 * @param   string  $name  Name of property to retrieve
-	 *
-	 * @return  JGoogleDataPlus  Google+ API object (people, activities, comments).
-	 *
-	 * @since   12.3
-	 */
-	public function __get($name)
-	{
-		switch ($name)
-		{
-			case 'people':
-				if ($this->people == null)
-				{
-					$this->people = new JGoogleDataPlusPeople($this->options, $this->auth);
-				}
+    /**
+     * Magic method to lazily create API objects
+     *
+     * @param   string  $name  Name of property to retrieve
+     *
+     * @return  JGoogleDataPlus  Google+ API object (people, activities, comments).
+     *
+     * @since   12.3
+     */
+    public function __get($name)
+    {
+        switch ($name) {
+            case 'people':
+                if ($this->people == null) {
+                    $this->people = new JGoogleDataPlusPeople($this->options, $this->auth);
+                }
 
-				return $this->people;
+                return $this->people;
 
-			case 'activities':
-				if ($this->activities == null)
-				{
-					$this->activities = new JGoogleDataPlusActivities($this->options, $this->auth);
-				}
+            case 'activities':
+                if ($this->activities == null) {
+                    $this->activities = new JGoogleDataPlusActivities($this->options, $this->auth);
+                }
 
-				return $this->activities;
+                return $this->activities;
 
-			case 'comments':
-				if ($this->comments == null)
-				{
-					$this->comments = new JGoogleDataPlusComments($this->options, $this->auth);
-				}
+            case 'comments':
+                if ($this->comments == null) {
+                    $this->comments = new JGoogleDataPlusComments($this->options, $this->auth);
+                }
 
-				return $this->comments;
-		}
-	}
+                return $this->comments;
+        }
+    }
 }

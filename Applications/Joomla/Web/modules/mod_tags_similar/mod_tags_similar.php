@@ -21,9 +21,8 @@ $cacheparams->modeparams = array('id' => 'array', 'Itemid' => 'int');
 
 $list = JModuleHelper::moduleCache($module, $params, $cacheparams);
 
-if (!count($list))
-{
-	return;
+if (!count($list)) {
+    return;
 }
 
 $moduleclass_sfx = htmlspecialchars($params->get('moduleclass_sfx'), ENT_COMPAT, 'UTF-8');

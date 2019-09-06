@@ -24,13 +24,13 @@ defined('FOF_INCLUDED') or die;
  */
 class FOFLessFormatterJoomla extends FOFLessFormatterClassic
 {
-	public $disableSingle = true;
+    public $disableSingle = true;
 
-	public $breakSelectors = true;
+    public $breakSelectors = true;
 
-	public $assignSeparator = ": ";
+    public $assignSeparator = ": ";
 
-	public $selectorSeparator = ",";
+    public $selectorSeparator = ",";
 
-	public $indentChar = "\t";
+    public $indentChar = "\t";
 }

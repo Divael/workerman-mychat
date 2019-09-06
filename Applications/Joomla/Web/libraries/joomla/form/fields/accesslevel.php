@@ -21,39 +21,39 @@ JFormHelper::loadFieldClass('list');
  */
 class JFormFieldAccessLevel extends JFormFieldList
 {
-	/**
-	 * The form field type.
-	 *
-	 * @var    string
-	 * @since  11.1
-	 */
-	protected $type = 'AccessLevel';
+    /**
+     * The form field type.
+     *
+     * @var    string
+     * @since  11.1
+     */
+    protected $type = 'AccessLevel';
 
-	/**
-	 * Method to get the field input markup.
-	 *
-	 * @return  string  The field input markup.
-	 *
-	 * @since   11.1
-	 */
-	protected function getInput()
-	{
-		$attr = '';
+    /**
+     * Method to get the field input markup.
+     *
+     * @return  string  The field input markup.
+     *
+     * @since   11.1
+     */
+    protected function getInput()
+    {
+        $attr = '';
 
-		// Initialize some field attributes.
-		$attr .= !empty($this->class) ? ' class="' . $this->class . '"' : '';
-		$attr .= $this->disabled ? ' disabled' : '';
-		$attr .= !empty($this->size) ? ' size="' . $this->size . '"' : '';
-		$attr .= $this->multiple ? ' multiple' : '';
-		$attr .= $this->required ? ' required aria-required="true"' : '';
-		$attr .= $this->autofocus ? ' autofocus' : '';
+        // Initialize some field attributes.
+        $attr .= !empty($this->class) ? ' class="' . $this->class . '"' : '';
+        $attr .= $this->disabled ? ' disabled' : '';
+        $attr .= !empty($this->size) ? ' size="' . $this->size . '"' : '';
+        $attr .= $this->multiple ? ' multiple' : '';
+        $attr .= $this->required ? ' required aria-required="true"' : '';
+        $attr .= $this->autofocus ? ' autofocus' : '';
 
-		// Initialize JavaScript field attributes.
-		$attr .= $this->onchange ? ' onchange="' . $this->onchange . '"' : '';
+        // Initialize JavaScript field attributes.
+        $attr .= $this->onchange ? ' onchange="' . $this->onchange . '"' : '';
 
-		// Get the field options.
-		$options = $this->getOptions();
+        // Get the field options.
+        $options = $this->getOptions();
 
-		return JHtml::_('access.level', $this->name, $this->value, $attr, $options, $this->id);
-	}
+        return JHtml::_('access.level', $this->name, $this->value, $attr, $options, $this->id);
+    }
 }

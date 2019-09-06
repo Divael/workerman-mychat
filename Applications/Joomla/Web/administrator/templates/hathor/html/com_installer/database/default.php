@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 ?>
 <div id="installer-database">
 <form action="<?php echo JRoute::_('index.php?option=com_installer&view=warnings');?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -44,12 +44,12 @@ defined('_JEXEC') or die;
 
 			<?php foreach ($this->errors as $line => $error) : ?>
 				<?php $key = 'COM_INSTALLER_MSG_DATABASE_' . $error->queryType;
-				$msgs = $error->msgElements;
-				$file = basename($error->file);
-				$msg0 = (isset($msgs[0])) ? $msgs[0] : ' ';
-				$msg1 = (isset($msgs[1])) ? $msgs[1] : ' ';
-				$msg2 = (isset($msgs[2])) ? $msgs[2] : ' ';
-				$message = JText::sprintf($key, $file, $msg0, $msg1, $msg2); ?>
+                $msgs = $error->msgElements;
+                $file = basename($error->file);
+                $msg0 = (isset($msgs[0])) ? $msgs[0] : ' ';
+                $msg1 = (isset($msgs[1])) ? $msgs[1] : ' ';
+                $msg2 = (isset($msgs[2])) ? $msgs[2] : ' ';
+                $message = JText::sprintf($key, $file, $msg0, $msg1, $msg2); ?>
 				<li><?php echo $message; ?></li>
 			<?php endforeach; ?>
 		</ul>

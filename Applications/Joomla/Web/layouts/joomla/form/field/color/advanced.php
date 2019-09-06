@@ -45,14 +45,11 @@ extract($displayData);
  * @var   array    $control         Is this field checked?
  */
 
-if (in_array($format, array('rgb', 'rgba')) && $validate != 'color')
-{
-	$alpha = ($format === 'rgba');
-	$placeholder = $alpha ? 'rgba(0, 0, 0, 0.5)' : 'rgb(0, 0, 0)';
-}
-else
-{
-	$placeholder = '#rrggbb';
+if (in_array($format, array('rgb', 'rgba')) && $validate != 'color') {
+    $alpha = ($format === 'rgba');
+    $placeholder = $alpha ? 'rgba(0, 0, 0, 0.5)' : 'rgb(0, 0, 0)';
+} else {
+    $placeholder = '#rrggbb';
 }
 
 $inputclass   = ($keywords && ! in_array($format, array('rgb', 'rgba'))) ? ' keywords' : ' ' . $format;

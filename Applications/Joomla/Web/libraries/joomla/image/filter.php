@@ -16,51 +16,49 @@ defined('JPATH_PLATFORM') or die;
  */
 abstract class JImageFilter
 {
-	/**
-	 * @var    resource  The image resource handle.
-	 * @since  11.3
-	 */
-	protected $handle;
+    /**
+     * @var    resource  The image resource handle.
+     * @since  11.3
+     */
+    protected $handle;
 
-	/**
-	 * Class constructor.
-	 *
-	 * @param   resource  $handle  The image resource on which to apply the filter.
-	 *
-	 * @since   11.3
-	 * @throws  InvalidArgumentException
-	 * @throws  RuntimeException
-	 */
-	public function __construct($handle)
-	{
-		// Verify that image filter support for PHP is available.
-		if (!function_exists('imagefilter'))
-		{
-			// @codeCoverageIgnoreStart
-			JLog::add('The imagefilter function for PHP is not available.', JLog::ERROR);
-			throw new RuntimeException('The imagefilter function for PHP is not available.');
+    /**
+     * Class constructor.
+     *
+     * @param   resource  $handle  The image resource on which to apply the filter.
+     *
+     * @since   11.3
+     * @throws  InvalidArgumentException
+     * @throws  RuntimeException
+     */
+    public function __construct($handle)
+    {
+        // Verify that image filter support for PHP is available.
+        if (!function_exists('imagefilter')) {
+            // @codeCoverageIgnoreStart
+            JLog::add('The imagefilter function for PHP is not available.', JLog::ERROR);
+            throw new RuntimeException('The imagefilter function for PHP is not available.');
 
-			// @codeCoverageIgnoreEnd
-		}
+            // @codeCoverageIgnoreEnd
+        }
 
-		// Make sure the file handle is valid.
-		if (!is_resource($handle) || (get_resource_type($handle) != 'gd'))
-		{
-			JLog::add('The image handle is invalid for the image filter.', JLog::ERROR);
-			throw new InvalidArgumentException('The image handle is invalid for the image filter.');
-		}
+        // Make sure the file handle is valid.
+        if (!is_resource($handle) || (get_resource_type($handle) != 'gd')) {
+            JLog::add('The image handle is invalid for the image filter.', JLog::ERROR);
+            throw new InvalidArgumentException('The image handle is invalid for the image filter.');
+        }
 
-		$this->handle = $handle;
-	}
+        $this->handle = $handle;
+    }
 
-	/**
-	 * Method to apply a filter to an image resource.
-	 *
-	 * @param   array  $options  An array of options for the filter.
-	 *
-	 * @return  void
-	 *
-	 * @since   11.3
-	 */
-	abstract public function execute(array $options = array());
+    /**
+     * Method to apply a filter to an image resource.
+     *
+     * @param   array  $options  An array of options for the filter.
+     *
+     * @return  void
+     *
+     * @since   11.3
+     */
+    abstract public function execute(array $options = array());
 }

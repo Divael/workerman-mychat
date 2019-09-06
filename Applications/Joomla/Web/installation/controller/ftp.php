@@ -16,31 +16,31 @@ defined('_JEXEC') or die;
  */
 class InstallationControllerFtp extends JControllerBase
 {
-	/**
-	 * Execute the controller.
-	 *
-	 * @return  void
-	 *
-	 * @since   3.1
-	 */
-	public function execute()
-	{
-		// Get the application
-		/* @var InstallationApplicationWeb $app */
-		$app = $this->getApplication();
+    /**
+     * Execute the controller.
+     *
+     * @return  void
+     *
+     * @since   3.1
+     */
+    public function execute()
+    {
+        // Get the application
+        /* @var InstallationApplicationWeb $app */
+        $app = $this->getApplication();
 
-		// Check for request forgeries.
-		JSession::checkToken() or $app->sendJsonResponse(new Exception(JText::_('JINVALID_TOKEN'), 403));
+        // Check for request forgeries.
+        JSession::checkToken() or $app->sendJsonResponse(new Exception(JText::_('JINVALID_TOKEN'), 403));
 
-		// Get the setup model.
-		$model = new InstallationModelSetup;
+        // Get the setup model.
+        $model = new InstallationModelSetup;
 
-		// Check the form
-		$model->checkForm('ftp');
+        // Check the form
+        $model->checkForm('ftp');
 
-		// Redirect to the page.
-		$r = new stdClass;
-		$r->view = 'summary';
-		$app->sendJsonResponse($r);
-	}
+        // Redirect to the page.
+        $r = new stdClass;
+        $r->view = 'summary';
+        $app->sendJsonResponse($r);
+    }
 }

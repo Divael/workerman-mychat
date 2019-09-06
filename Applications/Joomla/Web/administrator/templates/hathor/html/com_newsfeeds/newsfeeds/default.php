@@ -25,7 +25,7 @@ $assoc     = JLanguageAssociations::isEnabled();
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_newsfeeds&view=newsfeeds'); ?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -135,12 +135,12 @@ $assoc     = JLanguageAssociations::isEnabled();
 
 		<tbody>
 		<?php foreach ($this->items as $i => $item) :
-			$ordering   = ($listOrder == 'a.ordering');
-			$canCreate  = $user->authorise('core.create',     'com_newsfeeds.category.' . $item->catid);
-			$canEdit    = $user->authorise('core.edit',       'com_newsfeeds.category.' . $item->catid);
-			$canCheckin = $user->authorise('core.manage',     'com_checkin') || $item->checked_out == $user->get('id') || $item->checked_out == 0;
-			$canChange  = $user->authorise('core.edit.state', 'com_newsfeeds.category.' . $item->catid) && $canCheckin;
-			?>
+            $ordering   = ($listOrder == 'a.ordering');
+            $canCreate  = $user->authorise('core.create', 'com_newsfeeds.category.' . $item->catid);
+            $canEdit    = $user->authorise('core.edit', 'com_newsfeeds.category.' . $item->catid);
+            $canCheckin = $user->authorise('core.manage', 'com_checkin') || $item->checked_out == $user->get('id') || $item->checked_out == 0;
+            $canChange  = $user->authorise('core.edit.state', 'com_newsfeeds.category.' . $item->catid) && $canCheckin;
+            ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<th class="center">
 					<?php echo JHtml::_('grid.id', $i, $item->id); ?>
@@ -208,19 +208,19 @@ $assoc     = JLanguageAssociations::isEnabled();
 		</tbody>
 	</table>
 
-	<?php //Load the batch processing form if user is allowed ?>
+	<?php //Load the batch processing form if user is allowed?>
 	<?php if ($user->authorise('core.create', 'com_newsfeeds')
-		&& $user->authorise('core.edit', 'com_newsfeeds')
-		&& $user->authorise('core.edit.state', 'com_newsfeeds')) : ?>
+        && $user->authorise('core.edit', 'com_newsfeeds')
+        && $user->authorise('core.edit.state', 'com_newsfeeds')) : ?>
 		<?php echo JHtml::_(
-			'bootstrap.renderModal',
-			'collapseModal',
-			array(
-				'title'  => JText::_('COM_NEWSFEEDS_BATCH_OPTIONS'),
-				'footer' => $this->loadTemplate('batch_footer'),
-			),
-			$this->loadTemplate('batch_body')
-		); ?>
+            'bootstrap.renderModal',
+            'collapseModal',
+            array(
+                'title'  => JText::_('COM_NEWSFEEDS_BATCH_OPTIONS'),
+                'footer' => $this->loadTemplate('batch_footer'),
+            ),
+            $this->loadTemplate('batch_body')
+        ); ?>
 	<?php endif;?>
 
 	<?php echo $this->pagination->getListFooter(); ?>

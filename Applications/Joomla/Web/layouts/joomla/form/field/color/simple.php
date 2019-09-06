@@ -60,7 +60,7 @@ JHtml::_('script', 'system/color-field-init.min.js', array('version' => 'auto', 
 echo $disabled; ?><?php echo $readonly; ?><?php echo $required; ?><?php echo $class; ?><?php echo $position; ?><?php
 echo $onchange; ?><?php echo $autofocus; ?> style="visibility:hidden;width:22px;height:1px">
 	<?php foreach ($colors as $i => $c) : ?>
-		<option<?php echo ($c == $color ? ' selected="selected"' : ''); ?>><?php echo $c; ?></option>
+		<option<?php echo($c == $color ? ' selected="selected"' : ''); ?>><?php echo $c; ?></option>
 		<?php if (($i + 1) % $split == 0) : ?>
 			<option>-</option>
 		<?php endif; ?>

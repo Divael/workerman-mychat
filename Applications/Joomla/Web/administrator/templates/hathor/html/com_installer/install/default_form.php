@@ -96,7 +96,7 @@ JFactory::getDocument()->addScriptDeclaration("
 ");
 
 JFactory::getDocument()->addStyleDeclaration(
-	'
+    '
 	#loading {
 		background: rgba(255, 255, 255, .8) url(\'' . JHtml::_('image', 'jui/ajax-loader.gif', '', null, true, true) . '\') 50% 15% no-repeat;
 		position: fixed;
@@ -110,7 +110,7 @@ JFactory::getDocument()->addStyleDeclaration(
 ?>
 <div id="installer-install" class="clearfix">
     <form enctype="multipart/form-data" action="<?php echo JRoute::_('index.php?option=com_installer&view=install');?>" method="post" name="adminForm" id="adminForm">
-    <?php if (!empty( $this->sidebar)) : ?>
+    <?php if (!empty($this->sidebar)) : ?>
         <div id="j-sidebar-container" class="span2">
             <?php echo $this->sidebar; ?>
         </div>
@@ -134,7 +134,7 @@ JFactory::getDocument()->addStyleDeclaration(
 
             <?php $firstTab = JEventDispatcher::getInstance()->trigger('onInstallerViewBeforeFirstTab', array()); ?>
 
-            <?php // Show installation fieldsets ?>
+            <?php // Show installation fieldsets?>
             <?php $tabs = JEventDispatcher::getInstance()->trigger('onInstallerAddInstallationTab', array()); ?>
             <?php foreach ($tabs as $tab) : ?>
                 <fieldset class="uploadform">

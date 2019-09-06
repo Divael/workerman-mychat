@@ -10,7 +10,7 @@
 defined('_JEXEC') or die;
 
 JFactory::getDocument()->addScriptDeclaration(
-	'
+    '
 	var form = window.top.document.adminForm
 	var title = form.title.value;
 	var alltext = window.top.' . $this->editor->getContent('text') . ';

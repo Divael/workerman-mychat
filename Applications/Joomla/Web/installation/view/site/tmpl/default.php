@@ -80,7 +80,7 @@ defined('_JEXEC') or die;
 					<?php echo $this->form->getLabel('admin_password'); ?>
 				</div>
 				<div class="controls">
-					<?php // Disables autocomplete ?> <input type="password" style="display:none">
+					<?php // Disables autocomplete?> <input type="password" style="display:none">
 					<?php echo $this->form->getInput('admin_password'); ?>
 					<p class="help-block"><?php echo JText::_('INSTL_ADMIN_PASSWORD_DESC'); ?></p>
 				</div>
@@ -90,7 +90,7 @@ defined('_JEXEC') or die;
 					<?php echo $this->form->getLabel('admin_password2'); ?>
 				</div>
 				<div class="controls">
-					<?php // Disables autocomplete ?> <input type="password" style="display:none">
+					<?php // Disables autocomplete?> <input type="password" style="display:none">
 					<?php echo $this->form->getInput('admin_password2'); ?>
 				</div>
 			</div>

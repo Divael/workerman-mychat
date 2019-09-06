@@ -28,14 +28,12 @@ $img = '';
 $starImageOn  = JHtml::_('image', 'system/rating_star.png', JText::_('PLG_VOTE_STAR_ACTIVE'), null, true);
 $starImageOff = JHtml::_('image', 'system/rating_star_blank.png', JText::_('PLG_VOTE_STAR_INACTIVE'), null, true);
 
-for ($i = 0; $i < $rating; $i++)
-{
-	$img .= $starImageOn;
+for ($i = 0; $i < $rating; $i++) {
+    $img .= $starImageOn;
 }
 
-for ($i = $rating; $i < 5; $i++)
-{
-	$img .= $starImageOff;
+for ($i = $rating; $i < 5; $i++) {
+    $img .= $starImageOff;
 }
 
 ?>

@@ -23,5 +23,5 @@ defined('_JEXEC') or die;
  */
 function admin_postinstall_htaccess_condition()
 {
-	return true;
+    return true;
 }

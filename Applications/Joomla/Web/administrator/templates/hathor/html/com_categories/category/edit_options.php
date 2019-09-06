@@ -40,13 +40,12 @@ defined('_JEXEC') or die; ?>
 <?php $fieldSets = $this->form->getFieldsets('params'); ?>
 <?php foreach ($fieldSets as $name => $fieldSet) : ?>
 	<?php
-	$label = !empty($fieldSet->label) ? $fieldSet->label : 'COM_CATEGORIES_' . $name . '_FIELDSET_LABEL';
-	echo JHtml::_('sliders.panel', JText::_($label), $name . '-options');
-	if (isset($fieldSet->description) && trim($fieldSet->description))
-	{
-		echo '<p class="tip">' . $this->escape(JText::_($fieldSet->description)) . '</p>';
-	}
-	?>
+    $label = !empty($fieldSet->label) ? $fieldSet->label : 'COM_CATEGORIES_' . $name . '_FIELDSET_LABEL';
+    echo JHtml::_('sliders.panel', JText::_($label), $name . '-options');
+    if (isset($fieldSet->description) && trim($fieldSet->description)) {
+        echo '<p class="tip">' . $this->escape(JText::_($fieldSet->description)) . '</p>';
+    }
+    ?>
 	<fieldset class="panelform">
 		<legend class="element-invisible"><?php echo JText::_($label); ?></legend>
 		<ul class="adminformlist">

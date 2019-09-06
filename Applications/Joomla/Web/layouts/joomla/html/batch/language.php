@@ -16,7 +16,7 @@ defined('JPATH_BASE') or die;
  */
 
 JFactory::getDocument()->addScriptDeclaration(
-	'
+    '
 		jQuery(document).ready(function($){
 			if ($("#batch-category-id").length){var batchSelector = $("#batch-category-id");}
 			if ($("#batch-menu-id").length){var batchSelector = $("#batch-menu-id");}

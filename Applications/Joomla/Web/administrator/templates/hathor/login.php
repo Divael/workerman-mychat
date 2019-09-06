@@ -40,28 +40,23 @@ JHtml::_('stylesheet', 'templates/system/css/system.css', array('version' => 'au
 JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => true));
 
 // Load additional CSS styles for colors
-if (!$this->params->get('colourChoice'))
-{
-	$colour = 'standard';
-}
-else
-{
-	$colour = htmlspecialchars($this->params->get('colourChoice'), ENT_COMPAT, 'UTF-8');
+if (!$this->params->get('colourChoice')) {
+    $colour = 'standard';
+} else {
+    $colour = htmlspecialchars($this->params->get('colourChoice'), ENT_COMPAT, 'UTF-8');
 }
 
 JHtml::_('stylesheet', 'colour_' . $colour . '.css', array('version' => 'auto', 'relative' => true));
 
 // Load additional CSS styles for rtl sites
-if ($this->direction === 'rtl')
-{
-	JHtml::_('stylesheet', 'template_rtl.css', array('version' => 'auto', 'relative' => true));
-	JHtml::_('stylesheet', 'colour_' . $colour . '_rtl.css', array('version' => 'auto', 'relative' => true));
+if ($this->direction === 'rtl') {
+    JHtml::_('stylesheet', 'template_rtl.css', array('version' => 'auto', 'relative' => true));
+    JHtml::_('stylesheet', 'colour_' . $colour . '_rtl.css', array('version' => 'auto', 'relative' => true));
 }
 
 // Load additional CSS styles for bold Text
-if ($this->params->get('boldText'))
-{
-	JHtml::_('stylesheet', 'boldtext.css', array('version' => 'auto', 'relative' => true));
+if ($this->params->get('boldText')) {
+    JHtml::_('stylesheet', 'boldtext.css', array('version' => 'auto', 'relative' => true));
 }
 
 // Load specific language related CSS
@@ -75,13 +70,10 @@ JHtml::_('stylesheet', 'ie8.css', array('version' => 'auto', 'relative' => true,
 JHtml::_('stylesheet', 'ie7.css', array('version' => 'auto', 'relative' => true, 'conditional' => 'IE 7'));
 
 // Logo file
-if ($this->params->get('logoFile'))
-{
-	$logo = JUri::root() . $this->params->get('logoFile');
-}
-else
-{
-	$logo = $this->baseurl . '/templates/' . $this->template . '/images/logo.png';
+if ($this->params->get('logoFile')) {
+    $logo = JUri::root() . $this->params->get('logoFile');
+} else {
+    $logo = $this->baseurl . '/templates/' . $this->template . '/images/logo.png';
 }
 ?>
 <!DOCTYPE html>
@@ -123,17 +115,14 @@ else
 	<div id="footer">
 		<p class="copyright">
 			<?php
-			// Fix wrong display of Joomla!® in RTL language
-			if ($lang->isRtl())
-			{
-				$joomla = '<a href="https://www.joomla.org" target="_blank" rel="noopener noreferrer">Joomla!</a><sup>&#174;&#x200E;</sup>';
-			}
-			else
-			{
-				$joomla = '<a href="https://www.joomla.org" target="_blank" rel="noopener noreferrer">Joomla!</a><sup>&#174;</sup>';
-			}
-			echo JText::sprintf('JGLOBAL_ISFREESOFTWARE', $joomla);
-			?>
+            // Fix wrong display of Joomla!® in RTL language
+            if ($lang->isRtl()) {
+                $joomla = '<a href="https://www.joomla.org" target="_blank" rel="noopener noreferrer">Joomla!</a><sup>&#174;&#x200E;</sup>';
+            } else {
+                $joomla = '<a href="https://www.joomla.org" target="_blank" rel="noopener noreferrer">Joomla!</a><sup>&#174;</sup>';
+            }
+            echo JText::sprintf('JGLOBAL_ISFREESOFTWARE', $joomla);
+            ?>
 		</p>
 	</div>
 </body>

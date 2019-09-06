@@ -16,23 +16,18 @@ JLoader::register('ContentHelperAssociation', JPATH_SITE . '/components/com_cont
 $input = JFactory::getApplication()->input;
 $user  = JFactory::getUser();
 
-if ($input->get('view') === 'article' && $input->get('layout') === 'pagebreak')
-{
-	if (!$user->authorise('core.create', 'com_content'))
-	{
-		JFactory::getApplication()->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR'), 'warning');
+if ($input->get('view') === 'article' && $input->get('layout') === 'pagebreak') {
+    if (!$user->authorise('core.create', 'com_content')) {
+        JFactory::getApplication()->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR'), 'warning');
 
-		return;
-	}
-}
-elseif ($input->get('view') === 'articles' && $input->get('layout') === 'modal')
-{
-	if (!$user->authorise('core.create', 'com_content'))
-	{
-		JFactory::getApplication()->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR'), 'warning');
+        return;
+    }
+} elseif ($input->get('view') === 'articles' && $input->get('layout') === 'modal') {
+    if (!$user->authorise('core.create', 'com_content')) {
+        JFactory::getApplication()->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR'), 'warning');
 
-		return;
-	}
+        return;
+    }
 }
 
 $controller = JControllerLegacy::getInstance('Content');

@@ -23,7 +23,7 @@ $n         = count($this->items);
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_content&view=featured'); ?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -121,15 +121,15 @@ $n         = count($this->items);
 
 		<tbody>
 		<?php
-		foreach ($this->items as $i => $item) :
-			$item->max_ordering = 0; //??
-			$ordering   = ($listOrder == 'fp.ordering');
-			$assetId    = 'com_content.article.' . $item->id;
-			$canCreate  = $user->authorise('core.create',     'com_content.category.' . $item->catid);
-			$canEdit    = $user->authorise('core.edit',       'com_content.article.' . $item->id);
-			$canCheckin = $user->authorise('core.manage',     'com_checkin') || $item->checked_out == $user->get('id')|| $item->checked_out == 0;
-			$canChange  = $user->authorise('core.edit.state', 'com_content.article.' . $item->id) && $canCheckin;
-			?>
+        foreach ($this->items as $i => $item) :
+            $item->max_ordering = 0; //??
+            $ordering   = ($listOrder == 'fp.ordering');
+            $assetId    = 'com_content.article.' . $item->id;
+            $canCreate  = $user->authorise('core.create', 'com_content.category.' . $item->catid);
+            $canEdit    = $user->authorise('core.edit', 'com_content.article.' . $item->id);
+            $canCheckin = $user->authorise('core.manage', 'com_checkin') || $item->checked_out == $user->get('id')|| $item->checked_out == 0;
+            $canChange  = $user->authorise('core.edit.state', 'com_content.article.' . $item->id) && $canCheckin;
+            ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<th class="center">
 					<?php echo JHtml::_('grid.id', $i, $item->id); ?>

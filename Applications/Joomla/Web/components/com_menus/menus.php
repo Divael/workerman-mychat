@@ -13,13 +13,11 @@ defined('_JEXEC') or die;
 $lang   = JFactory::getLanguage();
 $app    = JFactory::getApplication();
 
-if ($app->input->get('view') === 'items' && $app->input->get('layout') === 'modal')
-{
-	if (!JFactory::getUser()->authorise('core.create', 'com_menus'))
-	{
-		$app->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR'), 'warning');
-		return;
-	}
+if ($app->input->get('view') === 'items' && $app->input->get('layout') === 'modal') {
+    if (!JFactory::getUser()->authorise('core.create', 'com_menus')) {
+        $app->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR'), 'warning');
+        return;
+    }
 }
 
 $lang->load('joomla', JPATH_ADMINISTRATOR);

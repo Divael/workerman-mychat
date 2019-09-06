@@ -16,18 +16,18 @@ defined('_JEXEC') or die;
  */
 class ContactCategories extends JCategories
 {
-	/**
-	 * Class constructor
-	 *
-	 * @param   array  $options  Array of options
-	 *
-	 * @since   1.6
-	 */
-	public function __construct($options = array())
-	{
-		$options['table'] = '#__contact_details';
-		$options['extension'] = 'com_contact';
-		$options['statefield'] = 'published';
-		parent::__construct($options);
-	}
+    /**
+     * Class constructor
+     *
+     * @param   array  $options  Array of options
+     *
+     * @since   1.6
+     */
+    public function __construct($options = array())
+    {
+        $options['table'] = '#__contact_details';
+        $options['extension'] = 'com_contact';
+        $options['statefield'] = 'published';
+        parent::__construct($options);
+    }
 }

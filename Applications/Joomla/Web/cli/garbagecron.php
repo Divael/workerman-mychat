@@ -10,15 +10,13 @@
 const _JEXEC = 1;
 
 // Load system defines
-if (file_exists(dirname(__DIR__) . '/defines.php'))
-{
-	require_once dirname(__DIR__) . '/defines.php';
+if (file_exists(dirname(__DIR__) . '/defines.php')) {
+    require_once dirname(__DIR__) . '/defines.php';
 }
 
-if (!defined('_JDEFINES'))
-{
-	define('JPATH_BASE', dirname(__DIR__));
-	require_once JPATH_BASE . '/includes/defines.php';
+if (!defined('_JDEFINES')) {
+    define('JPATH_BASE', dirname(__DIR__));
+    require_once JPATH_BASE . '/includes/defines.php';
 }
 
 // Get the framework.
@@ -34,18 +32,18 @@ require_once JPATH_LIBRARIES . '/cms.php';
  */
 class GarbageCron extends JApplicationCli
 {
-	/**
-	 * Entry point for the script
-	 *
-	 * @return  void
-	 *
-	 * @since   2.5
-	 */
-	public function doExecute()
-	{
-		$cache = JFactory::getCache();
-		$cache->gc();
-	}
+    /**
+     * Entry point for the script
+     *
+     * @return  void
+     *
+     * @since   2.5
+     */
+    public function doExecute()
+    {
+        $cache = JFactory::getCache();
+        $cache->gc();
+    }
 }
 
 JApplicationCli::getInstance('GarbageCron')->execute();

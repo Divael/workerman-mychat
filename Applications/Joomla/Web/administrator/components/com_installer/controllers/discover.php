@@ -16,44 +16,44 @@ defined('_JEXEC') or die;
  */
 class InstallerControllerDiscover extends JControllerLegacy
 {
-	/**
-	 * Refreshes the cache of discovered extensions.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.6
-	 */
-	public function refresh()
-	{
-		$model = $this->getModel('discover');
-		$model->discover();
-		$this->setRedirect(JRoute::_('index.php?option=com_installer&view=discover', false));
-	}
+    /**
+     * Refreshes the cache of discovered extensions.
+     *
+     * @return  void
+     *
+     * @since   1.6
+     */
+    public function refresh()
+    {
+        $model = $this->getModel('discover');
+        $model->discover();
+        $this->setRedirect(JRoute::_('index.php?option=com_installer&view=discover', false));
+    }
 
-	/**
-	 * Install a discovered extension.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.6
-	 */
-	public function install()
-	{
-		$this->getModel('discover')->discover_install();
-		$this->setRedirect(JRoute::_('index.php?option=com_installer&view=discover', false));
-	}
+    /**
+     * Install a discovered extension.
+     *
+     * @return  void
+     *
+     * @since   1.6
+     */
+    public function install()
+    {
+        $this->getModel('discover')->discover_install();
+        $this->setRedirect(JRoute::_('index.php?option=com_installer&view=discover', false));
+    }
 
-	/**
-	 * Clean out the discovered extension cache.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.6
-	 */
-	public function purge()
-	{
-		$model = $this->getModel('discover');
-		$model->purge();
-		$this->setRedirect(JRoute::_('index.php?option=com_installer&view=discover', false), $model->_message);
-	}
+    /**
+     * Clean out the discovered extension cache.
+     *
+     * @return  void
+     *
+     * @since   1.6
+     */
+    public function purge()
+    {
+        $model = $this->getModel('discover');
+        $model->purge();
+        $this->setRedirect(JRoute::_('index.php?option=com_installer&view=discover', false), $model->_message);
+    }
 }

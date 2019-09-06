@@ -41,18 +41,18 @@ jQuery(document).ready(function($) {
 	<form enctype="multipart/form-data" action="index.php" method="post" id="adminForm" class="form-horizontal">
 
 		<?php if ($this->selfUpdate) : ?>
-			<?php // If we have a self update notice to install it first! ?>
+			<?php // If we have a self update notice to install it first!?>
 			<?php JFactory::getApplication()->enqueueMessage(JText::_('COM_JOOMLAUPDATE_VIEW_DEFAULT_INSTALL_SELF_UPDATE_FIRST'), 'error'); ?>
 			<?php echo $this->loadTemplate('updatemefirst'); ?>
 		<?php else : ?>
 			<?php if (!isset($this->updateInfo['object']->downloadurl->_data) && $this->updateInfo['installed'] < $this->updateInfo['latest']) : ?>
-				<?php // If we have no download URL we can't reinstall or update ?>
+				<?php // If we have no download URL we can't reinstall or update?>
 				<?php echo $this->loadTemplate('nodownload'); ?>
 			<?php elseif (!$this->updateInfo['hasUpdate']) : ?>
-				<?php // If we have no update we can reinstall the core ?>
+				<?php // If we have no update we can reinstall the core?>
 				<?php echo $this->loadTemplate('reinstall'); ?>
 			<?php else : ?>
-				<?php // Ok let's show the update template ?>
+				<?php // Ok let's show the update template?>
 				<?php echo $this->loadTemplate('update'); ?>
 			<?php endif; ?>
 		<?php endif; ?>
@@ -63,7 +63,7 @@ jQuery(document).ready(function($) {
 		<?php echo JHtml::_('form.token'); ?>
 	</form>
 
-	<?php // Only Super Users have access to the Update & Install for obvious security reasons ?>
+	<?php // Only Super Users have access to the Update & Install for obvious security reasons?>
 	<?php if ($this->showUploadAndUpdate) : ?>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 		<?php echo JHtml::_('bootstrap.addTab', 'joomlaupdate-tabs', 'upload-update', JText::_('COM_JOOMLAUPDATE_VIEW_DEFAULT_TAB_UPLOAD')); ?>

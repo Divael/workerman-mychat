@@ -73,9 +73,9 @@ JFactory::getDocument()->addScriptDeclaration("
 			<?php echo JHtml::_('tabs.start', 'module-menu-assignment-tabs', array('useCookie' => 1));?>
 
 			<?php foreach ($menuTypes as &$type) :
-				echo JHtml::_('tabs.panel', $type->title ? $type->title : $type->menutype, $type->menutype.'-details');
+                echo JHtml::_('tabs.panel', $type->title ? $type->title : $type->menutype, $type->menutype.'-details');
 
-				$chkbox_class = 'chk-menulink-' . $type->id; ?>
+                $chkbox_class = 'chk-menulink-' . $type->id; ?>
 
 				<button type="button" class="jform-assignments-button jform-rightbtn" onclick="$$('.<?php echo $chkbox_class; ?>').each(function(el) { el.checked = !el.checked; });">
 					<?php echo JText::_('JGLOBAL_SELECTION_INVERT'); ?>
@@ -96,17 +96,17 @@ JFactory::getDocument()->addScriptDeclaration("
 				<?php if ($count) : ?>
 				<ul class="menu-links">
 					<?php
-					foreach ($type->links as $link) :
-						if (trim($this->item->assignment) == '-') :
-							$checked = '';
-						elseif ($this->item->assignment == 0) :
-							$checked = ' checked="checked"';
-						elseif ($this->item->assignment < 0) :
-							$checked = in_array(-$link->value, $this->item->assigned) ? ' checked="checked"' : '';
-						elseif ($this->item->assignment > 0) :
-							$checked = in_array($link->value, $this->item->assigned) ? ' checked="checked"' : '';
-						endif;
-					?>
+                    foreach ($type->links as $link) :
+                        if (trim($this->item->assignment) == '-') :
+                            $checked = '';
+                        elseif ($this->item->assignment == 0) :
+                            $checked = ' checked="checked"';
+                        elseif ($this->item->assignment < 0) :
+                            $checked = in_array(-$link->value, $this->item->assigned) ? ' checked="checked"' : '';
+                        elseif ($this->item->assignment > 0) :
+                            $checked = in_array($link->value, $this->item->assigned) ? ' checked="checked"' : '';
+                        endif;
+                    ?>
 					<li class="menu-link">
 						<input type="checkbox" class="chkbox <?php echo $chkbox_class; ?>" name="jform[assigned][]" value="<?php echo (int) $link->value;?>" id="link<?php echo (int) $link->value;?>"<?php echo $checked;?>/>
 						<label for="link<?php echo (int) $link->value;?>">

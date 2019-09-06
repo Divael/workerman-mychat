@@ -16,15 +16,15 @@ defined('_JEXEC') or die;
  */
 class FinderTableLink extends JTable
 {
-	/**
-	 * Constructor
-	 *
-	 * @param   JDatabaseDriver  &$db  JDatabaseDriver connector object.
-	 *
-	 * @since   2.5
-	 */
-	public function __construct(&$db)
-	{
-		parent::__construct('#__finder_links', 'link_id', $db);
-	}
+    /**
+     * Constructor
+     *
+     * @param   JDatabaseDriver  &$db  JDatabaseDriver connector object.
+     *
+     * @since   2.5
+     */
+    public function __construct(&$db)
+    {
+        parent::__construct('#__finder_links', 'link_id', $db);
+    }
 }

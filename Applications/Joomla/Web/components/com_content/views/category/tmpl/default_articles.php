@@ -20,16 +20,13 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 // Check for at least one editable article
 $isEditable = false;
 
-if (!empty($this->items))
-{
-	foreach ($this->items as $article)
-	{
-		if ($article->params->get('access-edit'))
-		{
-			$isEditable = true;
-			break;
-		}
-	}
+if (!empty($this->items)) {
+    foreach ($this->items as $article) {
+        if ($article->params->get('access-edit')) {
+            $isEditable = true;
+            break;
+        }
+    }
 }
 
 // For B/C we also add the css classes inline. This will be removed in 4.0.
@@ -157,13 +154,13 @@ $tableClass = $this->params->get('show_headings') != 1 ? ' table-noheader' : '';
 					<?php endif; ?>
 				<?php else : ?>
 					<?php
-					echo $this->escape($article->title) . ' : ';
-					$menu   = JFactory::getApplication()->getMenu();
-					$active = $menu->getActive();
-					$itemId = $active->id;
-					$link   = new JUri(JRoute::_('index.php?option=com_users&view=login&Itemid=' . $itemId, false));
-					$link->setVar('return', base64_encode(ContentHelperRoute::getArticleRoute($article->slug, $article->catid, $article->language)));
-					?>
+                    echo $this->escape($article->title) . ' : ';
+                    $menu   = JFactory::getApplication()->getMenu();
+                    $active = $menu->getActive();
+                    $itemId = $active->id;
+                    $link   = new JUri(JRoute::_('index.php?option=com_users&view=login&Itemid=' . $itemId, false));
+                    $link->setVar('return', base64_encode(ContentHelperRoute::getArticleRoute($article->slug, $article->catid, $article->language)));
+                    ?>
 					<a href="<?php echo $link; ?>" class="register">
 						<?php echo JText::_('COM_CONTENT_REGISTER_TO_READ_MORE'); ?>
 					</a>
@@ -199,10 +196,11 @@ $tableClass = $this->params->get('show_headings') != 1 ? ' table-noheader' : '';
 			<?php if ($this->params->get('list_show_date')) : ?>
 				<td headers="categorylist_header_date" class="list-date small">
 					<?php
-					echo JHtml::_(
-						'date', $article->displayDate,
-						$this->escape($this->params->get('date_format', JText::_('DATE_FORMAT_LC3')))
-					); ?>
+                    echo JHtml::_(
+                        'date',
+                        $article->displayDate,
+                        $this->escape($this->params->get('date_format', JText::_('DATE_FORMAT_LC3')))
+                    ); ?>
 				</td>
 			<?php endif; ?>
 			<?php if ($this->params->get('list_show_author', 1)) : ?>
@@ -252,12 +250,12 @@ $tableClass = $this->params->get('show_headings') != 1 ? ' table-noheader' : '';
 	</table>
 <?php endif; ?>
 
-<?php // Code to add a link to submit an article. ?>
+<?php // Code to add a link to submit an article.?>
 <?php if ($this->category->getParams()->get('access-create')) : ?>
 	<?php echo JHtml::_('icon.create', $this->category, $this->category->params); ?>
 <?php endif; ?>
 
-<?php // Add pagination links ?>
+<?php // Add pagination links?>
 <?php if (!empty($this->items)) : ?>
 	<?php if (($this->params->def('show_pagination', 2) == 1  || ($this->params->get('show_pagination') == 2)) && ($this->pagination->pagesTotal > 1)) : ?>
 		<div class="pagination">

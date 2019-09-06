@@ -16,31 +16,30 @@ defined('_JEXEC') or die;
  */
 class TagsControllerTags extends JControllerLegacy
 {
-	/**
-	 * Method to search tags with AJAX
-	 *
-	 * @return  void
-	 */
-	public function searchAjax()
-	{
-		// Required objects
-		$app = JFactory::getApplication();
+    /**
+     * Method to search tags with AJAX
+     *
+     * @return  void
+     */
+    public function searchAjax()
+    {
+        // Required objects
+        $app = JFactory::getApplication();
 
-		// Receive request data
-		$filters = array(
-			'like'      => trim($app->input->get('like', null)),
-			'title'     => trim($app->input->get('title', null)),
-			'flanguage' => $app->input->get('flanguage', null),
-			'published' => $app->input->get('published', 1, 'integer'),
-			'parent_id' => $app->input->get('parent_id', null)
-		);
+        // Receive request data
+        $filters = array(
+            'like'      => trim($app->input->get('like', null)),
+            'title'     => trim($app->input->get('title', null)),
+            'flanguage' => $app->input->get('flanguage', null),
+            'published' => $app->input->get('published', 1, 'integer'),
+            'parent_id' => $app->input->get('parent_id', null)
+        );
 
-		if ($results = JHelperTags::searchTags($filters))
-		{
-			// Output a JSON object
-			echo json_encode($results);
-		}
+        if ($results = JHelperTags::searchTags($filters)) {
+            // Output a JSON object
+            echo json_encode($results);
+        }
 
-		$app->close();
-	}
+        $app->close();
+    }
 }

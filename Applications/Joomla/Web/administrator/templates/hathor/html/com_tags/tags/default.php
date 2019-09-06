@@ -23,7 +23,7 @@ $n         = count($this->items);
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_tags&view=tags');?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -95,12 +95,12 @@ $n         = count($this->items);
 
 		<tbody>
 		<?php foreach ($this->items as $i => $item) :
-			$item->max_ordering = 0; //??
-			$canCreate  = $user->authorise('core.create',     'com_tags');
-			$canEdit    = $user->authorise('core.edit',       'com_tags.tag.' . $item->id);
-			$canCheckin = $user->authorise('core.manage',     'com_checkin') || $item->checked_out_user_id == $userId || $item->checked_out_user_id == 0;
-			$canChange  = $user->authorise('core.edit.state', 'com_tags.tag.' . $item->id) && $canCheckin;
-			?>
+            $item->max_ordering = 0; //??
+            $canCreate  = $user->authorise('core.create', 'com_tags');
+            $canEdit    = $user->authorise('core.edit', 'com_tags.tag.' . $item->id);
+            $canCheckin = $user->authorise('core.manage', 'com_checkin') || $item->checked_out_user_id == $userId || $item->checked_out_user_id == 0;
+            $canChange  = $user->authorise('core.edit.state', 'com_tags.tag.' . $item->id) && $canCheckin;
+            ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<th class="center">
 					<?php echo JHtml::_('grid.id', $i, $item->id); ?>
@@ -139,19 +139,19 @@ $n         = count($this->items);
 		</tbody>
 	</table>
 
-	<?php //Load the batch processing form if user is allowed ?>
+	<?php //Load the batch processing form if user is allowed?>
 	<?php if ($user->authorise('core.create', 'com_tags')
-		&& $user->authorise('core.edit', 'com_tags')
-		&& $user->authorise('core.edit.state', 'com_tags')) : ?>
+        && $user->authorise('core.edit', 'com_tags')
+        && $user->authorise('core.edit.state', 'com_tags')) : ?>
 		<?php echo JHtml::_(
-			'bootstrap.renderModal',
-			'collapseModal',
-			array(
-				'title'  => JText::_('COM_TAGS_BATCH_OPTIONS'),
-				'footer' => $this->loadTemplate('batch_footer'),
-			),
-			$this->loadTemplate('batch_body')
-		); ?>
+            'bootstrap.renderModal',
+            'collapseModal',
+            array(
+                'title'  => JText::_('COM_TAGS_BATCH_OPTIONS'),
+                'footer' => $this->loadTemplate('batch_footer'),
+            ),
+            $this->loadTemplate('batch_body')
+        ); ?>
 	<?php endif;?>
 
 	<?php echo $this->pagination->getListFooter(); ?>

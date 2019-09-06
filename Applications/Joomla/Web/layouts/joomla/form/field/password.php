@@ -44,11 +44,10 @@ extract($displayData);
  * @var   string   $accept          File types that are accepted.
  */
 
-if ($meter)
-{
-	// Load script on document load.
-	JFactory::getDocument()->addScriptDeclaration(
-		"
+if ($meter) {
+    // Load script on document load.
+    JFactory::getDocument()->addScriptDeclaration(
+        "
 		jQuery(document).ready(function() {
 			new Form.PasswordStrength('" . $id . "',
 				{
@@ -58,7 +57,7 @@ if ($meter)
 					}
 				});
 		});"
-	);
+    );
 }
 
 // Including fallback code for HTML5 non supported browsers.
@@ -66,15 +65,15 @@ JHtml::_('jquery.framework');
 JHtml::_('script', 'system/html5fallback.js', array('version' => 'auto', 'relative' => true));
 
 $attributes = array(
-	strlen($hint) ? 'placeholder="' . htmlspecialchars($hint, ENT_COMPAT, 'UTF-8') . '"' : '',
-	!$autocomplete ? 'autocomplete="off"' : '',
-	!empty($class) ? 'class="' . $class . '"' : '',
-	$readonly ? 'readonly' : '',
-	$disabled ? 'disabled' : '',
-	!empty($size) ? 'size="' . $size . '"' : '',
-	!empty($maxLength) ? 'maxlength="' . $maxLength . '"' : '',
-	$required ? 'required aria-required="true"' : '',
-	$autofocus ? 'autofocus' : '',
+    strlen($hint) ? 'placeholder="' . htmlspecialchars($hint, ENT_COMPAT, 'UTF-8') . '"' : '',
+    !$autocomplete ? 'autocomplete="off"' : '',
+    !empty($class) ? 'class="' . $class . '"' : '',
+    $readonly ? 'readonly' : '',
+    $disabled ? 'disabled' : '',
+    !empty($size) ? 'size="' . $size . '"' : '',
+    !empty($maxLength) ? 'maxlength="' . $maxLength . '"' : '',
+    $required ? 'required aria-required="true"' : '',
+    $autofocus ? 'autofocus' : '',
 );
 
 ?>

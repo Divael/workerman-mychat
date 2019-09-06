@@ -15,108 +15,102 @@ defined('_JEXEC') or die;
  */
 class ConfigControllerApplicationSave extends JControllerBase
 {
-	/**
-	 * Application object - Redeclared for proper typehinting
-	 *
-	 * @var    JApplicationCms
-	 * @since  3.2
-	 */
-	protected $app;
+    /**
+     * Application object - Redeclared for proper typehinting
+     *
+     * @var    JApplicationCms
+     * @since  3.2
+     */
+    protected $app;
 
-	/**
-	 * Method to save global configuration.
-	 *
-	 * @return  mixed  Calls $app->redirect() for all cases except JSON
-	 *
-	 * @since   3.2
-	 */
-	public function execute()
-	{
-		// Check for request forgeries.
-		if (!JSession::checkToken())
-		{
-			$this->app->enqueueMessage(JText::_('JINVALID_TOKEN'), 'error');
-			$this->app->redirect('index.php');
-		}
+    /**
+     * Method to save global configuration.
+     *
+     * @return  mixed  Calls $app->redirect() for all cases except JSON
+     *
+     * @since   3.2
+     */
+    public function execute()
+    {
+        // Check for request forgeries.
+        if (!JSession::checkToken()) {
+            $this->app->enqueueMessage(JText::_('JINVALID_TOKEN'), 'error');
+            $this->app->redirect('index.php');
+        }
 
-		// Check if the user is authorized to do this.
-		if (!JFactory::getUser()->authorise('core.admin'))
-		{
-			$this->app->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR'), 'error');
-			$this->app->redirect('index.php');
-		}
+        // Check if the user is authorized to do this.
+        if (!JFactory::getUser()->authorise('core.admin')) {
+            $this->app->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR'), 'error');
+            $this->app->redirect('index.php');
+        }
 
-		// Set FTP credentials, if given.
-		JClientHelper::setCredentialsFromRequest('ftp');
+        // Set FTP credentials, if given.
+        JClientHelper::setCredentialsFromRequest('ftp');
 
-		$model = new ConfigModelApplication;
-		$data  = $this->input->post->get('jform', array(), 'array');
+        $model = new ConfigModelApplication;
+        $data  = $this->input->post->get('jform', array(), 'array');
 
-		// Complete data array if needed
-		$oldData = $model->getData();
-		$data = array_replace($oldData, $data);
+        // Complete data array if needed
+        $oldData = $model->getData();
+        $data = array_replace($oldData, $data);
 
-		// Get request type
-		$saveFormat = JFactory::getDocument()->getType();
+        // Get request type
+        $saveFormat = JFactory::getDocument()->getType();
 
-		// Handle service requests
-		if ($saveFormat == 'json')
-		{
-			return $model->save($data);
-		}
+        // Handle service requests
+        if ($saveFormat == 'json') {
+            return $model->save($data);
+        }
 
-		// Must load after serving service-requests
-		$form = $model->getForm();
+        // Must load after serving service-requests
+        $form = $model->getForm();
 
-		// Validate the posted data.
-		$return = $model->validate($form, $data);
+        // Validate the posted data.
+        $return = $model->validate($form, $data);
 
-		// Save the posted data in the session.
-		$this->app->setUserState('com_config.config.global.data', $data);
+        // Save the posted data in the session.
+        $this->app->setUserState('com_config.config.global.data', $data);
 
-		// Check for validation errors.
-		if ($return === false)
-		{
-			/*
-			 * The validate method enqueued all messages for us, so we just need to redirect back.
-			 */
+        // Check for validation errors.
+        if ($return === false) {
+            /*
+             * The validate method enqueued all messages for us, so we just need to redirect back.
+             */
 
-			// Redirect back to the edit screen.
-			$this->app->redirect(JRoute::_('index.php?option=com_config&controller=config.display.application', false));
-		}
+            // Redirect back to the edit screen.
+            $this->app->redirect(JRoute::_('index.php?option=com_config&controller=config.display.application', false));
+        }
 
-		// Attempt to save the configuration.
-		$data   = $return;
-		$return = $model->save($data);
+        // Attempt to save the configuration.
+        $data   = $return;
+        $return = $model->save($data);
 
-		// Save the validated data in the session.
-		$this->app->setUserState('com_config.config.global.data', $data);
+        // Save the validated data in the session.
+        $this->app->setUserState('com_config.config.global.data', $data);
 
-		// Check the return value.
-		if ($return === false)
-		{
-			/*
-			 * The save method enqueued all messages for us, so we just need to redirect back.
-			 */
+        // Check the return value.
+        if ($return === false) {
+            /*
+             * The save method enqueued all messages for us, so we just need to redirect back.
+             */
 
-			// Save failed, go back to the screen and display a notice.
-			$this->app->redirect(JRoute::_('index.php?option=com_config&controller=config.display.application', false));
-		}
+            // Save failed, go back to the screen and display a notice.
+            $this->app->redirect(JRoute::_('index.php?option=com_config&controller=config.display.application', false));
+        }
 
-		// Set the success message.
-		$this->app->enqueueMessage(JText::_('COM_CONFIG_SAVE_SUCCESS'), 'message');
+        // Set the success message.
+        $this->app->enqueueMessage(JText::_('COM_CONFIG_SAVE_SUCCESS'), 'message');
 
-		// Set the redirect based on the task.
-		switch ($this->options[3])
-		{
-			case 'apply':
-				$this->app->redirect(JRoute::_('index.php?option=com_config', false));
-				break;
+        // Set the redirect based on the task.
+        switch ($this->options[3]) {
+            case 'apply':
+                $this->app->redirect(JRoute::_('index.php?option=com_config', false));
+                break;
 
-			case 'save':
-			default:
-				$this->app->redirect(JRoute::_('index.php', false));
-				break;
-		}
-	}
+            case 'save':
+            default:
+                $this->app->redirect(JRoute::_('index.php', false));
+                break;
+        }
+    }
 }

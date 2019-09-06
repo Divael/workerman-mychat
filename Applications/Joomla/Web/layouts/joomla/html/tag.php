@@ -25,23 +25,22 @@ extract($displayData);
 
 // Tags field ajax
 $chosenAjaxSettings = new Registry(
-	array(
-		'selector'      => $selector,
-		'type'          => 'GET',
-		'url'           => JUri::root() . 'index.php?option=com_tags&task=tags.searchAjax',
-		'dataType'      => 'json',
-		'jsonTermKey'   => 'like',
-		'minTermLength' => $minTermLength
-	)
+    array(
+        'selector'      => $selector,
+        'type'          => 'GET',
+        'url'           => JUri::root() . 'index.php?option=com_tags&task=tags.searchAjax',
+        'dataType'      => 'json',
+        'jsonTermKey'   => 'like',
+        'minTermLength' => $minTermLength
+    )
 );
 
 JHtml::_('formbehavior.ajaxchosen', $chosenAjaxSettings);
 
 // Allow custom values ?
-if ($allowCustom)
-{
-	JFactory::getDocument()->addScriptDeclaration(
-		"
+if ($allowCustom) {
+    JFactory::getDocument()->addScriptDeclaration(
+        "
 		jQuery(document).ready(function ($) {
 
 			var customTagPrefix = '#new#';
@@ -96,5 +95,5 @@ if ($allowCustom)
 			});
 		});
 		"
-	);
+    );
 }

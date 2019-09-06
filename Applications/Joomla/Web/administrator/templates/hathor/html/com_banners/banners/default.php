@@ -21,7 +21,7 @@ $canOrder  = $user->authorise('core.edit.state', 'com_banners');
 $saveOrder = $listOrder == 'ordering';
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_banners&view=banners'); ?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -127,13 +127,13 @@ $saveOrder = $listOrder == 'ordering';
 
 		<tbody>
 		<?php foreach ($this->items as $i => $item) :
-			$ordering   = ($listOrder == 'ordering');
-			$item->cat_link = JRoute::_('index.php?option=com_categories&extension=com_banners&task=edit&type=other&cid[]=' . $item->catid);
-			$canCreate  = $user->authorise('core.create',     'com_banners.category.' . $item->catid);
-			$canEdit    = $user->authorise('core.edit',       'com_banners.category.' . $item->catid);
-			$canCheckin = $user->authorise('core.manage',     'com_checkin') || $item->checked_out == $userId || $item->checked_out == 0;
-			$canChange  = $user->authorise('core.edit.state', 'com_banners.category.' . $item->catid) && $canCheckin;
-			?>
+            $ordering   = ($listOrder == 'ordering');
+            $item->cat_link = JRoute::_('index.php?option=com_categories&extension=com_banners&task=edit&type=other&cid[]=' . $item->catid);
+            $canCreate  = $user->authorise('core.create', 'com_banners.category.' . $item->catid);
+            $canEdit    = $user->authorise('core.edit', 'com_banners.category.' . $item->catid);
+            $canCheckin = $user->authorise('core.manage', 'com_checkin') || $item->checked_out == $userId || $item->checked_out == 0;
+            $canChange  = $user->authorise('core.edit.state', 'com_banners.category.' . $item->catid) && $canCheckin;
+            ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td>
 					<?php echo JHtml::_('grid.id', $i, $item->id); ?>
@@ -211,19 +211,19 @@ $saveOrder = $listOrder == 'ordering';
 	<?php echo $this->pagination->getListFooter(); ?>
 	<div class="clr"> </div>
 
-	<?php //Load the batch processing form. ?>
+	<?php //Load the batch processing form.?>
 	<?php if ($user->authorise('core.create', 'com_banners')
-		&& $user->authorise('core.edit', 'com_banners')
-		&& $user->authorise('core.edit.state', 'com_banners')) : ?>
+        && $user->authorise('core.edit', 'com_banners')
+        && $user->authorise('core.edit.state', 'com_banners')) : ?>
 		<?php echo JHtml::_(
-			'bootstrap.renderModal',
-			'collapseModal',
-			array(
-				'title'  => JText::_('COM_BANNERS_BATCH_OPTIONS'),
-				'footer' => $this->loadTemplate('batch_footer'),
-			),
-			$this->loadTemplate('batch_body')
-		); ?>
+            'bootstrap.renderModal',
+            'collapseModal',
+            array(
+                'title'  => JText::_('COM_BANNERS_BATCH_OPTIONS'),
+                'footer' => $this->loadTemplate('batch_footer'),
+            ),
+            $this->loadTemplate('batch_body')
+        ); ?>
 	<?php endif; ?>
 
 	<input type="hidden" name="task" value="" />

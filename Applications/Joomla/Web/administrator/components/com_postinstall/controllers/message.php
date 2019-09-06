@@ -16,81 +16,76 @@ defined('_JEXEC') or die;
  */
 class PostinstallControllerMessage extends FOFController
 {
-	/**
-	 * Resets all post-installation messages of the specified extension.
-	 *
-	 * @return  void
-	 *
-	 * @since   3.2
-	 */
-	public function reset()
-	{
-		/** @var PostinstallModelMessages $model */
-		$model = $this->getThisModel();
+    /**
+     * Resets all post-installation messages of the specified extension.
+     *
+     * @return  void
+     *
+     * @since   3.2
+     */
+    public function reset()
+    {
+        /** @var PostinstallModelMessages $model */
+        $model = $this->getThisModel();
 
-		$eid = (int) $model->getState('eid', '700', 'int');
+        $eid = (int) $model->getState('eid', '700', 'int');
 
-		if (empty($eid))
-		{
-			$eid = 700;
-		}
+        if (empty($eid)) {
+            $eid = 700;
+        }
 
-		$model->resetMessages($eid);
+        $model->resetMessages($eid);
 
-		$this->setRedirect('index.php?option=com_postinstall&eid=' . $eid);
-	}
+        $this->setRedirect('index.php?option=com_postinstall&eid=' . $eid);
+    }
 
-	/**
-	 * Executes the action associated with an item.
-	 *
-	 * @return  void
-	 *
-	 * @since   3.2
-	 */
-	public function action()
-	{
-		// CSRF prevention.
-		if ($this->csrfProtection)
-		{
-			$this->_csrfProtection();
-		}
+    /**
+     * Executes the action associated with an item.
+     *
+     * @return  void
+     *
+     * @since   3.2
+     */
+    public function action()
+    {
+        // CSRF prevention.
+        if ($this->csrfProtection) {
+            $this->_csrfProtection();
+        }
 
-		$model = $this->getThisModel();
+        $model = $this->getThisModel();
 
-		if (!$model->getId())
-		{
-			$model->setIDsFromRequest();
-		}
+        if (!$model->getId()) {
+            $model->setIDsFromRequest();
+        }
 
-		$item = $model->getItem();
+        $item = $model->getItem();
 
-		switch ($item->type)
-		{
-			case 'link':
-				$this->setRedirect($item->action);
+        switch ($item->type) {
+            case 'link':
+                $this->setRedirect($item->action);
 
-				return;
+                return;
 
-				break;
+                break;
 
-			case 'action':
-				jimport('joomla.filesystem.file');
+            case 'action':
+                jimport('joomla.filesystem.file');
 
-				$file = FOFTemplateUtils::parsePath($item->action_file, true);
+                $file = FOFTemplateUtils::parsePath($item->action_file, true);
 
-				if (JFile::exists($file))
-				{
-					require_once $file;
+                if (JFile::exists($file)) {
+                    require_once $file;
 
-					call_user_func($item->action);
-				}
-				break;
+                    call_user_func($item->action);
+                }
+                break;
 
-			case 'message':
-			default:
-				break;
-		}
+            case 'message':
+            default:
+                break;
+        }
 
-		$this->setRedirect('index.php?option=com_postinstall');
-	}
+        $this->setRedirect('index.php?option=com_postinstall');
+    }
 }

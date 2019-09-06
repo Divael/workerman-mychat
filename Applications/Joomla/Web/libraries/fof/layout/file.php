@@ -23,47 +23,44 @@ defined('FOF_INCLUDED') or die;
  */
 class FOFLayoutFile extends JLayoutFile
 {
-	/**
-	 * Method to finds the full real file path, checking possible overrides
-	 *
-	 * @return  string  The full path to the layout file
-	 */
-	protected function getPath()
-	{
-		$filesystem = FOFPlatform::getInstance()->getIntegrationObject('filesystem');
+    /**
+     * Method to finds the full real file path, checking possible overrides
+     *
+     * @return  string  The full path to the layout file
+     */
+    protected function getPath()
+    {
+        $filesystem = FOFPlatform::getInstance()->getIntegrationObject('filesystem');
 
-		if (is_null($this->fullPath) && !empty($this->layoutId))
-		{
-			$parts = explode('.', $this->layoutId);
-			$file  = array_pop($parts);
+        if (is_null($this->fullPath) && !empty($this->layoutId)) {
+            $parts = explode('.', $this->layoutId);
+            $file  = array_pop($parts);
 
-			$filePath = implode('/', $parts);
-			$suffixes = FOFPlatform::getInstance()->getTemplateSuffixes();
+            $filePath = implode('/', $parts);
+            $suffixes = FOFPlatform::getInstance()->getTemplateSuffixes();
 
-			foreach ($suffixes as $suffix)
-			{
-				$files[] = $file . $suffix . '.php';
-			}
+            foreach ($suffixes as $suffix) {
+                $files[] = $file . $suffix . '.php';
+            }
 
-			$files[] = $file . '.php';
+            $files[] = $file . '.php';
 
             $platformDirs = FOFPlatform::getInstance()->getPlatformBaseDirs();
             $prefix       = FOFPlatform::getInstance()->isBackend() ? $platformDirs['admin'] : $platformDirs['root'];
 
-			$possiblePaths = array(
-				$prefix . '/templates/' . JFactory::getApplication()->getTemplate() . '/html/layouts/' . $filePath,
-				$this->basePath . '/' . $filePath
-			);
+            $possiblePaths = array(
+                $prefix . '/templates/' . JFactory::getApplication()->getTemplate() . '/html/layouts/' . $filePath,
+                $this->basePath . '/' . $filePath
+            );
 
-			reset($files);
+            reset($files);
 
-			while ((list(, $fileName) = each($files)) && is_null($this->fullPath))
-			{
-				$r = $filesystem->pathFind($possiblePaths, $fileName);
-				$this->fullPath = $r === false ? null : $r;
-			}
-		}
+            while ((list(, $fileName) = each($files)) && is_null($this->fullPath)) {
+                $r = $filesystem->pathFind($possiblePaths, $fileName);
+                $this->fullPath = $r === false ? null : $r;
+            }
+        }
 
-		return $this->fullPath;
-	}
+        return $this->fullPath;
+    }
 }

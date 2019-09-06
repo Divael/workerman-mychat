@@ -15,7 +15,7 @@ $listDirn = $this->escape($this->state->get('list.direction'));
 $canEdit = $user->authorise('core.edit', 'com_users');
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_users&view=notes');?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -41,10 +41,13 @@ $canEdit = $user->authorise('core.edit', 'com_users');
 			<select name="filter_category_id" id="filter_category_id" >
 				<option value=""><?php echo JText::_('JOPTION_SELECT_CATEGORY');?></option>
 				<?php
-				echo JHtml::_(
-					'select.options', JHtml::_('category.options', 'com_users'),
-					'value', 'text', $this->state->get('filter.category_id')
-				); ?>
+                echo JHtml::_(
+    'select.options',
+    JHtml::_('category.options', 'com_users'),
+    'value',
+    'text',
+    $this->state->get('filter.category_id')
+); ?>
 			</select>
 
 			<label class="selectlabel" for="filter_published">
@@ -53,10 +56,14 @@ $canEdit = $user->authorise('core.edit', 'com_users');
 			<select name="filter_published" id="filter_published">
 				<option value=""><?php echo JText::_('JOPTION_SELECT_PUBLISHED');?></option>
 				<?php
-				echo JHtml::_(
-					'select.options', JHtml::_('jgrid.publishedOptions'),
-					'value', 'text', $this->state->get('filter.published'), true
-				); ?>
+                echo JHtml::_(
+                    'select.options',
+                    JHtml::_('jgrid.publishedOptions'),
+                    'value',
+                    'text',
+                    $this->state->get('filter.published'),
+                    true
+                ); ?>
 			</select>
 
 			<button type="submit" id="filter-go">
@@ -92,7 +99,7 @@ $canEdit = $user->authorise('core.edit', 'com_users');
 		</thead>
 		<tbody>
 		<?php foreach ($this->items as $i => $item) : ?>
-			<?php $canChange = $user->authorise('core.edit.state',	'com_users'); ?>
+			<?php $canChange = $user->authorise('core.edit.state', 'com_users'); ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td class="center checklist">
 					<?php echo JHtml::_('grid.id', $i, $item->id); ?>

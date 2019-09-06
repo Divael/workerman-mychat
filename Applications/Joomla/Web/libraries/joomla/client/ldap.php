@@ -19,18 +19,18 @@ use Joomla\Ldap\LdapClient;
  */
 class JClientLdap extends LdapClient
 {
-	/**
-	 * Constructor
-	 *
-	 * @param   object  $configObj  An object of configuration variables
-	 *
-	 * @since   11.1
-	 */
-	public function __construct($configObj = null)
-	{
-		JLog::add('JClientLdap is deprecated. Use Joomla\Ldap\LdapClient instead.', JLog::WARNING, 'deprecated');
-		parent::__construct($configObj);
-	}
+    /**
+     * Constructor
+     *
+     * @param   object  $configObj  An object of configuration variables
+     *
+     * @since   11.1
+     */
+    public function __construct($configObj = null)
+    {
+        JLog::add('JClientLdap is deprecated. Use Joomla\Ldap\LdapClient instead.', JLog::WARNING, 'deprecated');
+        parent::__construct($configObj);
+    }
 }
 
 /**
@@ -41,16 +41,16 @@ class JClientLdap extends LdapClient
  */
 class JLDAP extends JClientLdap
 {
-	/**
-	 * Constructor
-	 *
-	 * @param   object  $configObj  An object of configuration variables
-	 *
-	 * @since   11.1
-	 */
-	public function __construct($configObj = null)
-	{
-		JLog::add('JLDAP is deprecated. Use JClientLdap instead.', JLog::WARNING, 'deprecated');
-		parent::__construct($configObj);
-	}
+    /**
+     * Constructor
+     *
+     * @param   object  $configObj  An object of configuration variables
+     *
+     * @since   11.1
+     */
+    public function __construct($configObj = null)
+    {
+        JLog::add('JLDAP is deprecated. Use JClientLdap instead.', JLog::WARNING, 'deprecated');
+        parent::__construct($configObj);
+    }
 }

@@ -54,18 +54,17 @@ $sitename = $app->get('sitename');
 
 function colorIsLight($color)
 {
-	$r = hexdec(substr($color, 1, 2));
-	$g = hexdec(substr($color, 3, 2));
-	$b = hexdec(substr($color, 5, 2));
-	$yiq = (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
+    $r = hexdec(substr($color, 1, 2));
+    $g = hexdec(substr($color, 3, 2));
+    $b = hexdec(substr($color, 5, 2));
+    $yiq = (($r * 299) + ($g * 587) + ($b * 114)) / 1000;
 
-	return $yiq >= 200;
+    return $yiq >= 200;
 }
 
 // Background color
-if ($background_color)
-{
-	$this->addStyleDeclaration('
+if ($background_color) {
+    $this->addStyleDeclaration('
 	.view-login {
 		background-color: ' . $background_color . ';
 	}');
@@ -84,9 +83,8 @@ $this->addStyleDeclaration('
 	}');
 
 // Check if debug is on
-if (JPluginHelper::isEnabled('system', 'debug') && ($app->get('debug_lang', 0) || $app->get('debug', 0)))
-{
-	$this->addStyleDeclaration('
+if (JPluginHelper::isEnabled('system', 'debug') && ($app->get('debug_lang', 0) || $app->get('debug', 0))) {
+    $this->addStyleDeclaration('
 	.view-login .container {
 		position: static;
 		margin-top: 20px;

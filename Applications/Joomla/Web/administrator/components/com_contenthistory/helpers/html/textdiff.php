@@ -18,48 +18,48 @@ defined('JPATH_PLATFORM') or die;
  */
 abstract class JHtmlTextdiff
 {
-	/**
-	 * @var    array  Array containing information for loaded files
-	 * @since  3.2
-	 */
-	protected static $loaded = array();
+    /**
+     * @var    array  Array containing information for loaded files
+     * @since  3.2
+     */
+    protected static $loaded = array();
 
-	/**
-	 * Method to load Javascript text diff
-	 *
-	 * @param   string  $containerId  DOM id of the element where the diff will be rendered
-	 *
-	 * @return  void
-	 *
-	 * @since   3.2
-	 */
-	public static function textdiff($containerId)
-	{
-		// Only load once
-		if (isset(static::$loaded[__METHOD__]))
-		{
-			return;
-		}
+    /**
+     * Method to load Javascript text diff
+     *
+     * @param   string  $containerId  DOM id of the element where the diff will be rendered
+     *
+     * @return  void
+     *
+     * @since   3.2
+     */
+    public static function textdiff($containerId)
+    {
+        // Only load once
+        if (isset(static::$loaded[__METHOD__])) {
+            return;
+        }
 
-		// Depends on jQuery UI
-		JHtml::_('bootstrap.framework');
-		JHtml::_('script', 'com_contenthistory/diff_match_patch.js', array('version' => 'auto', 'relative' => true));
-		JHtml::_('script', 'com_contenthistory/jquery.pretty-text-diff.min.js', array('version' => 'auto', 'relative' => true));
-		JHtml::_('stylesheet', 'com_contenthistory/jquery.pretty-text-diff.css', array('version' => 'auto', 'relative' => true));
+        // Depends on jQuery UI
+        JHtml::_('bootstrap.framework');
+        JHtml::_('script', 'com_contenthistory/diff_match_patch.js', array('version' => 'auto', 'relative' => true));
+        JHtml::_('script', 'com_contenthistory/jquery.pretty-text-diff.min.js', array('version' => 'auto', 'relative' => true));
+        JHtml::_('stylesheet', 'com_contenthistory/jquery.pretty-text-diff.css', array('version' => 'auto', 'relative' => true));
 
-		// Attach diff to document
-		JFactory::getDocument()->addScriptDeclaration("
+        // Attach diff to document
+        JFactory::getDocument()->addScriptDeclaration(
+            "
 			(function ($){
 				$(document).ready(function (){
  					$('#" . $containerId . " tr').prettyTextDiff();
  				});
 			})(jQuery);
 			"
-		);
+        );
 
-		// Set static array
-		static::$loaded[__METHOD__] = true;
+        // Set static array
+        static::$loaded[__METHOD__] = true;
 
-		return;
-	}
+        return;
+    }
 }

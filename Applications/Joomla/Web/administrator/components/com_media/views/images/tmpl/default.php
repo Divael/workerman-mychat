@@ -27,13 +27,12 @@ JHtml::_('jquery.framework');
 JHtml::_('script', 'media/popup-imagemanager.min.js', array('version' => 'auto', 'relative' => true));
 JHtml::_('stylesheet', 'media/popup-imagemanager.css', array('version' => 'auto', 'relative' => true));
 
-if ($lang->isRtl())
-{
-	JHtml::_('stylesheet', 'media/popup-imagemanager_rtl.css', array('version' => 'auto', 'relative' => true));
+if ($lang->isRtl()) {
+    JHtml::_('stylesheet', 'media/popup-imagemanager_rtl.css', array('version' => 'auto', 'relative' => true));
 }
 
 JFactory::getDocument()->addScriptDeclaration(
-	"
+    "
 		var image_base_path = '" . $params->get('image_path', 'images') . "/';
 	"
 );
@@ -46,16 +45,12 @@ JFactory::getDocument()->addScriptDeclaration(
  *
  * This should be removed when mootools won't be shipped by Joomla.
  */
-if (!empty($fieldInput)) // Media Form Field
-{
-	if ($isMoo)
-	{
-		$onClick = "window.parent.jInsertFieldValue(document.getElementById('f_url').value, '" . $fieldInput . "');window.parent.jModalClose();window.parent.jQuery('.modal.in').modal('hide');";
-	}
-}
-else // XTD Image plugin
-{
-	$onClick = 'ImageManager.onok();window.parent.jModalClose();';
+if (!empty($fieldInput)) { // Media Form Field
+    if ($isMoo) {
+        $onClick = "window.parent.jInsertFieldValue(document.getElementById('f_url').value, '" . $fieldInput . "');window.parent.jModalClose();window.parent.jQuery('.modal.in').modal('hide');";
+    }
+} else { // XTD Image plugin
+    $onClick = 'ImageManager.onok();window.parent.jModalClose();';
 }
 ?>
 <div class="container-popup">
@@ -79,9 +74,9 @@ else // XTD Image plugin
 				</div>
 				<div class="pull-right">
 					<button class="btn btn-success button-save-selected" type="button" <?php if (!empty($onClick)) :
-					// This is for Mootools compatibility ?>onclick="<?php echo $onClick; ?>"<?php endif; ?> data-dismiss="modal"><?php echo JText::_('COM_MEDIA_INSERT'); ?></button>
+                    // This is for Mootools compatibility?>onclick="<?php echo $onClick; ?>"<?php endif; ?> data-dismiss="modal"><?php echo JText::_('COM_MEDIA_INSERT'); ?></button>
 					<button class="btn button-cancel" type="button" onclick="window.parent.jQuery('.modal.in').modal('hide');<?php if (!empty($onClick)) :
-						// This is for Mootools compatibility ?>parent.jModalClose();<?php endif ?>" data-dismiss="modal"><?php echo JText::_('JCANCEL'); ?></button>
+                        // This is for Mootools compatibility?>parent.jModalClose();<?php endif ?>" data-dismiss="modal"><?php echo JText::_('JCANCEL'); ?></button>
 				</div>
 			</div>
 		</div>

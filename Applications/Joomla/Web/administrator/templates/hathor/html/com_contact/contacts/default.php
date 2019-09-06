@@ -24,7 +24,7 @@ $assoc     = JLanguageAssociations::isEnabled();
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_contact'); ?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -133,17 +133,17 @@ $assoc     = JLanguageAssociations::isEnabled();
 
 		<tbody>
 		<?php
-		$n = count($this->items);
-		foreach ($this->items as $i => $item) :
-			$ordering   = $listOrder == 'a.ordering';
-			$canCreate  = $user->authorise('core.create',     'com_contact.category.' . $item->catid);
-			$canEdit    = $user->authorise('core.edit',       'com_contact.category.' . $item->catid);
-			$canCheckin = $user->authorise('core.manage',     'com_checkin') || $item->checked_out == $userId || $item->checked_out == 0;
-			$canEditOwn = $user->authorise('core.edit.own',   'com_contact.category.' . $item->catid) && $item->created_by == $userId;
-			$canChange  = $user->authorise('core.edit.state', 'com_contact.category.' . $item->catid) && $canCheckin;
+        $n = count($this->items);
+        foreach ($this->items as $i => $item) :
+            $ordering   = $listOrder == 'a.ordering';
+            $canCreate  = $user->authorise('core.create', 'com_contact.category.' . $item->catid);
+            $canEdit    = $user->authorise('core.edit', 'com_contact.category.' . $item->catid);
+            $canCheckin = $user->authorise('core.manage', 'com_checkin') || $item->checked_out == $userId || $item->checked_out == 0;
+            $canEditOwn = $user->authorise('core.edit.own', 'com_contact.category.' . $item->catid) && $item->created_by == $userId;
+            $canChange  = $user->authorise('core.edit.state', 'com_contact.category.' . $item->catid) && $canCheckin;
 
-			$item->cat_link = JRoute::_('index.php?option=com_categories&extension=com_contact&task=edit&type=other&id='.$item->catid);
-			?>
+            $item->cat_link = JRoute::_('index.php?option=com_categories&extension=com_contact&task=edit&type=other&id='.$item->catid);
+            ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td class="center">
 					<?php echo JHtml::_('grid.id', $i, $item->id); ?>
@@ -213,19 +213,19 @@ $assoc     = JLanguageAssociations::isEnabled();
 		</tbody>
 	</table>
 
-		<?php //Load the batch processing form. ?>
+		<?php //Load the batch processing form.?>
 		<?php if ($user->authorise('core.create', 'com_contact')
-			&& $user->authorise('core.edit', 'com_contact')
-			&& $user->authorise('core.edit.state', 'com_contact')) : ?>
+            && $user->authorise('core.edit', 'com_contact')
+            && $user->authorise('core.edit.state', 'com_contact')) : ?>
 			<?php echo JHtml::_(
-				'bootstrap.renderModal',
-				'collapseModal',
-				array(
-					'title'  => JText::_('COM_CONTACT_BATCH_OPTIONS'),
-					'footer' => $this->loadTemplate('batch_footer'),
-				),
-				$this->loadTemplate('batch_body')
-			); ?>
+                'bootstrap.renderModal',
+                'collapseModal',
+                array(
+                    'title'  => JText::_('COM_CONTACT_BATCH_OPTIONS'),
+                    'footer' => $this->loadTemplate('batch_footer'),
+                ),
+                $this->loadTemplate('batch_body')
+            ); ?>
 		<?php endif; ?>
 
 	<?php echo $this->pagination->getListFooter(); ?>

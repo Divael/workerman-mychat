@@ -37,7 +37,7 @@ JFactory::getDocument()->addScriptDeclaration("
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_finder&view=maps');?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -110,17 +110,19 @@ JFactory::getDocument()->addScriptDeclaration("
 						<span class="gi">&mdash;</span>
 					<?php endif; ?>
 					<?php
-					$key = FinderHelperLanguage::branchSingular($item->title);
-					$title = $lang->hasKey($key) ? JText::_($key) : $item->title;
-					echo $this->escape(($title == '*') ? JText::_('JALL_LANGUAGE') : $title);
-					?>
+                    $key = FinderHelperLanguage::branchSingular($item->title);
+                    $title = $lang->hasKey($key) ? JText::_($key) : $item->title;
+                    echo $this->escape(($title == '*') ? JText::_('JALL_LANGUAGE') : $title);
+                    ?>
 				</td>
 				<td class="center">
 					<?php echo JHtml::_('jgrid.published', $item->state, $i, 'maps.', $canChange, 'cb'); ?>
 				</td>
 				<td class="center btns">
 				<?php if ((int) $item->num_children === 0) : ?>
-					<span class="badge <?php if ($item->num_nodes > 0) echo 'badge-info'; ?>"><?php echo $item->num_nodes; ?></span>
+					<span class="badge <?php if ($item->num_nodes > 0) {
+                        echo 'badge-info';
+                    } ?>"><?php echo $item->num_nodes; ?></span>
 				<?php else : ?>
 					&nbsp;
 				<?php endif; ?>

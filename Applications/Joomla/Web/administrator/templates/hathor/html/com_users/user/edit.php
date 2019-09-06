@@ -67,12 +67,12 @@ JFactory::getDocument()->addScriptDeclaration("
 			</fieldset>
 		<?php endif; ?>
 		<?php
-		foreach ($fieldsets as $fieldset) :
-			if ($fieldset->name == 'user_details') :
-				continue;
-			endif;
-			echo JHtml::_('sliders.panel', JText::_($fieldset->label), $fieldset->name);
-		?>
+        foreach ($fieldsets as $fieldset) :
+            if ($fieldset->name == 'user_details') :
+                continue;
+            endif;
+            echo JHtml::_('sliders.panel', JText::_($fieldset->label), $fieldset->name);
+        ?>
 		<fieldset class="panelform">
 			<ul class="adminformlist">
 				<?php foreach ($this->form->getFieldset($fieldset->name) as $field) : ?>

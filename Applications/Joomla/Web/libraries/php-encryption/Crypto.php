@@ -5,32 +5,32 @@
  * Copyright (c) 2014, Taylor Hornby
  * All rights reserved.
  *
- * Redistribution and use in source and binary forms, with or without 
+ * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
  *
- * 1. Redistributions of source code must retain the above copyright notice, 
+ * 1. Redistributions of source code must retain the above copyright notice,
  * this list of conditions and the following disclaimer.
  *
  * 2. Redistributions in binary form must reproduce the above copyright notice,
- * this list of conditions and the following disclaimer in the documentation 
+ * this list of conditions and the following disclaimer in the documentation
  * and/or other materials provided with the distribution.
  *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE 
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+ * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+ * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+ * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
+ * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+ * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+ * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+ * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+ * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
 /*
  * Web: https://defuse.ca/secure-php-encryption.htm
- * GitHub: https://github.com/defuse/php-encryption 
+ * GitHub: https://github.com/defuse/php-encryption
  *
  * WARNING: This encryption library is not a silver bullet. It only provides
  * symmetric encryption given a uniformly random key. This means you MUST NOT
@@ -39,7 +39,7 @@
  * encrypt something with a password, apply a password key derivation function
  * like PBKDF2 or scrypt with a random salt to generate a key.
  *
- * WARNING: Error handling is very important, especially for crypto code! 
+ * WARNING: Error handling is very important, especially for crypto code!
  *
  * How to use this code:
  *
@@ -84,16 +84,22 @@
  *       }
  */
 
-/* 
+/*
  * Raised by Decrypt() when one of the following conditions are met:
  *  - The key is wrong.
  *  - The ciphertext is invalid or not in the correct format.
  *  - The attacker modified the ciphertext.
  */
-class InvalidCiphertextException extends Exception {}
+class InvalidCiphertextException extends Exception
+{
+}
 /* If you see these, it means it is NOT SAFE to do encryption on your system. */
-class CannotPerformOperationException extends Exception {}
-class CryptoTestFailedException extends Exception {}
+class CannotPerformOperationException extends Exception
+{
+}
+class CryptoTestFailedException extends Exception
+{
+}
 
 class Crypto
 {
@@ -127,8 +133,7 @@ class Crypto
     {
         Crypto::RuntimeTest();
 
-        if (self::our_strlen($key) !== self::KEY_BYTE_SIZE)
-        {
+        if (self::our_strlen($key) !== self::KEY_BYTE_SIZE) {
             throw new CannotPerformOperationException("Bad key.");
         }
 
@@ -139,7 +144,7 @@ class Crypto
         // Generate a random initialization vector.
         self::EnsureFunctionExists("mcrypt_get_iv_size");
         $ivsize = mcrypt_get_iv_size(self::CIPHER, self::CIPHER_MODE);
-        if ($ivsize === FALSE || $ivsize <= 0) {
+        if ($ivsize === false || $ivsize <= 0) {
             throw new CannotPerformOperationException();
         }
         $iv = self::SecureRandom($ivsize);
@@ -169,19 +174,18 @@ class Crypto
             throw new InvalidCiphertextException();
         }
         $hmac = self::our_substr($ciphertext, 0, self::MAC_BYTE_SIZE);
-        if ($hmac === FALSE) {
+        if ($hmac === false) {
             throw new CannotPerformOperationException();
         }
         $ciphertext = self::our_substr($ciphertext, self::MAC_BYTE_SIZE);
-        if ($ciphertext === FALSE) {
+        if ($ciphertext === false) {
             throw new CannotPerformOperationException();
         }
 
         // Regenerate the same authentication sub-key.
         $akey = self::HKDF(self::HASH_FUNCTION, $key, self::KEY_BYTE_SIZE, self::AUTHENTICATION_INFO);
 
-        if (self::VerifyHMAC($hmac, $ciphertext, $akey))
-        {
+        if (self::VerifyHMAC($hmac, $ciphertext, $akey)) {
             // Regenerate the same encryption sub-key.
             $keysize = self::KEY_BYTE_SIZE;
             $ekey = self::HKDF(self::HASH_FUNCTION, $key, $keysize, self::ENCRYPTION_INFO);
@@ -189,33 +193,31 @@ class Crypto
             // Extract the initialization vector from the ciphertext.
             self::EnsureFunctionExists("mcrypt_get_iv_size");
             $ivsize = mcrypt_get_iv_size(self::CIPHER, self::CIPHER_MODE);
-            if ($ivsize === FALSE || $ivsize <= 0) {
+            if ($ivsize === false || $ivsize <= 0) {
                 throw new CannotPerformOperationException();
             }
             if (self::our_strlen($ciphertext) <= $ivsize) {
                 throw new InvalidCiphertextException();
             }
             $iv = self::our_substr($ciphertext, 0, $ivsize);
-            if ($iv === FALSE) {
+            if ($iv === false) {
                 throw new CannotPerformOperationException();
             }
             $ciphertext = self::our_substr($ciphertext, $ivsize);
-            if ($ciphertext === FALSE) {
+            if ($ciphertext === false) {
                 throw new CannotPerformOperationException();
             }
             
             $plaintext = self::PlainDecrypt($ciphertext, $ekey, $iv);
 
             return $plaintext;
-        }
-        else
-        {
+        } else {
             /*
              * We throw an exception instead of returning FALSE because we want
              * a script that doesn't handle this condition to CRASH, instead
              * of thinking the ciphertext decrypted to the value FALSE.
              */
-             throw new InvalidCiphertextException();
+            throw new InvalidCiphertextException();
         }
     }
 
@@ -268,7 +270,7 @@ class Crypto
     {
         self::EnsureFunctionExists("mcrypt_module_open");
         $crypt = mcrypt_module_open(self::CIPHER, "", self::CIPHER_MODE, "");
-        if ($crypt === FALSE) {
+        if ($crypt === false) {
             throw new CannotPerformOperationException();
         }
 
@@ -287,12 +289,12 @@ class Crypto
         $ciphertext = mcrypt_generic($crypt, $plaintext);
         self::EnsureFunctionExists("mcrypt_generic_deinit");
         $ret = mcrypt_generic_deinit($crypt);
-        if ($ret !== TRUE) {
+        if ($ret !== true) {
             throw new CannotPerformOperationException();
         }
         self::EnsureFunctionExists("mcrypt_module_close");
         $ret = mcrypt_module_close($crypt);
-        if ($ret !== TRUE) {
+        if ($ret !== true) {
             throw new CannotPerformOperationException();
         }
 
@@ -306,7 +308,7 @@ class Crypto
     {
         self::EnsureFunctionExists("mcrypt_module_open");
         $crypt = mcrypt_module_open(self::CIPHER, "", self::CIPHER_MODE, "");
-        if ($crypt === FALSE) {
+        if ($crypt === false) {
             throw new CannotPerformOperationException();
         }
 
@@ -321,12 +323,12 @@ class Crypto
         $plaintext = mdecrypt_generic($crypt, $ciphertext);
         self::EnsureFunctionExists("mcrypt_generic_deinit");
         $ret = mcrypt_generic_deinit($crypt);
-        if ($ret !== TRUE) {
+        if ($ret !== true) {
             throw new CannotPerformOperationException();
         }
         self::EnsureFunctionExists("mcrypt_module_close");
         $ret = mcrypt_module_close($crypt);
-        if ($ret !== TRUE) {
+        if ($ret !== true) {
             throw new CannotPerformOperationException();
         }
 
@@ -336,7 +338,7 @@ class Crypto
             throw new CannotPerformOperationException();
         }
         $plaintext = self::our_substr($plaintext, 0, self::our_strlen($plaintext) - $pad);
-        if ($plaintext === FALSE) {
+        if ($plaintext === false) {
             throw new CannotPerformOperationException();
         }
 
@@ -350,7 +352,7 @@ class Crypto
     {
         self::EnsureFunctionExists("mcrypt_create_iv");
         $random = mcrypt_create_iv($octets, MCRYPT_DEV_URANDOM);
-        if ($random === FALSE) {
+        if ($random === false) {
             throw new CannotPerformOperationException();
         } else {
             return $random;
@@ -361,7 +363,7 @@ class Crypto
      * Use HKDF to derive multiple keys from one.
      * http://tools.ietf.org/html/rfc5869
      */
-    private static function HKDF($hash, $ikm, $length, $info = '', $salt = NULL)
+    private static function HKDF($hash, $ikm, $length, $info = '', $salt = null)
     {
         // Find the correct digest length as quickly as we can.
         $digest_length = self::MAC_BYTE_SIZE;
@@ -409,7 +411,7 @@ class Crypto
 
         // ORM = first L octets of T
         $orm = self::our_substr($t, 0, $length);
-        if ($orm === FALSE) {
+        if ($orm === false) {
             throw new CannotPerformOperationException();
         }
         return $orm;
@@ -422,7 +424,7 @@ class Crypto
         // We can't just compare the strings with '==', since it would make
         // timing attacks possible. We could use the XOR-OR constant-time
         // comparison algorithm, but I'm not sure if that's good enough way up
-        // here in an interpreted language. So we use the method of HMACing the 
+        // here in an interpreted language. So we use the method of HMACing the
         // strings we want to compare with a random key, then comparing those.
 
         // NOTE: This leaks information when the strings are not the same
@@ -447,13 +449,12 @@ class Crypto
         try {
             $decrypted = Crypto::Decrypt($ciphertext, $key);
         } catch (InvalidCiphertextException $ex) {
-            // It's important to catch this and change it into a 
+            // It's important to catch this and change it into a
             // CryptoTestFailedException, otherwise a test failure could trick
             // the user into thinking it's just an invalid ciphertext!
             throw new CryptoTestFailedException();
         }
-        if($decrypted !== $data)
-        {
+        if ($decrypted !== $data) {
             throw new CryptoTestFailedException();
         }
 
@@ -461,14 +462,16 @@ class Crypto
         try {
             Crypto::Decrypt($ciphertext . "a", $key);
             throw new CryptoTestFailedException();
-        } catch (InvalidCiphertextException $e) { /* expected */ }
+        } catch (InvalidCiphertextException $e) { /* expected */
+        }
 
         // Modifying the ciphertext: Changing an IV byte.
         try {
             $ciphertext[0] = chr((ord($ciphertext[0]) + 1) % 256);
             Crypto::Decrypt($ciphertext, $key);
             throw new CryptoTestFailedException();
-        } catch (InvalidCiphertextException $e) { /* expected */ }
+        } catch (InvalidCiphertextException $e) { /* expected */
+        }
 
         // Decrypting with the wrong key.
         $key = Crypto::CreateNewRandomKey();
@@ -478,7 +481,8 @@ class Crypto
         try {
             Crypto::Decrypt($ciphertext, $wrong_key);
             throw new CryptoTestFailedException();
-        } catch (InvalidCiphertextException $e) { /* expected */ }
+        } catch (InvalidCiphertextException $e) { /* expected */
+        }
 
         // Ciphertext too small (shorter than HMAC).
         $key = Crypto::CreateNewRandomKey();
@@ -486,7 +490,8 @@ class Crypto
         try {
             Crypto::Decrypt($ciphertext, $key);
             throw new CryptoTestFailedException();
-        } catch (InvalidCiphertextException $e) { /* expected */ }
+        } catch (InvalidCiphertextException $e) { /* expected */
+        }
     }
 
     private static function HKDFTestVector()
@@ -520,7 +525,6 @@ class Crypto
         if ($computed_okm !== $okm) {
             throw new CryptoTestFailedException();
         }
-
     }
 
     private static function HMACTestVector()
@@ -540,7 +544,7 @@ class Crypto
         $key = self::hexToBytes("2b7e151628aed2a6abf7158809cf4f3c");
         $iv = self::hexToBytes("000102030405060708090a0b0c0d0e0f");
         $plaintext = self::hexToBytes(
-            "6bc1bee22e409f96e93d7e117393172a" . 
+            "6bc1bee22e409f96e93d7e117393172a" .
             "ae2d8a571e03ac9c9eb76fac45af8e51" .
             "30c81c46a35ce411e5fbc1191a0a52ef" .
             "f69f2445df4f9b17ad2b417be66c3710"
@@ -550,12 +554,12 @@ class Crypto
             "5086cb9b507219ee95db113a917678b2" .
             "73bed6b8e3c1743b7116e69e22229516" .
             "3ff1caa1681fac09120eca307586e1a7" .
-            /* Block due to padding. Not from NIST test vector. 
+            /* Block due to padding. Not from NIST test vector.
                 Padding Block: 10101010101010101010101010101010
                 Ciphertext:    3ff1caa1681fac09120eca307586e1a7
-                           (+) 2fe1dab1780fbc19021eda206596f1b7 
+                           (+) 2fe1dab1780fbc19021eda206596f1b7
                            AES 8cb82807230e1321d3fae00d18cc2012
-             
+
              */
             "8cb82807230e1321d3fae00d18cc2012"
         );
@@ -594,7 +598,7 @@ class Crypto
     {
         if (function_exists('mb_strlen')) {
             $length = mb_strlen($str, '8bit');
-            if ($length === FALSE) {
+            if ($length === false) {
                 throw new CannotPerformOperationException();
             }
             return $length;
@@ -603,10 +607,9 @@ class Crypto
         }
     }
 
-    private static function our_substr($str, $start, $length = NULL)
+    private static function our_substr($str, $start, $length = null)
     {
-        if (function_exists('mb_substr'))
-        {
+        if (function_exists('mb_substr')) {
             // mb_substr($str, 0, NULL, '8bit') returns an empty string on PHP
             // 5.3, so we have to find the length ourselves.
             if (!isset($length)) {
@@ -627,7 +630,6 @@ class Crypto
             return substr($str, $start);
         }
     }
-
 }
 
 /*
@@ -644,7 +646,7 @@ class Crypto
 
 class CryptoExceptionHandler
 {
-    private $rethrow = NULL;
+    private $rethrow = null;
 
     public function __construct()
     {
@@ -665,7 +667,8 @@ class CryptoExceptionHandler
         }
     }
 
-    public function __destruct() {
+    public function __destruct()
+    {
         if ($this->rethrow) {
             throw $this->rethrow;
         }
@@ -673,4 +676,3 @@ class CryptoExceptionHandler
 }
 
 $crypto_exception_handler_object_dont_touch_me = new CryptoExceptionHandler();
-

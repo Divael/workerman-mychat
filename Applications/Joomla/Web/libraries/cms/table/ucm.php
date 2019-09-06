@@ -16,15 +16,15 @@ defined('JPATH_PLATFORM') or die;
  */
 class JTableUcm extends JTable
 {
-	/**
-	 * Constructor
-	 *
-	 * @param   JDatabaseDriver  $db  A database connector object
-	 *
-	 * @since   3.1
-	 */
-	public function __construct($db)
-	{
-		parent::__construct('#__ucm_base', 'ucm_id', $db);
-	}
+    /**
+     * Constructor
+     *
+     * @param   JDatabaseDriver  $db  A database connector object
+     *
+     * @since   3.1
+     */
+    public function __construct($db)
+    {
+        parent::__construct('#__ucm_base', 'ucm_id', $db);
+    }
 }

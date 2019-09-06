@@ -18,105 +18,96 @@ defined('_JEXEC') or die;
 */
 class ConfigControllerModulesSave extends JControllerBase
 {
-	/**
-	 * Method to save module editing.
-	 *
-	 * @return  bool	True on success.
-	 *
-	 * @since   3.2
-	 */
-	public function execute()
-	{
-		// Check for request forgeries.
-		if (!JSession::checkToken())
-		{
-			$this->app->enqueueMessage(JText::_('JINVALID_TOKEN'));
-			$this->app->redirect('index.php');
-		}
+    /**
+     * Method to save module editing.
+     *
+     * @return  bool	True on success.
+     *
+     * @since   3.2
+     */
+    public function execute()
+    {
+        // Check for request forgeries.
+        if (!JSession::checkToken()) {
+            $this->app->enqueueMessage(JText::_('JINVALID_TOKEN'));
+            $this->app->redirect('index.php');
+        }
 
-		// Check if the user is authorized to do this.
-		$user = JFactory::getUser();
+        // Check if the user is authorized to do this.
+        $user = JFactory::getUser();
 
-		if (!$user->authorise('module.edit.frontend', 'com_modules.module.' . $this->input->get('id'))
-			&& !$user->authorise('module.edit.frontend', 'com_modules'))
-		{
-			$this->app->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR'));
-			$this->app->redirect('index.php');
-		}
+        if (!$user->authorise('module.edit.frontend', 'com_modules.module.' . $this->input->get('id'))
+            && !$user->authorise('module.edit.frontend', 'com_modules')) {
+            $this->app->enqueueMessage(JText::_('JERROR_ALERTNOAUTHOR'));
+            $this->app->redirect('index.php');
+        }
 
-		// Set FTP credentials, if given.
-		JClientHelper::setCredentialsFromRequest('ftp');
+        // Set FTP credentials, if given.
+        JClientHelper::setCredentialsFromRequest('ftp');
 
-		// Get sumitted module id
-		$moduleId = '&id=' . $this->input->get('id');
+        // Get sumitted module id
+        $moduleId = '&id=' . $this->input->get('id');
 
-		// Get returnUri
-		$returnUri = $this->input->post->get('return', null, 'base64');
-		$redirect = '';
+        // Get returnUri
+        $returnUri = $this->input->post->get('return', null, 'base64');
+        $redirect = '';
 
-		if (!empty($returnUri))
-		{
-			$redirect = '&return=' . $returnUri;
-		}
+        if (!empty($returnUri)) {
+            $redirect = '&return=' . $returnUri;
+        }
 
-		// Access backend com_modules to be done
-		JLoader::register('ModulesControllerModule', JPATH_ADMINISTRATOR . '/components/com_modules/controllers/module.php');
-		JLoader::register('ModulesModelModule', JPATH_ADMINISTRATOR . '/components/com_modules/models/module.php');
+        // Access backend com_modules to be done
+        JLoader::register('ModulesControllerModule', JPATH_ADMINISTRATOR . '/components/com_modules/controllers/module.php');
+        JLoader::register('ModulesModelModule', JPATH_ADMINISTRATOR . '/components/com_modules/models/module.php');
 
-		$controllerClass = new ModulesControllerModule;
+        $controllerClass = new ModulesControllerModule;
 
-		// Get a document object
-		$document = JFactory::getDocument();
+        // Get a document object
+        $document = JFactory::getDocument();
 
-		// Set backend required params
-		$document->setType('json');
+        // Set backend required params
+        $document->setType('json');
 
-		// Execute backend controller
-		$return = $controllerClass->save();
+        // Execute backend controller
+        $return = $controllerClass->save();
 
-		// Reset params back after requesting from service
-		$document->setType('html');
+        // Reset params back after requesting from service
+        $document->setType('html');
 
-		// Check the return value.
-		if ($return === false)
-		{
-			// Save the data in the session.
-			$app->setUserState('com_config.modules.global.data', $data);
+        // Check the return value.
+        if ($return === false) {
+            // Save the data in the session.
+            $app->setUserState('com_config.modules.global.data', $data);
 
-			// Save failed, go back to the screen and display a notice.
-			$this->app->enqueueMessage(JText::_('JERROR_SAVE_FAILED'));
-			$this->app->redirect(JRoute::_('index.php?option=com_config&controller=config.display.modules' . $moduleId . $redirect, false));
-		}
+            // Save failed, go back to the screen and display a notice.
+            $this->app->enqueueMessage(JText::_('JERROR_SAVE_FAILED'));
+            $this->app->redirect(JRoute::_('index.php?option=com_config&controller=config.display.modules' . $moduleId . $redirect, false));
+        }
 
-		// Redirect back to com_config display
-		$this->app->enqueueMessage(JText::_('COM_CONFIG_MODULES_SAVE_SUCCESS'));
+        // Redirect back to com_config display
+        $this->app->enqueueMessage(JText::_('COM_CONFIG_MODULES_SAVE_SUCCESS'));
 
-		// Set the redirect based on the task.
-		switch ($this->options[3])
-		{
-			case 'apply':
-				$this->app->redirect(JRoute::_('index.php?option=com_config&controller=config.display.modules' . $moduleId . $redirect, false));
-				break;
+        // Set the redirect based on the task.
+        switch ($this->options[3]) {
+            case 'apply':
+                $this->app->redirect(JRoute::_('index.php?option=com_config&controller=config.display.modules' . $moduleId . $redirect, false));
+                break;
 
-			case 'save':
-			default:
+            case 'save':
+            default:
 
-				if (!empty($returnUri))
-				{
-					$redirect = base64_decode(urldecode($returnUri));
+                if (!empty($returnUri)) {
+                    $redirect = base64_decode(urldecode($returnUri));
 
-					// Don't redirect to an external URL.
-					if (!JUri::isInternal($redirect))
-					{
-						$redirect = JUri::base();
-					}
-				}
-				else
-				{
-					$redirect = JUri::base();
-				}
-				$this->app->redirect($redirect);
-				break;
-		}
-	}
+                    // Don't redirect to an external URL.
+                    if (!JUri::isInternal($redirect)) {
+                        $redirect = JUri::base();
+                    }
+                } else {
+                    $redirect = JUri::base();
+                }
+                $this->app->redirect($redirect);
+                break;
+        }
+    }
 }

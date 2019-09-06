@@ -34,7 +34,7 @@ JHtml::_('jquery.framework');
 JHtml::_('script', 'jui/ajax-chosen.min.js', array('version' => 'auto', 'relative' => true, 'detectDebug' => $debug));
 
 JFactory::getDocument()->addScriptDeclaration(
-	"
+    "
 		jQuery(document).ready(function ($) {
 			$('" . $selector . "').ajaxChosen({
 				type: '" . $type . "',

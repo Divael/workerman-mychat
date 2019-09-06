@@ -37,9 +37,8 @@ $userRequired    = (int) $input->get('required', 0, 'int');
  */
 $isMoo = $input->getInt('ismoo', 1);
 
-if ($isMoo)
-{
-	$onClick = "window.parent.jSelectUser(this);window.parent.jQuery('.modal.in').modal('hide');";
+if ($isMoo) {
+    $onClick = "window.parent.jSelectUser(this);window.parent.jQuery('.modal.in').modal('hide');";
 }
 
 ?>

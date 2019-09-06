@@ -22,34 +22,30 @@ defined('_JEXEC') or die;
  */
 function admin_postinstall_joomla40checks_condition()
 {
-	$db            = JFactory::getDbo();
-	$serverType    = $db->getServerType();
-	$serverVersion = $db->getVersion();
+    $db            = JFactory::getDbo();
+    $serverType    = $db->getServerType();
+    $serverVersion = $db->getVersion();
 
-	if ($serverType == 'mssql')
-	{
-		// MS SQL support will be dropped
-		return true;
-	}
+    if ($serverType == 'mssql') {
+        // MS SQL support will be dropped
+        return true;
+    }
 
-	if ($serverType == 'postgresql' && version_compare($serverVersion, '9.2', 'lt'))
-	{
-		// PostgreSQL minimum version is 9.2
-		return true;
-	}
+    if ($serverType == 'postgresql' && version_compare($serverVersion, '9.2', 'lt')) {
+        // PostgreSQL minimum version is 9.2
+        return true;
+    }
 
-	if ($serverType == 'mysql' && version_compare($serverVersion, '5.5.3', 'lt'))
-	{
-		// MySQL minimum version is 5.5.3
-		return true;
-	}
+    if ($serverType == 'mysql' && version_compare($serverVersion, '5.5.3', 'lt')) {
+        // MySQL minimum version is 5.5.3
+        return true;
+    }
 
-	if ($db->name === 'mysql')
-	{
-		// Using deprecated MySQL driver
-		return true;
-	}
+    if ($db->name === 'mysql') {
+        // Using deprecated MySQL driver
+        return true;
+    }
 
-	// PHP minimum version is 5.5
-	return version_compare(PHP_VERSION, '5.5.9', 'lt');
+    // PHP minimum version is 5.5
+    return version_compare(PHP_VERSION, '5.5.9', 'lt');
 }

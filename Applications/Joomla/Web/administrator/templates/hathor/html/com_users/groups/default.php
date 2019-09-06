@@ -22,12 +22,10 @@ JText::script('COM_USERS_GROUPS_CONFIRM_DELETE');
 
 $groupsWithUsers = array();
 
-foreach ($this->items as $i => $item)
-{
-	if ($item->user_count > 0)
-	{
-		$groupsWithUsers[] = $i;
-	}
+foreach ($this->items as $i => $item) {
+    if ($item->user_count > 0) {
+        $groupsWithUsers[] = $i;
+    }
 }
 JFactory::getDocument()->addScriptDeclaration('
 		Joomla.submitbutton = function(task) {
@@ -50,7 +48,7 @@ JFactory::getDocument()->addScriptDeclaration('
 ');
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_users&view=groups');?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -89,15 +87,14 @@ JFactory::getDocument()->addScriptDeclaration('
 
 		<tbody>
 		<?php foreach ($this->items as $i => $item) :
-			$canCreate = $user->authorise('core.create', 'com_users');
-			$canEdit   = $user->authorise('core.edit',   'com_users');
-			// If this group is super admin and this user is not super admin, $canEdit is false
-			if (!$user->authorise('core.admin') && (JAccess::checkGroup($item->id, 'core.admin')))
-			{
-				$canEdit = false;
-			}
-			$canChange = $user->authorise('core.edit.state',	'com_users');
-		?>
+            $canCreate = $user->authorise('core.create', 'com_users');
+            $canEdit   = $user->authorise('core.edit', 'com_users');
+            // If this group is super admin and this user is not super admin, $canEdit is false
+            if (!$user->authorise('core.admin') && (JAccess::checkGroup($item->id, 'core.admin'))) {
+                $canEdit = false;
+            }
+            $canChange = $user->authorise('core.edit.state', 'com_users');
+        ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td>
 					<?php if ($canEdit) : ?>

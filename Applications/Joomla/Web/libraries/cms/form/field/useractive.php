@@ -18,38 +18,38 @@ JFormHelper::loadFieldClass('predefinedlist');
  */
 class JFormFieldUserActive extends JFormFieldPredefinedList
 {
-	/**
-	 * The form field type.
-	 *
-	 * @var		string
-	 * @since   3.2
-	 */
-	protected $type = 'UserActive';
+    /**
+     * The form field type.
+     *
+     * @var		string
+     * @since   3.2
+     */
+    protected $type = 'UserActive';
 
-	/**
-	 * Available statuses
-	 *
-	 * @var  array
-	 * @since  3.2
-	 */
-	protected $predefinedOptions = array(
-		'0'  => 'COM_USERS_ACTIVATED',
-		'1'  => 'COM_USERS_UNACTIVATED',
-	);
+    /**
+     * Available statuses
+     *
+     * @var  array
+     * @since  3.2
+     */
+    protected $predefinedOptions = array(
+        '0'  => 'COM_USERS_ACTIVATED',
+        '1'  => 'COM_USERS_UNACTIVATED',
+    );
 
-	/**
-	 * Method to instantiate the form field object.
-	 *
-	 * @param   JForm  $form  The form to attach to the form field object.
-	 *
-	 * @since   11.1
-	 */
-	public function __construct($form = null)
-	{
-		parent::__construct($form);
+    /**
+     * Method to instantiate the form field object.
+     *
+     * @param   JForm  $form  The form to attach to the form field object.
+     *
+     * @since   11.1
+     */
+    public function __construct($form = null)
+    {
+        parent::__construct($form);
 
-		// Load the required language
-		$lang = JFactory::getLanguage();
-		$lang->load('com_users', JPATH_ADMINISTRATOR);
-	}
+        // Load the required language
+        $lang = JFactory::getLanguage();
+        $lang->load('com_users', JPATH_ADMINISTRATOR);
+    }
 }

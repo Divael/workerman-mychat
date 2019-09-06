@@ -42,9 +42,8 @@ JHtml::_('stylesheet', 'language/' . $lang->getTag() . '/' . $lang->getTag() . '
 JHtml::_('stylesheet', 'custom.css', array('version' => 'auto', 'relative' => true));
 
 // Link color
-if ($this->params->get('linkColor'))
-{
-	$this->addStyleDeclaration('a { color: ' . $this->params->get('linkColor') . '; }');
+if ($this->params->get('linkColor')) {
+    $this->addStyleDeclaration('a { color: ' . $this->params->get('linkColor') . '; }');
 }
 ?>
 <!DOCTYPE html>

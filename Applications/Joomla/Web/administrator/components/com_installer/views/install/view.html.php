@@ -18,44 +18,44 @@ JLoader::register('InstallerViewDefault', dirname(__DIR__) . '/default/view.php'
  */
 class InstallerViewInstall extends InstallerViewDefault
 {
-	/**
-	 * Display the view
-	 *
-	 * @param   string  $tpl  Template
-	 *
-	 * @return  void
-	 *
-	 * @since   1.5
-	 */
-	public function display($tpl = null)
-	{
-		$paths = new stdClass;
-		$paths->first = '';
-		$state = $this->get('state');
+    /**
+     * Display the view
+     *
+     * @param   string  $tpl  Template
+     *
+     * @return  void
+     *
+     * @since   1.5
+     */
+    public function display($tpl = null)
+    {
+        $paths = new stdClass;
+        $paths->first = '';
+        $state = $this->get('state');
 
-		$this->paths = &$paths;
-		$this->state = &$state;
+        $this->paths = &$paths;
+        $this->state = &$state;
 
-		$this->showJedAndWebInstaller = JComponentHelper::getParams('com_installer')->get('show_jed_info', 1);
+        $this->showJedAndWebInstaller = JComponentHelper::getParams('com_installer')->get('show_jed_info', 1);
 
-		JPluginHelper::importPlugin('installer');
+        JPluginHelper::importPlugin('installer');
 
-		$dispatcher = JEventDispatcher::getInstance();
-		$dispatcher->trigger('onInstallerBeforeDisplay', array(&$this->showJedAndWebInstaller, $this));
+        $dispatcher = JEventDispatcher::getInstance();
+        $dispatcher->trigger('onInstallerBeforeDisplay', array(&$this->showJedAndWebInstaller, $this));
 
-		parent::display($tpl);
-	}
+        parent::display($tpl);
+    }
 
-	/**
-	 * Add the page title and toolbar.
-	 *
-	 * @return  void
-	 *
-	 * @since   1.6
-	 */
-	protected function addToolbar()
-	{
-		parent::addToolbar();
-		JToolbarHelper::help('JHELP_EXTENSIONS_EXTENSION_MANAGER_INSTALL');
-	}
+    /**
+     * Add the page title and toolbar.
+     *
+     * @return  void
+     *
+     * @since   1.6
+     */
+    protected function addToolbar()
+    {
+        parent::addToolbar();
+        JToolbarHelper::help('JHELP_EXTENSIONS_EXTENSION_MANAGER_INSTALL');
+    }
 }

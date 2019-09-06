@@ -15,35 +15,33 @@ defined('_JEXEC') or die;
  */
 class FieldsControllerField extends JControllerLegacy
 {
-	/**
-	 * Stores the form content into the user session.
-	 *
-	 * @return  void
-	 *
-	 * @since   3.7.0
-	 */
-	public function storeform()
-	{
-		JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
+    /**
+     * Stores the form content into the user session.
+     *
+     * @return  void
+     *
+     * @since   3.7.0
+     */
+    public function storeform()
+    {
+        JSession::checkToken() or jexit(JText::_('JINVALID_TOKEN'));
 
-		$app   = JFactory::getApplication();
-		$data  = $this->input->get($this->input->get('formcontrol', 'jform'), array(), 'array');
-		$parts = FieldsHelper::extract($this->input->getCmd('context'));
+        $app   = JFactory::getApplication();
+        $data  = $this->input->get($this->input->get('formcontrol', 'jform'), array(), 'array');
+        $parts = FieldsHelper::extract($this->input->getCmd('context'));
 
-		if ($parts)
-		{
-			$app->setUserState($parts[0] . '.edit.' . $parts[1] . '.data', $data);
-		}
+        if ($parts) {
+            $app->setUserState($parts[0] . '.edit.' . $parts[1] . '.data', $data);
+        }
 
-		$redirectUrl = base64_decode($this->input->get->getBase64('return'));
+        $redirectUrl = base64_decode($this->input->get->getBase64('return'));
 
-		// Don't redirect to an external URL.
-		If (!JUri::isInternal($redirectUrl))
-		{
-			$redirectUrl = 'index.php';
-		}
+        // Don't redirect to an external URL.
+        if (!JUri::isInternal($redirectUrl)) {
+            $redirectUrl = 'index.php';
+        }
 
-		$app->redirect($redirectUrl);
-		$app->close();
-	}
+        $app->redirect($redirectUrl);
+        $app->close();
+    }
 }

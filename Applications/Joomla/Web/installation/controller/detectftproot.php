@@ -16,47 +16,46 @@ defined('_JEXEC') or die;
  */
 class InstallationControllerDetectftproot extends JControllerBase
 {
-	/**
-	 * Execute the controller.
-	 *
-	 * @return  void
-	 *
-	 * @since   3.1
-	 */
-	public function execute()
-	{
-		// Get the application
-		/* @var InstallationApplicationWeb $app */
-		$app = $this->getApplication();
+    /**
+     * Execute the controller.
+     *
+     * @return  void
+     *
+     * @since   3.1
+     */
+    public function execute()
+    {
+        // Get the application
+        /* @var InstallationApplicationWeb $app */
+        $app = $this->getApplication();
 
-		// Check for request forgeries.
-		JSession::checkToken() or $app->sendJsonResponse(new Exception(JText::_('JINVALID_TOKEN'), 403));
+        // Check for request forgeries.
+        JSession::checkToken() or $app->sendJsonResponse(new Exception(JText::_('JINVALID_TOKEN'), 403));
 
-		// Get the setup model.
-		$model = new InstallationModelSetup;
+        // Get the setup model.
+        $model = new InstallationModelSetup;
 
-		// Get the data
-		$data = $app->input->post->get('jform', array(), 'array');
+        // Get the data
+        $data = $app->input->post->get('jform', array(), 'array');
 
-		// Store the options in the session.
-		$vars = $model->storeOptions($data);
+        // Store the options in the session.
+        $vars = $model->storeOptions($data);
 
-		// Get the database model.
-		$ftp = new InstallationModelFtp;
+        // Get the database model.
+        $ftp = new InstallationModelFtp;
 
-		// Attempt to detect the Joomla root from the ftp account.
-		$return = $ftp->detectFtpRoot($vars);
+        // Attempt to detect the Joomla root from the ftp account.
+        $return = $ftp->detectFtpRoot($vars);
 
-		// Build the response object
-		$r = new stdClass;
-		$r->view = 'ftp';
+        // Build the response object
+        $r = new stdClass;
+        $r->view = 'ftp';
 
-		// If we got a FTP root, add it to the response object
-		if ($return)
-		{
-			$r->root = $return;
-		}
+        // If we got a FTP root, add it to the response object
+        if ($return) {
+            $r->root = $return;
+        }
 
-		$app->sendJsonResponse($r);
-	}
+        $app->sendJsonResponse($r);
+    }
 }

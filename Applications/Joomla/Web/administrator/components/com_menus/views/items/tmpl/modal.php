@@ -11,9 +11,8 @@ defined('_JEXEC') or die;
 
 $app = JFactory::getApplication();
 
-if ($app->isClient('site'))
-{
-	JSession::checkToken('get') or die(JText::_('JINVALID_TOKEN'));
+if ($app->isClient('site')) {
+    JSession::checkToken('get') or die(JText::_('JINVALID_TOKEN'));
 }
 
 JHtml::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR . '/helpers/html');
@@ -33,11 +32,10 @@ $editor    = $app->input->getCmd('editor', '');
 $listOrder    = $this->escape($this->state->get('list.ordering'));
 $listDirn     = $this->escape($this->state->get('list.direction'));
 
-if (!empty($editor))
-{
-	// This view is used also in com_menus. Load the xtd script only if the editor is set!
-	JFactory::getDocument()->addScriptOptions('xtd-menus', array('editor' => $editor));
-	$onclick = "jSelectMenuItem";
+if (!empty($editor)) {
+    // This view is used also in com_menus. Load the xtd script only if the editor is set!
+    JFactory::getDocument()->addScriptOptions('xtd-menus', array('editor' => $editor));
+    $onclick = "jSelectMenuItem";
 }
 ?>
 <div class="container-popup">
@@ -67,7 +65,7 @@ if (!empty($editor))
 							<?php echo JHtml::_('searchtools.sort', 'COM_MENUS_HEADING_HOME', 'a.home', $listDirn, $listOrder); ?>
 						</th>
 						<th width="10%" class="nowrap hidden-phone">
-							<?php echo JHtml::_('searchtools.sort',  'JGRID_HEADING_ACCESS', 'a.access', $listDirn, $listOrder); ?>
+							<?php echo JHtml::_('searchtools.sort', 'JGRID_HEADING_ACCESS', 'a.access', $listDirn, $listOrder); ?>
 						</th>
 						<th width="15%" class="nowrap hidden-phone">
 							<?php echo JHtml::_('searchtools.sort', 'JGRID_HEADING_LANGUAGE', 'language', $listDirn, $listOrder); ?>
@@ -87,23 +85,17 @@ if (!empty($editor))
 				<tbody>
 				<?php foreach ($this->items as $i => $item) : ?>
 					<?php if ($item->type != 'separator' && $item->type != 'alias' &&
-								$item->type != 'heading' && $item->type != 'container' && $item->type != 'url') : ?>
-						<?php if ($item->language && JLanguageMultilang::isEnabled())
-						{
-							if ($item->language !== '*')
-							{
-								$language = $item->language;
-							}
-							else
-							{
-								$language = '';
-							}
-						}
-						elseif (!JLanguageMultilang::isEnabled())
-						{
-							$language = '';
-						}
-						?>
+                                $item->type != 'heading' && $item->type != 'container' && $item->type != 'url') : ?>
+						<?php if ($item->language && JLanguageMultilang::isEnabled()) {
+                                    if ($item->language !== '*') {
+                                        $language = $item->language;
+                                    } else {
+                                        $language = '';
+                                    }
+                                } elseif (!JLanguageMultilang::isEnabled()) {
+                            $language = '';
+                        }
+                        ?>
 						<tr class="row<?php echo $i % 2; ?>">
 							<td class="center">
 								<?php echo JHtml::_('MenusHtml.Menus.state', $item->published, $i, 0); ?>

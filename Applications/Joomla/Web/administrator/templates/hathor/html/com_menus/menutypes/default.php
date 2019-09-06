@@ -14,7 +14,7 @@ $input = JFactory::getApplication()->input;
 $tmpl = ($input->getCmd('tmpl') != '') ? '1' : '';
 
 JFactory::getDocument()->addScriptDeclaration(
-		'
+    '
 		setmenutype = function(type) {
 			var tmpl = ' . json_encode($tmpl) . ';
 			if (tmpl)

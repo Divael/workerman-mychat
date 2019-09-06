@@ -11,10 +11,9 @@ defined('_JEXEC') or die;
 
 /** @var JDocumentError $this */
 
-if (!isset($this->error))
-{
-	$this->error = JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
-	$this->debug = false;
+if (!isset($this->error)) {
+    $this->error = JError::raiseWarning(404, JText::_('JERROR_ALERTNOAUTHOR'));
+    $this->debug = false;
 }
 
 $app = JFactory::getApplication();
@@ -58,11 +57,11 @@ $app = JFactory::getApplication();
 			<?php if ($this->debug) : ?>
 				<div>
 					<?php echo $this->renderBacktrace(); ?>
-					<?php // Check if there are more Exceptions and render their data as well ?>
+					<?php // Check if there are more Exceptions and render their data as well?>
 					<?php if ($this->error->getPrevious()) : ?>
 						<?php $loop = true; ?>
-						<?php // Reference $this->_error here and in the loop as setError() assigns errors to this property and we need this for the backtrace to work correctly ?>
-						<?php // Make the first assignment to setError() outside the loop so the loop does not skip Exceptions ?>
+						<?php // Reference $this->_error here and in the loop as setError() assigns errors to this property and we need this for the backtrace to work correctly?>
+						<?php // Make the first assignment to setError() outside the loop so the loop does not skip Exceptions?>
 						<?php $this->setError($this->_error->getPrevious()); ?>
 						<?php while ($loop === true) : ?>
 							<p><strong><?php echo JText::_('JERROR_LAYOUT_PREVIOUS_ERROR'); ?></strong></p>
@@ -70,7 +69,7 @@ $app = JFactory::getApplication();
 							<?php echo $this->renderBacktrace(); ?>
 							<?php $loop = $this->setError($this->_error->getPrevious()); ?>
 						<?php endwhile; ?>
-						<?php // Reset the main error object to the base error ?>
+						<?php // Reset the main error object to the base error?>
 						<?php $this->setError($this->error); ?>
 					<?php endif; ?>
 				</div>

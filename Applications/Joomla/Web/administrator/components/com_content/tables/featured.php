@@ -16,15 +16,15 @@ defined('_JEXEC') or die;
  */
 class ContentTableFeatured extends JTable
 {
-	/**
-	 * Constructor
-	 *
-	 * @param   JDatabaseDriver  &$db  Database connector object
-	 *
-	 * @since   1.6
-	 */
-	public function __construct(&$db)
-	{
-		parent::__construct('#__content_frontpage', 'content_id', $db);
-	}
+    /**
+     * Constructor
+     *
+     * @param   JDatabaseDriver  &$db  Database connector object
+     *
+     * @since   1.6
+     */
+    public function __construct(&$db)
+    {
+        parent::__construct('#__content_frontpage', 'content_id', $db);
+    }
 }

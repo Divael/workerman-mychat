@@ -40,15 +40,12 @@ JFactory::getDocument()->addScriptDeclaration("
 					<?php if ($this->item->xml->description) : ?>
 						<h3>
 							<?php
-							if ($this->item->xml)
-							{
-								echo ($text = (string) $this->item->xml->name) ? JText::_($text) : $this->item->name;
-							}
-							else
-							{
-								echo JText::_('COM_PLUGINS_XML_ERR');
-							}
-							?>
+                            if ($this->item->xml) {
+                                echo ($text = (string) $this->item->xml->name) ? JText::_($text) : $this->item->name;
+                            } else {
+                                echo JText::_('COM_PLUGINS_XML_ERR');
+                            }
+                            ?>
 						</h3>
 						<div class="info-labels">
 							<span class="label hasTooltip" title="<?php echo JHtml::_('tooltipText', 'COM_PLUGINS_FIELD_FOLDER_LABEL', 'COM_PLUGINS_FIELD_FOLDER_DESC'); ?>">
@@ -60,20 +57,20 @@ JFactory::getDocument()->addScriptDeclaration("
 						</div>
 						<div>
 							<?php
-							$short_description = JText::_($this->item->xml->description);
-							$this->fieldset = 'description';
-							$long_description = JLayoutHelper::render('joomla.edit.fieldset', $this);
-							if (!$long_description) {
-								$truncated = JHtmlString::truncate($short_description, 550, true, false);
-								if (strlen($truncated) > 500) {
-									$long_description = $short_description;
-									$short_description = JHtmlString::truncate($truncated, 250);
-									if ($short_description == $long_description) {
-										$long_description = '';
-									}
-								}
-							}
-							?>
+                            $short_description = JText::_($this->item->xml->description);
+                            $this->fieldset = 'description';
+                            $long_description = JLayoutHelper::render('joomla.edit.fieldset', $this);
+                            if (!$long_description) {
+                                $truncated = JHtmlString::truncate($short_description, 550, true, false);
+                                if (strlen($truncated) > 500) {
+                                    $long_description = $short_description;
+                                    $short_description = JHtmlString::truncate($truncated, 250);
+                                    if ($short_description == $long_description) {
+                                        $long_description = '';
+                                    }
+                                }
+                            }
+                            ?>
 							<p><?php echo $short_description; ?></p>
 							<?php if ($long_description) : ?>
 								<p class="readmore">
@@ -89,10 +86,10 @@ JFactory::getDocument()->addScriptDeclaration("
 				<?php endif; ?>
 
 				<?php
-				$this->fieldset = 'basic';
-				$html = JLayoutHelper::render('joomla.edit.fieldset', $this);
-				echo $html ? '<hr />' . $html : '';
-				?>
+                $this->fieldset = 'basic';
+                $html = JLayoutHelper::render('joomla.edit.fieldset', $this);
+                echo $html ? '<hr />' . $html : '';
+                ?>
 			</div>
 			<div class="span3">
 				<?php echo JLayoutHelper::render('joomla.edit.global', $this); ?>
@@ -133,10 +130,10 @@ JFactory::getDocument()->addScriptDeclaration("
 		<?php endif; ?>
 
 		<?php
-		$this->fieldsets = array();
-		$this->ignore_fieldsets = array('basic', 'description');
-		echo JLayoutHelper::render('joomla.edit.params', $this);
-		?>
+        $this->fieldsets = array();
+        $this->ignore_fieldsets = array('basic', 'description');
+        echo JLayoutHelper::render('joomla.edit.params', $this);
+        ?>
 
 		<?php echo JHtml::_('bootstrap.endTabSet'); ?>
 	</div>

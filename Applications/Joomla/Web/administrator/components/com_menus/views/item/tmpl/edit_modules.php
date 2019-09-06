@@ -12,7 +12,7 @@ defined('_JEXEC') or die;
 JHtml::_('behavior.core');
 
 foreach ($this->levels as $key => $value) {
-	$allLevels[$value->id] = $value->title;
+    $allLevels[$value->id] = $value->title;
 }
 
 JFactory::getDocument()->addScriptDeclaration('
@@ -132,29 +132,29 @@ echo JLayoutHelper::render('joomla.menu.edit_modules', $this); ?>
 						<?php endif; ?>
 				</td>
 			<?php echo JHtml::_(
-					'bootstrap.renderModal',
-					'moduleEdit' . $module->id . 'Modal',
-					array(
-						'title'       => JText::_('COM_MENUS_EDIT_MODULE_SETTINGS'),
-						'backdrop'    => 'static',
-						'keyboard'    => false,
-						'closeButton' => false,
-						'url'         => $link,
-						'height'      => '400px',
-						'width'       => '800px',
-						'bodyHeight'  => '70',
-						'modalWidth'  => '80',
-						'footer'      => '<a type="button" class="btn" data-dismiss="modal" aria-hidden="true"'
-								. ' onclick="jQuery(\'#moduleEdit' . $module->id . 'Modal iframe\').contents().find(\'#closeBtn\').click();">'
-								. JText::_('JLIB_HTML_BEHAVIOR_CLOSE') . '</a>'
-								. '<button type="button" class="btn btn-primary" aria-hidden="true"'
-								. ' onclick="jQuery(\'#moduleEdit' . $module->id . 'Modal iframe\').contents().find(\'#saveBtn\').click();">'
-								. JText::_('JSAVE') . '</button>'
-								. '<button type="button" class="btn btn-success" aria-hidden="true"'
-								. ' onclick="jQuery(\'#moduleEdit' . $module->id . 'Modal iframe\').contents().find(\'#applyBtn\').click();">'
-								. JText::_('JAPPLY') . '</button>',
-					)
-				); ?>
+    'bootstrap.renderModal',
+    'moduleEdit' . $module->id . 'Modal',
+    array(
+                        'title'       => JText::_('COM_MENUS_EDIT_MODULE_SETTINGS'),
+                        'backdrop'    => 'static',
+                        'keyboard'    => false,
+                        'closeButton' => false,
+                        'url'         => $link,
+                        'height'      => '400px',
+                        'width'       => '800px',
+                        'bodyHeight'  => '70',
+                        'modalWidth'  => '80',
+                        'footer'      => '<a type="button" class="btn" data-dismiss="modal" aria-hidden="true"'
+                                . ' onclick="jQuery(\'#moduleEdit' . $module->id . 'Modal iframe\').contents().find(\'#closeBtn\').click();">'
+                                . JText::_('JLIB_HTML_BEHAVIOR_CLOSE') . '</a>'
+                                . '<button type="button" class="btn btn-primary" aria-hidden="true"'
+                                . ' onclick="jQuery(\'#moduleEdit' . $module->id . 'Modal iframe\').contents().find(\'#saveBtn\').click();">'
+                                . JText::_('JSAVE') . '</button>'
+                                . '<button type="button" class="btn btn-success" aria-hidden="true"'
+                                . ' onclick="jQuery(\'#moduleEdit' . $module->id . 'Modal iframe\').contents().find(\'#applyBtn\').click();">'
+                                . JText::_('JAPPLY') . '</button>',
+                    )
+); ?>
 			</tr>
 		<?php endforeach; ?>
 		</tbody>

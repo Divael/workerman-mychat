@@ -16,5 +16,5 @@ defined('_JEXEC') or die;
  */
 class RedirectControllerLink extends JControllerForm
 {
-	// Parent class access checks are sufficient for this controller.
+    // Parent class access checks are sufficient for this controller.
 }

@@ -16,32 +16,31 @@ defined('_JEXEC') or die;
  */
 class PostinstallViewMessages extends FOFViewHtml
 {
-	/**
-	 * Executes before rendering the page for the Browse task.
-	 *
-	 * @param   string  $tpl  Subtemplate to use
-	 *
-	 * @return  boolean  Return true to allow rendering of the page
-	 *
-	 * @since   3.2
-	 */
-	protected function onBrowse($tpl = null)
-	{
-		/** @var PostinstallModelMessages $model */
-		$model = $this->getModel();
+    /**
+     * Executes before rendering the page for the Browse task.
+     *
+     * @param   string  $tpl  Subtemplate to use
+     *
+     * @return  boolean  Return true to allow rendering of the page
+     *
+     * @since   3.2
+     */
+    protected function onBrowse($tpl = null)
+    {
+        /** @var PostinstallModelMessages $model */
+        $model = $this->getModel();
 
-		$this->eid = (int) $model->getState('eid', '700', 'int');
+        $this->eid = (int) $model->getState('eid', '700', 'int');
 
-		if (empty($this->eid))
-		{
-			$this->eid = 700;
-		}
+        if (empty($this->eid)) {
+            $this->eid = 700;
+        }
 
-		$this->token = JFactory::getSession()->getFormToken();
-		$this->extension_options = $model->getComponentOptions();
+        $this->token = JFactory::getSession()->getFormToken();
+        $this->extension_options = $model->getComponentOptions();
 
-		JToolBarHelper::title(JText::sprintf('COM_POSTINSTALL_MESSAGES_TITLE', $model->getExtensionName($this->eid)));
+        JToolBarHelper::title(JText::sprintf('COM_POSTINSTALL_MESSAGES_TITLE', $model->getExtensionName($this->eid)));
 
-		return parent::onBrowse($tpl);
-	}
+        return parent::onBrowse($tpl);
+    }
 }

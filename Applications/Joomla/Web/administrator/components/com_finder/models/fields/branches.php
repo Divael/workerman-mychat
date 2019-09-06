@@ -18,23 +18,23 @@ JFormHelper::loadFieldClass('list');
  */
 class JFormFieldBranches extends JFormFieldList
 {
-	/**
-	 * The form field type.
-	 *
-	 * @var    string
-	 * @since  3.5
-	 */
-	protected $type = 'Branches';
+    /**
+     * The form field type.
+     *
+     * @var    string
+     * @since  3.5
+     */
+    protected $type = 'Branches';
 
-	/**
-	 * Method to get the field options.
-	 *
-	 * @return  array  The field option objects.
-	 *
-	 * @since   3.5
-	 */
-	public function getOptions()
-	{
-		return JHtml::_('finder.mapslist');
-	}
+    /**
+     * Method to get the field options.
+     *
+     * @return  array  The field option objects.
+     *
+     * @since   3.5
+     */
+    public function getOptions()
+    {
+        return JHtml::_('finder.mapslist');
+    }
 }

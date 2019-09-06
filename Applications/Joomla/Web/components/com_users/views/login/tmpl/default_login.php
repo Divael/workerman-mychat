@@ -96,8 +96,8 @@ JHtml::_('behavior.formvalidator');
 			<?php echo JText::_('COM_USERS_LOGIN_REMIND'); ?></a>
 		</li>
 		<?php
-		$usersConfig = JComponentHelper::getParams('com_users');
-		if ($usersConfig->get('allowUserRegistration')) : ?>
+        $usersConfig = JComponentHelper::getParams('com_users');
+        if ($usersConfig->get('allowUserRegistration')) : ?>
 		<li>
 			<a href="<?php echo JRoute::_('index.php?option=com_users&view=registration'); ?>">
 				<?php echo JText::_('COM_USERS_LOGIN_REGISTER'); ?></a>

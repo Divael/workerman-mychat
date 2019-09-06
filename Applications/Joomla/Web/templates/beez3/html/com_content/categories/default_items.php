@@ -15,12 +15,11 @@ if (count($this->items[$this->parent->id]) > 0 && $this->maxLevelcat != 0) :
 <ul>
 <?php foreach ($this->items[$this->parent->id] as $id => $item) : ?>
 	<?php
-	if ($this->params->get('show_empty_categories_cat') || $item->numitems || count($item->getChildren())) :
-	if (!isset($this->items[$this->parent->id][$id + 1]))
-	{
-		$class = ' class="last"';
-	}
-	?>
+    if ($this->params->get('show_empty_categories_cat') || $item->numitems || count($item->getChildren())) :
+    if (!isset($this->items[$this->parent->id][$id + 1])) {
+        $class = ' class="last"';
+    }
+    ?>
 	<li<?php echo $class; ?>>
 	<?php $class = ''; ?>
 		<h3 class="item-title"><a href="<?php echo JRoute::_(ContentHelperRoute::getCategoryRoute($item->id));?>">
@@ -42,13 +41,13 @@ if (count($this->items[$this->parent->id]) > 0 && $this->maxLevelcat != 0) :
 		<?php endif; ?>
 
 		<?php if (count($item->getChildren()) > 0) :
-			$this->items[$item->id] = $item->getChildren();
-			$this->parent = $item;
-			$this->maxLevelcat--;
-			echo $this->loadTemplate('items');
-			$this->parent = $item->getParent();
-			$this->maxLevelcat++;
-		endif; ?>
+            $this->items[$item->id] = $item->getChildren();
+            $this->parent = $item;
+            $this->maxLevelcat--;
+            echo $this->loadTemplate('items');
+            $this->parent = $item->getParent();
+            $this->maxLevelcat++;
+        endif; ?>
 
 	</li>
 	<?php endif; ?>

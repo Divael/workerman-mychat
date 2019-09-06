@@ -45,56 +45,47 @@ extract($displayData);
  * @var   mixed    $excluded        The users to exclude from the list of users
  */
 
-if (!$readonly)
-{
-	JHtml::_('script', 'jui/fielduser.min.js', array('version' => 'auto', 'relative' => true));
+if (!$readonly) {
+    JHtml::_('script', 'jui/fielduser.min.js', array('version' => 'auto', 'relative' => true));
 }
 
 $uri = new JUri('index.php?option=com_users&view=users&layout=modal&tmpl=component&required=0&field={field-user-id}&ismoo=0');
 
-if ($required)
-{
-	$uri->setVar('required', 1);
+if ($required) {
+    $uri->setVar('required', 1);
 }
 
-if (!empty($groups))
-{
-	$uri->setVar('groups', base64_encode(json_encode($groups)));
+if (!empty($groups)) {
+    $uri->setVar('groups', base64_encode(json_encode($groups)));
 }
 
-if (!empty($excluded))
-{
-	$uri->setVar('excluded', base64_encode(json_encode($excluded)));
+if (!empty($excluded)) {
+    $uri->setVar('excluded', base64_encode(json_encode($excluded)));
 }
 
 // Invalidate the input value if no user selected
-if ($this->escape($userName) === JText::_('JLIB_FORM_SELECT_USER'))
-{
-	$userName = '';
+if ($this->escape($userName) === JText::_('JLIB_FORM_SELECT_USER')) {
+    $userName = '';
 }
 
 $inputAttributes = array(
-	'type' => 'text', 'id' => $id, 'class' => 'field-user-input-name', 'value' => $this->escape($userName)
+    'type' => 'text', 'id' => $id, 'class' => 'field-user-input-name', 'value' => $this->escape($userName)
 );
 
-if ($class)
-{
-	$inputAttributes['class'] .= ' ' . $class;
+if ($class) {
+    $inputAttributes['class'] .= ' ' . $class;
 }
 
-if ($size)
-{
-	$inputAttributes['size'] = (int) $size;
+if ($size) {
+    $inputAttributes['size'] = (int) $size;
 }
 
-if ($required)
-{
-	$inputAttributes['required'] = 'required';
+if ($required) {
+    $inputAttributes['required'] = 'required';
 }
 
-if (!$readonly)
-{
-	$inputAttributes['placeholder'] = JText::_('JLIB_FORM_SELECT_USER');
+if (!$readonly) {
+    $inputAttributes['placeholder'] = JText::_('JLIB_FORM_SELECT_USER');
 }
 
 ?>
@@ -111,14 +102,14 @@ if (!$readonly)
 		<?php if (!$readonly) : ?>
 			<a class="btn btn-primary button-select" title="<?php echo JText::_('JLIB_FORM_CHANGE_USER') ?>"><span class="icon-user"></span></a>
 			<?php echo JHtml::_(
-				'bootstrap.renderModal',
-				'userModal_' . $id,
-				array(
-					'title'       => JText::_('JLIB_FORM_CHANGE_USER'),
-					'closeButton' => true,
-					'footer'      => '<a class="btn" data-dismiss="modal">' . JText::_('JCANCEL') . '</a>',
-				)
-			); ?>
+    'bootstrap.renderModal',
+    'userModal_' . $id,
+    array(
+                    'title'       => JText::_('JLIB_FORM_CHANGE_USER'),
+                    'closeButton' => true,
+                    'footer'      => '<a class="btn" data-dismiss="modal">' . JText::_('JCANCEL') . '</a>',
+                )
+); ?>
 		<?php endif; ?>
 	</div>
 	<?php if (!$readonly) : ?>

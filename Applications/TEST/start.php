@@ -37,9 +37,9 @@ $web->onWorkerStart = function ($web) {
     /**
      * $web->id 进程id 从0- $web->count
      */
-    if($web->id == 0){
+    if ($web->id == 0) {
         echo "Web服务1已启动！ {$web->id}\n";
-    }else{
+    } else {
         echo "Web服务2已启动！{$web->id}\n";
     };
     //print 'Web服务已启动！';
@@ -47,9 +47,8 @@ $web->onWorkerStart = function ($web) {
 
     // 每2.5秒执行一次
     $time_interval = 2.5;
-    //$GLOBALS['timer_id'] 
-    $GLOBALS['timer_id'] = Timer::add($time_interval, function()
-    {
+    //$GLOBALS['timer_id']
+    $GLOBALS['timer_id'] = Timer::add($time_interval, function () {
         echo "task run\n";
     });
 
@@ -69,30 +68,25 @@ $web->onWorkerStart = function ($web) {
     // {
     //     echo "   did:" . $data["did"] . " - dnm:" . $data["dnm"] . "\n";
     // }
-    
-
 };
 
-$web->onMessage = function($connection, $msg){
-	print "onMessage! {$connection} + {$msg}\n";
+$web->onMessage = function ($connection, $msg) {
+    print "onMessage! {$connection} + {$msg}\n";
 };
 
-$web->onConnect = function($connection)
-{
+$web->onConnect = function ($connection) {
     echo "new connection from ip " . $connection->getRemoteIp() . "\n";
 };
 
-$web->onClose = function($connection)
-{
+$web->onClose = function ($connection) {
     echo "connection closed\n";
 };
 
-$web-> onWorkerStop = function($web){
+$web-> onWorkerStop = function ($web) {
     echo "onWorkerStop stoped\n";
 };
 
-$web->onError = function($connection, $code, $msg)
-{
+$web->onError = function ($connection, $code, $msg) {
     echo "error $code $msg\n";
 };
 

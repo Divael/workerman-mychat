@@ -18,15 +18,15 @@ defined('JPATH_PLATFORM') or die;
  */
 class JSessionStorageNone extends JSessionStorage
 {
-	/**
-	 * Register the functions of this class with PHP's session handler
-	 *
-	 * @return  void
-	 *
-	 * @since   11.1
-	 */
-	public function register()
-	{
-		// Default session handler is `files`
-	}
+    /**
+     * Register the functions of this class with PHP's session handler
+     *
+     * @return  void
+     *
+     * @since   11.1
+     */
+    public function register()
+    {
+        // Default session handler is `files`
+    }
 }

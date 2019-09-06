@@ -57,17 +57,17 @@ $cparams = JComponentHelper::getParams('com_media');
 	<?php foreach ($this->lead_items as &$item) : ?>
 		<article class="leading-<?php echo $leadingcount; ?><?php echo $item->state == 0 ? 'system-unpublished' : null; ?>">
 			<?php
-				$this->item = &$item;
-				echo $this->loadTemplate('item');
-			?>
+                $this->item = &$item;
+                echo $this->loadTemplate('item');
+            ?>
 		</article>
 		<?php $leadingcount++; ?>
 	<?php endforeach; ?>
 </div>
 <?php endif; ?>
 <?php
-	$introcount = count($this->intro_items);
-	$counter = 0;
+    $introcount = count($this->intro_items);
+    $counter = 0;
 ?>
 <?php if (!empty($this->intro_items)) : ?>
 
@@ -79,9 +79,9 @@ $cparams = JComponentHelper::getParams('com_media');
 		<?php endif; ?>
 		<article class="item column-<?php echo $rowcount;?><?php echo $item->state == 0 ? ' system-unpublished' : null; ?>">
 		<?php
-			$this->item = &$item;
-			echo $this->loadTemplate('item');
-		?>
+            $this->item = &$item;
+            echo $this->loadTemplate('item');
+        ?>
 		</article>
 		<?php $counter++; ?>
 		<?php if (($rowcount == $this->columns) or ($counter == $introcount)) : ?>

@@ -44,7 +44,7 @@ $cparams = JComponentHelper::getParams('com_media');
 	<?php if ($this->params->get('show_contact_list') && count($this->contacts) > 1) : ?>
 		<form action="#" method="get" name="selectForm" id="selectForm">
 			<?php echo JText::_('COM_CONTACT_SELECT_CONTACT'); ?>
-			<?php echo JHtml::_('select.genericlist',  $this->contacts, 'id', 'class="inputbox" onchange="document.location.href = this.value"', 'link', 'name', $this->contact->link);?>
+			<?php echo JHtml::_('select.genericlist', $this->contacts, 'id', 'class="inputbox" onchange="document.location.href = this.value"', 'link', 'name', $this->contact->link);?>
 		</form>
 	<?php endif; ?>
 
@@ -112,12 +112,12 @@ $cparams = JComponentHelper::getParams('com_media');
 	<?php if ($this->params->get('show_articles') && $this->contact->user_id && $this->contact->articles) : ?>
 
 		<?php if ($this->params->get('presentation_style') === 'sliders') :
-			echo JHtml::_('sliders.panel', JText::_('JGLOBAL_ARTICLES'), 'display-articles'); ?>
+            echo JHtml::_('sliders.panel', JText::_('JGLOBAL_ARTICLES'), 'display-articles'); ?>
 		<?php endif; ?>
 		<?php if ($this->params->get('presentation_style') === 'tabs') : ?>
 			<?php echo JHtmlTabs::panel(JText::_('JGLOBAL_ARTICLES'), 'display-articles'); ?>
 		<?php endif; ?>
-		<?php if  ($this->params->get('presentation_style') === 'plain'):?>
+		<?php if ($this->params->get('presentation_style') === 'plain'):?>
 			<?php echo '<h3>'. JText::_('JGLOBAL_ARTICLES').'</h3>'; ?>
 		<?php endif; ?>
 
@@ -128,7 +128,7 @@ $cparams = JComponentHelper::getParams('com_media');
 	<?php if ($this->params->get('show_profile') && $this->contact->user_id && JPluginHelper::isEnabled('user', 'profile')) : ?>
 
 		<?php if ($this->params->get('presentation_style') === 'sliders') :
-			echo JHtml::_('sliders.panel', JText::_('COM_CONTACT_PROFILE'), 'display-profile'); ?>
+            echo JHtml::_('sliders.panel', JText::_('COM_CONTACT_PROFILE'), 'display-profile'); ?>
 		<?php endif; ?>
 		<?php if ($this->params->get('presentation_style') === 'tabs') : ?>
 			<?php echo JHtmlTabs::panel(JText::_('COM_CONTACT_PROFILE'), 'display-profile'); ?>
@@ -148,7 +148,7 @@ $cparams = JComponentHelper::getParams('com_media');
 	<?php if ($this->contact->misc && $this->params->get('show_misc')) : ?>
 
 		<?php if ($this->params->get('presentation_style') === 'sliders') :
-			echo JHtml::_('sliders.panel', JText::_('COM_CONTACT_OTHER_INFORMATION'), 'display-misc'); ?>
+            echo JHtml::_('sliders.panel', JText::_('COM_CONTACT_OTHER_INFORMATION'), 'display-misc'); ?>
 		<?php endif; ?>
 		<?php if ($this->params->get('presentation_style') === 'tabs') : ?>
 			<?php echo JHtmlTabs::panel(JText::_('COM_CONTACT_OTHER_INFORMATION'), 'display-misc'); ?>
@@ -174,8 +174,8 @@ $cparams = JComponentHelper::getParams('com_media');
 	<?php endif; ?>
 
 	<?php if ($this->params->get('presentation_style') === 'sliders') :
-		echo JHtml::_('sliders.end');
-	endif; ?>
+        echo JHtml::_('sliders.end');
+    endif; ?>
 
 	<?php echo $this->item->event->afterDisplayContent; ?>
 </div>

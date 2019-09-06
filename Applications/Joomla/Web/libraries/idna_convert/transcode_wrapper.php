@@ -30,15 +30,21 @@ function encode_utf8($string = '', $encoding = 'iso-8859-1', $safe_mode = false)
     }
     if (function_exists('mb_convert_encoding')) {
         $conv = @mb_convert_encoding($string, 'UTF-8', strtoupper($encoding));
-        if ($conv) return $conv;
+        if ($conv) {
+            return $conv;
+        }
     }
     if (function_exists('iconv')) {
         $conv = @iconv(strtoupper($encoding), 'UTF-8', $string);
-        if ($conv) return $conv;
+        if ($conv) {
+            return $conv;
+        }
     }
     if (function_exists('libiconv')) {
         $conv = @libiconv(strtoupper($encoding), 'UTF-8', $string);
-        if ($conv) return $conv;
+        if ($conv) {
+            return $conv;
+        }
     }
     return $safe;
 }
@@ -55,7 +61,9 @@ function encode_utf8($string = '', $encoding = 'iso-8859-1', $safe_mode = false)
 function decode_utf8($string = '', $encoding = 'iso-8859-1', $safe_mode = false)
 {
     $safe = ($safe_mode) ? $string : false;
-    if (!$encoding) $encoding = 'ISO-8859-1';
+    if (!$encoding) {
+        $encoding = 'ISO-8859-1';
+    }
     if (strtoupper($encoding) == 'UTF-8' || strtoupper($encoding) == 'UTF8') {
         return $string;
     } elseif (strtoupper($encoding) == 'ISO-8859-1') {
@@ -67,15 +75,21 @@ function decode_utf8($string = '', $encoding = 'iso-8859-1', $safe_mode = false)
     }
     if (function_exists('mb_convert_encoding')) {
         $conv = @mb_convert_encoding($string, strtoupper($encoding), 'UTF-8');
-        if ($conv) return $conv;
+        if ($conv) {
+            return $conv;
+        }
     }
     if (function_exists('iconv')) {
         $conv = @iconv('UTF-8', strtoupper($encoding), $string);
-        if ($conv) return $conv;
+        if ($conv) {
+            return $conv;
+        }
     }
     if (function_exists('libiconv')) {
         $conv = @libiconv('UTF-8', strtoupper($encoding), $string);
-        if ($conv) return $conv;
+        if ($conv) {
+            return $conv;
+        }
     }
     return $safe;
 }
@@ -89,7 +103,9 @@ function decode_utf8($string = '', $encoding = 'iso-8859-1', $safe_mode = false)
  */
 function map_w1252_iso8859_1($string = '')
 {
-    if ($string == '') return '';
+    if ($string == '') {
+        return '';
+    }
     $return = '';
     for ($i = 0; $i < strlen($string); ++$i) {
         $c = ord($string{$i});
@@ -116,7 +132,9 @@ function map_w1252_iso8859_1($string = '')
  */
 function map_iso8859_1_w1252($string = '')
 {
-    if ($string == '') return '';
+    if ($string == '') {
+        return '';
+    }
     $return = '';
     for ($i = 0; $i < strlen($string); ++$i) {
         $c = ord($string{$i});
@@ -133,5 +151,3 @@ function map_iso8859_1_w1252($string = '')
     }
     return $return;
 }
-
-?>

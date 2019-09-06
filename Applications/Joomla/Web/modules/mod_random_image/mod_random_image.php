@@ -16,11 +16,10 @@ $link   = $params->get('link');
 $folder = ModRandomImageHelper::getFolder($params);
 $images = ModRandomImageHelper::getImages($params, $folder);
 
-if (!count($images))
-{
-	echo JText::_('MOD_RANDOM_IMAGE_NO_IMAGES');
+if (!count($images)) {
+    echo JText::_('MOD_RANDOM_IMAGE_NO_IMAGES');
 
-	return;
+    return;
 }
 
 $image           = ModRandomImageHelper::getRandomImage($params, $images);

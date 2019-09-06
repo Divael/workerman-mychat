@@ -16,32 +16,31 @@ defined('_JEXEC') or die;
  */
 class JoomlaupdateViewUpdate extends JViewLegacy
 {
-	/**
-	 * Renders the view.
-	 *
-	 * @param   string  $tpl  Template name.
-	 *
-	 * @return void
-	 */
-	public function display($tpl=null)
-	{
-		// Set the toolbar information.
-		JToolbarHelper::title(JText::_('COM_JOOMLAUPDATE_OVERVIEW'), 'loop install');
-		JToolBarHelper::divider();
-		JToolBarHelper::help('JHELP_COMPONENTS_JOOMLA_UPDATE');
+    /**
+     * Renders the view.
+     *
+     * @param   string  $tpl  Template name.
+     *
+     * @return void
+     */
+    public function display($tpl=null)
+    {
+        // Set the toolbar information.
+        JToolbarHelper::title(JText::_('COM_JOOMLAUPDATE_OVERVIEW'), 'loop install');
+        JToolBarHelper::divider();
+        JToolBarHelper::help('JHELP_COMPONENTS_JOOMLA_UPDATE');
 
-		// Add toolbar buttons.
-		$user = JFactory::getUser();
+        // Add toolbar buttons.
+        $user = JFactory::getUser();
 
-		if ($user->authorise('core.admin', 'com_joomlaupdate') || $user->authorise('core.options', 'com_joomlaupdate'))
-		{
-			JToolbarHelper::preferences('com_joomlaupdate');
-		}
+        if ($user->authorise('core.admin', 'com_joomlaupdate') || $user->authorise('core.options', 'com_joomlaupdate')) {
+            JToolbarHelper::preferences('com_joomlaupdate');
+        }
 
-		// Import com_login's model
-		JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_login/models', 'LoginModel');
+        // Import com_login's model
+        JModelLegacy::addIncludePath(JPATH_ADMINISTRATOR . '/components/com_login/models', 'LoginModel');
 
-		// Render the view.
-		parent::display($tpl);
-	}
+        // Render the view.
+        parent::display($tpl);
+    }
 }

@@ -21,7 +21,7 @@ $params = $this->state->get('params');
 // This checks if the editor config options have ever been saved. If they haven't they will fall back to the original settings.
 $editoroptions = isset($params->show_publishing_options);
 if (!$editoroptions):
-	$params->show_urls_images_frontend = '0';
+    $params->show_urls_images_frontend = '0';
 endif;
 ?>
 
@@ -80,7 +80,7 @@ endif;
 			<?php echo $this->form->getInput('articletext'); ?>
 
 	</fieldset>
-	<?php if ($params->get('show_urls_images_frontend')  ) : ?>
+	<?php if ($params->get('show_urls_images_frontend')) : ?>
 	<fieldset>
 		<legend><?php echo JText::_('COM_CONTENT_IMAGES_AND_URLS'); ?></legend>
 			<div class="control-group">

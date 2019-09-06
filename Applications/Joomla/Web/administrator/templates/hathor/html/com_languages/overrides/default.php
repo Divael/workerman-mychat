@@ -17,7 +17,7 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_languages&view=overrides'); ?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -71,8 +71,8 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 		</tfoot>
 		<tbody>
 		<?php $canEdit = JFactory::getUser()->authorise('core.edit', 'com_languages');
-		$i = 0;
-		foreach ($this->items as $key => $text) : ?>
+        $i = 0;
+        foreach ($this->items as $key => $text) : ?>
 			<tr class="row<?php echo $i % 2; ?>" id="overriderrow<?php echo $i; ?>">
 				<td class="center">
 					<?php echo JHtml::_('grid.id', $i, $key); ?>
@@ -95,7 +95,7 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 				</td>
 			</tr>
 			<?php $i++;
-		endforeach; ?>
+        endforeach; ?>
 		</tbody>
 	</table>
 	<div>

@@ -28,10 +28,10 @@ use Joomla\Utilities\ArrayHelper;
  */
 function admin_postinstall_eaccelerator_condition()
 {
-	$app = JFactory::getApplication();
-	$cacheHandler = $app->get('cacheHandler', '');
+    $app = JFactory::getApplication();
+    $cacheHandler = $app->get('cacheHandler', '');
 
-	return (ucfirst($cacheHandler) == 'Eaccelerator');
+    return (ucfirst($cacheHandler) == 'Eaccelerator');
 }
 
 /**
@@ -43,39 +43,36 @@ function admin_postinstall_eaccelerator_condition()
  */
 function admin_postinstall_eaccelerator_action()
 {
-	$prev = ArrayHelper::fromObject(new JConfig);
-	$data = array_merge($prev, array('cacheHandler' => 'file'));
+    $prev = ArrayHelper::fromObject(new JConfig);
+    $data = array_merge($prev, array('cacheHandler' => 'file'));
 
-	$config = new Registry($data);
+    $config = new Registry($data);
 
-	jimport('joomla.filesystem.path');
-	jimport('joomla.filesystem.file');
+    jimport('joomla.filesystem.path');
+    jimport('joomla.filesystem.file');
 
-	// Set the configuration file path.
-	$file = JPATH_CONFIGURATION . '/configuration.php';
+    // Set the configuration file path.
+    $file = JPATH_CONFIGURATION . '/configuration.php';
 
-	// Get the new FTP credentials.
-	$ftp = JClientHelper::getCredentials('ftp', true);
+    // Get the new FTP credentials.
+    $ftp = JClientHelper::getCredentials('ftp', true);
 
-	// Attempt to make the file writeable if using FTP.
-	if (!$ftp['enabled'] && JPath::isOwner($file) && !JPath::setPermissions($file, '0644'))
-	{
-		JError::raiseNotice('SOME_ERROR_CODE', JText::_('COM_CONFIG_ERROR_CONFIGURATION_PHP_NOTWRITABLE'));
-	}
+    // Attempt to make the file writeable if using FTP.
+    if (!$ftp['enabled'] && JPath::isOwner($file) && !JPath::setPermissions($file, '0644')) {
+        JError::raiseNotice('SOME_ERROR_CODE', JText::_('COM_CONFIG_ERROR_CONFIGURATION_PHP_NOTWRITABLE'));
+    }
 
-	// Attempt to write the configuration file as a PHP class named JConfig.
-	$configuration = $config->toString('PHP', array('class' => 'JConfig', 'closingtag' => false));
+    // Attempt to write the configuration file as a PHP class named JConfig.
+    $configuration = $config->toString('PHP', array('class' => 'JConfig', 'closingtag' => false));
 
-	if (!JFile::write($file, $configuration))
-	{
-		JFactory::getApplication()->enqueueMessage(JText::_('COM_CONFIG_ERROR_WRITE_FAILED'), 'error');
+    if (!JFile::write($file, $configuration)) {
+        JFactory::getApplication()->enqueueMessage(JText::_('COM_CONFIG_ERROR_WRITE_FAILED'), 'error');
 
-		return;
-	}
+        return;
+    }
 
-	// Attempt to make the file unwriteable if using FTP.
-	if (!$ftp['enabled'] && JPath::isOwner($file) && !JPath::setPermissions($file, '0444'))
-	{
-		JError::raiseNotice('SOME_ERROR_CODE', JText::_('COM_CONFIG_ERROR_CONFIGURATION_PHP_NOTUNWRITABLE'));
-	}
+    // Attempt to make the file unwriteable if using FTP.
+    if (!$ftp['enabled'] && JPath::isOwner($file) && !JPath::setPermissions($file, '0444')) {
+        JError::raiseNotice('SOME_ERROR_CODE', JText::_('COM_CONFIG_ERROR_CONFIGURATION_PHP_NOTUNWRITABLE'));
+    }
 }

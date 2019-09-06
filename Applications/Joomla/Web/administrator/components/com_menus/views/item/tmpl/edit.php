@@ -104,66 +104,62 @@ $clientId = $this->state->get('item.client_id', 0);
 		<div class="row-fluid">
 			<div class="span9">
 				<?php
-				echo $this->form->renderField('type');
+                echo $this->form->renderField('type');
 
-				if ($this->item->type == 'alias')
-				{
-					echo $this->form->renderFieldset('aliasoptions');
-				}
+                if ($this->item->type == 'alias') {
+                    echo $this->form->renderFieldset('aliasoptions');
+                }
 
-				echo $this->form->renderFieldset('request');
+                echo $this->form->renderFieldset('request');
 
-				if ($this->item->type == 'url')
-				{
-					$this->form->setFieldAttribute('link', 'readonly', 'false');
-				}
+                if ($this->item->type == 'url') {
+                    $this->form->setFieldAttribute('link', 'readonly', 'false');
+                }
 
-				echo $this->form->renderField('link');
+                echo $this->form->renderField('link');
 
-				echo $this->form->renderField('browserNav');
-				echo $this->form->renderField('template_style_id');
+                echo $this->form->renderField('browserNav');
+                echo $this->form->renderField('template_style_id');
 
-				if (!$isModal && $this->item->type == 'container')
-				{
-					echo $this->loadTemplate('container');
-				}
-				?>
+                if (!$isModal && $this->item->type == 'container') {
+                    echo $this->loadTemplate('container');
+                }
+                ?>
 			</div>
 			<div class="span3">
 				<?php
-				// Set main fields.
-				$this->fields = array(
-					'id',
-					'client_id',
-					'menutype',
-					'parent_id',
-					'menuordering',
-					'published',
-					'home',
-					'access',
-					'language',
-					'note',
-				);
+                // Set main fields.
+                $this->fields = array(
+                    'id',
+                    'client_id',
+                    'menutype',
+                    'parent_id',
+                    'menuordering',
+                    'published',
+                    'home',
+                    'access',
+                    'language',
+                    'note',
+                );
 
-				if ($this->item->type != 'component')
-				{
-					$this->fields = array_diff($this->fields, array('home'));
-				}
+                if ($this->item->type != 'component') {
+                    $this->fields = array_diff($this->fields, array('home'));
+                }
 
-				echo JLayoutHelper::render('joomla.edit.global', $this); ?>
+                echo JLayoutHelper::render('joomla.edit.global', $this); ?>
 			</div>
 		</div>
 		<?php echo JHtml::_('bootstrap.endTab'); ?>
 
 		<?php
-		$this->fieldsets = array();
-		$this->ignore_fieldsets = array('aliasoptions', 'request', 'item_associations');
-		echo JLayoutHelper::render('joomla.edit.params', $this);
-		?>
+        $this->fieldsets = array();
+        $this->ignore_fieldsets = array('aliasoptions', 'request', 'item_associations');
+        echo JLayoutHelper::render('joomla.edit.params', $this);
+        ?>
 
 		<?php if (!$isModal && $assoc && $this->state->get('item.client_id') != 1) : ?>
 			<?php if ($this->item->type !== 'alias' && $this->item->type !== 'url'
-				&& $this->item->type !== 'separator' && $this->item->type !== 'heading') : ?>
+                && $this->item->type !== 'separator' && $this->item->type !== 'heading') : ?>
 				<?php echo JHtml::_('bootstrap.addTab', 'myTab', 'associations', JText::_('JGLOBAL_FIELDSET_ASSOCIATIONS')); ?>
 				<?php echo $this->loadTemplate('associations'); ?>
 				<?php echo JHtml::_('bootstrap.endTab'); ?>

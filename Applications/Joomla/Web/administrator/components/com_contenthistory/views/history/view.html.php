@@ -16,35 +16,34 @@ defined('_JEXEC') or die;
  */
 class ContenthistoryViewHistory extends JViewLegacy
 {
-	protected $items;
+    protected $items;
 
-	protected $pagination;
+    protected $pagination;
 
-	protected $state;
+    protected $state;
 
-	/**
-	 * Method to display the view.
-	 *
-	 * @param   string  $tpl  A template file to load. [optional]
-	 *
-	 * @return  mixed  Exception on failure, void on success.
-	 *
-	 * @since   3.2
-	 */
-	public function display($tpl = null)
-	{
-		$this->state = $this->get('State');
-		$this->items = $this->get('Items');
-		$this->pagination = $this->get('Pagination');
+    /**
+     * Method to display the view.
+     *
+     * @param   string  $tpl  A template file to load. [optional]
+     *
+     * @return  mixed  Exception on failure, void on success.
+     *
+     * @since   3.2
+     */
+    public function display($tpl = null)
+    {
+        $this->state = $this->get('State');
+        $this->items = $this->get('Items');
+        $this->pagination = $this->get('Pagination');
 
-		// Check for errors.
-		if (count($errors = $this->get('Errors')))
-		{
-			JError::raiseError(500, implode("\n", $errors));
+        // Check for errors.
+        if (count($errors = $this->get('Errors'))) {
+            JError::raiseError(500, implode("\n", $errors));
 
-			return false;
-		}
+            return false;
+        }
 
-		return parent::display($tpl);
-	}
+        return parent::display($tpl);
+    }
 }

@@ -20,5 +20,5 @@ defined('_JEXEC') or die;
  */
 function admin_postinstall_statscollection_condition()
 {
-	return true;
+    return true;
 }

@@ -50,11 +50,11 @@ $listDirn     = $this->escape($this->state->get('list.direction'));
 		<thead><tr>
 
 			<th class="title">
-					<?php echo JHtml::_('grid.sort',  'COM_WEBLINKS_GRID_TITLE', 'title', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'COM_WEBLINKS_GRID_TITLE', 'title', $listDirn, $listOrder); ?>
 			</th>
 			<?php if ($this->params->get('show_link_hits')) : ?>
 			<th class="hits">
-					<?php echo JHtml::_('grid.sort',  'JGLOBAL_HITS', 'hits', $listDirn, $listOrder); ?>
+					<?php echo JHtml::_('grid.sort', 'JGLOBAL_HITS', 'hits', $listDirn, $listOrder); ?>
 			</th>
 			<?php endif; ?>
 		</tr>
@@ -80,47 +80,45 @@ $listDirn     = $this->escape($this->state->get('list.direction'));
 					<?php endif; ?>
 				<?php endif; ?>
 				<?php
-					// Compute the correct link
-					$menuclass = 'category' . $this->pageclass_sfx;
-					$link   = $item->link;
-					$width  = $item->params->get('width');
-					$height = $item->params->get('height');
+                    // Compute the correct link
+                    $menuclass = 'category' . $this->pageclass_sfx;
+                    $link   = $item->link;
+                    $width  = $item->params->get('width');
+                    $height = $item->params->get('height');
 
-					if ($width == null || $height == null)
-					{
-						$width  = 600;
-						$height = 500;
-					}
+                    if ($width == null || $height == null) {
+                        $width  = 600;
+                        $height = 500;
+                    }
 
-					switch ($item->params->get('target', $this->params->get('target')))
-					{
-						case 1:
-							// open in a new window
-							echo '<a href="'. $link .'" target="_blank" class="'. $menuclass .'" rel="nofollow">'.
-								$this->escape($item->title) .'</a>';
-							break;
+                    switch ($item->params->get('target', $this->params->get('target'))) {
+                        case 1:
+                            // open in a new window
+                            echo '<a href="'. $link .'" target="_blank" class="'. $menuclass .'" rel="nofollow">'.
+                                $this->escape($item->title) .'</a>';
+                            break;
 
-						case 2:
-							// open in a popup window
-							$attribs = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width='.$this->escape($width).',height='.$this->escape($height).'';
-							echo "<a href=\"$link\" onclick=\"window.open(this.href, 'targetWindow', '".$attribs."'); return false;\">".
-								$this->escape($item->title).'</a>';
-							break;
-						case 3:
-							// open in a modal window
-							JHtml::_('behavior.modal', 'a.modal');
-							echo '<a class="modal" href="'.$link.'"  rel="{handler: \'iframe\', size: {x:'.$this->escape($width).', y:'.$this->escape($height).'}}">'.
-								$this->escape($item->title). ' </a>';
-							break;
+                        case 2:
+                            // open in a popup window
+                            $attribs = 'toolbar=no,location=no,status=no,menubar=no,scrollbars=yes,resizable=yes,width='.$this->escape($width).',height='.$this->escape($height).'';
+                            echo "<a href=\"$link\" onclick=\"window.open(this.href, 'targetWindow', '".$attribs."'); return false;\">".
+                                $this->escape($item->title).'</a>';
+                            break;
+                        case 3:
+                            // open in a modal window
+                            JHtml::_('behavior.modal', 'a.modal');
+                            echo '<a class="modal" href="'.$link.'"  rel="{handler: \'iframe\', size: {x:'.$this->escape($width).', y:'.$this->escape($height).'}}">'.
+                                $this->escape($item->title). ' </a>';
+                            break;
 
-						default:
-							// open in parent window
-							echo '<a href="'.  $link . '" class="'. $menuclass .'" rel="nofollow">'.
-								$this->escape($item->title) . ' </a>';
-							break;
-					}
-				?>
-				<?php // Code to add the edit link for the weblink. ?>
+                        default:
+                            // open in parent window
+                            echo '<a href="'.  $link . '" class="'. $menuclass .'" rel="nofollow">'.
+                                $this->escape($item->title) . ' </a>';
+                            break;
+                    }
+                ?>
+				<?php // Code to add the edit link for the weblink.?>
 
 						<?php if ($canEdit) : ?>
 							<ul class="actions">
@@ -142,16 +140,16 @@ $listDirn     = $this->escape($this->state->get('list.direction'));
 				<?php $imgfloat = empty($images->float_first) ? $this->params->get('float_first') : $images->float_first; ?>
 				<div class="img-intro-<?php echo htmlspecialchars($imgfloat, ENT_COMPAT, 'UTF-8'); ?>"> <img
 					<?php if ($images->image_first_caption):
-						echo 'class="caption"'.' title="' .htmlspecialchars($images->image_first_caption, ENT_COMPAT, 'UTF-8') .'"';
-					endif; ?>
+                        echo 'class="caption"'.' title="' .htmlspecialchars($images->image_first_caption, ENT_COMPAT, 'UTF-8') .'"';
+                    endif; ?>
 					src="<?php echo htmlspecialchars($images->image_first, ENT_COMPAT, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($images->image_first_alt, ENT_COMPAT, 'UTF-8'); ?>"/> </div>
 				<?php endif; ?>
 				<?php  if (isset($images->image_second) and !empty($images->image_second)) : ?>
 					<?php $imgfloat = empty($images->float_second) ? $this->params->get('float_second') : $images->float_second; ?>
 					<div class="pull-<?php echo htmlspecialchars($imgfloat, ENT_COMPAT, 'UTF-8'); ?> item-image"> <img
 					<?php if ($images->image_second_caption):
-						echo 'class="caption"'.' title="' .htmlspecialchars($images->image_second_caption, ENT_COMPAT, 'UTF-8') .'"';
-					endif; ?>
+                        echo 'class="caption"'.' title="' .htmlspecialchars($images->image_second_caption, ENT_COMPAT, 'UTF-8') .'"';
+                    endif; ?>
 					src="<?php echo htmlspecialchars($images->image_second, ENT_COMPAT, 'UTF-8'); ?>" alt="<?php echo htmlspecialchars($images->image_second_alt, ENT_COMPAT, 'UTF-8'); ?>"/> </div>
 				<?php endif; ?>
 
@@ -168,10 +166,10 @@ $listDirn     = $this->escape($this->state->get('list.direction'));
 </tbody>
 </table>
 
-	<?php // Code to add a link to submit a weblink. ?>
+	<?php // Code to add a link to submit a weblink.?>
 	<?php /* if ($canCreate) : // TODO This is not working due to some problem in the router, I think. Ref issue #23685 ?>
-		<?php echo JHtml::_('icon.create', $item, $item->params); ?>
- 	<?php  endif; */ ?>
+        <?php echo JHtml::_('icon.create', $item, $item->params); ?>
+    <?php  endif; */ ?>
 		<?php if ($this->params->get('show_pagination')) : ?>
 		 <div class="pagination">
 			<?php if ($this->params->def('show_pagination_results', 1)) : ?>

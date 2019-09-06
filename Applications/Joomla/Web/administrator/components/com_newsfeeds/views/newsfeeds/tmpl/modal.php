@@ -67,34 +67,27 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 				</tfoot>
 				<tbody>
 				<?php
-				$iconStates = array(
-					-2 => 'icon-trash',
-					0 => 'icon-unpublish',
-					1 => 'icon-publish',
-					2 => 'icon-archive',
-				);
-				?>
+                $iconStates = array(
+                    -2 => 'icon-trash',
+                    0 => 'icon-unpublish',
+                    1 => 'icon-publish',
+                    2 => 'icon-archive',
+                );
+                ?>
 				<?php foreach ($this->items as $i => $item) : ?>
-					<?php if ($item->language && JLanguageMultilang::isEnabled())
-					{
-						$tag = strlen($item->language);
-						if ($tag == 5)
-						{
-							$lang = substr($item->language, 0, 2);
-						}
-						elseif ($tag == 6)
-						{
-							$lang = substr($item->language, 0, 3);
-						}
-						else {
-							$lang = '';
-						}
-					}
-					elseif (!JLanguageMultilang::isEnabled())
-					{
-						$lang = '';
-					}
-					?>
+					<?php if ($item->language && JLanguageMultilang::isEnabled()) {
+                    $tag = strlen($item->language);
+                    if ($tag == 5) {
+                        $lang = substr($item->language, 0, 2);
+                    } elseif ($tag == 6) {
+                        $lang = substr($item->language, 0, 3);
+                    } else {
+                        $lang = '';
+                    }
+                } elseif (!JLanguageMultilang::isEnabled()) {
+                        $lang = '';
+                    }
+                    ?>
 					<tr class="row<?php echo $i % 2; ?>">
 						<td class="center">
 							<span class="<?php echo $iconStates[$this->escape($item->published)]; ?>"></span>

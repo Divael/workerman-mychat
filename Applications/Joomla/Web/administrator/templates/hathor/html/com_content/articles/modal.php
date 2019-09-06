@@ -11,9 +11,8 @@ defined('_JEXEC') or die;
 
 $app = JFactory::getApplication();
 
-if ($app->isClient('site'))
-{
-	JSession::checkToken('get') or die(JText::_('JINVALID_TOKEN'));
+if ($app->isClient('site')) {
+    JSession::checkToken('get') or die(JText::_('JINVALID_TOKEN'));
 }
 
 JLoader::register('ContentHelperRoute', JPATH_ROOT . '/components/com_content/helpers/route.php');

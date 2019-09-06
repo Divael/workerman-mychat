@@ -33,19 +33,17 @@ JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => 
 JHtml::_('stylesheet', 'offline.css', array('version' => 'auto', 'relative' => true));
 
 // Use of Google Font
-if ($this->params->get('googleFont'))
-{
-	JHtml::_('stylesheet', '//fonts.googleapis.com/css?family=' . $this->params->get('googleFontName'));
-	$this->addStyleDeclaration("
+if ($this->params->get('googleFont')) {
+    JHtml::_('stylesheet', '//fonts.googleapis.com/css?family=' . $this->params->get('googleFontName'));
+    $this->addStyleDeclaration("
 	h1, h2, h3, h4, h5, h6, .site-title {
 		font-family: '" . str_replace('+', ' ', $this->params->get('googleFontName')) . "', sans-serif;
 	}");
 }
 
 // Template color
-if ($this->params->get('templateColor'))
-{
-	$this->addStyleDeclaration('
+if ($this->params->get('templateColor')) {
+    $this->addStyleDeclaration('
 	body.site {
 		border-top: 3px solid ' . $this->params->get('templateColor') . ';
 		background-color: ' . $this->params->get('templateBackgroundColor') . ';
@@ -77,17 +75,12 @@ JHtml::_('bootstrap.loadCss', false, $this->direction);
 // Logo file or site title param
 $sitename = $app->get('sitename');
 
-if ($this->params->get('logoFile'))
-{
-	$logo = '<img src="' . JUri::root() . $this->params->get('logoFile') . '" alt="' . $sitename . '" />';
-}
-elseif ($this->params->get('sitetitle'))
-{
-	$logo = '<span class="site-title" title="' . $sitename . '">' . htmlspecialchars($this->params->get('sitetitle')) . '</span>';
-}
-else
-{
-	$logo = '<span class="site-title" title="' . $sitename . '">' . $sitename . '</span>';
+if ($this->params->get('logoFile')) {
+    $logo = '<img src="' . JUri::root() . $this->params->get('logoFile') . '" alt="' . $sitename . '" />';
+} elseif ($this->params->get('sitetitle')) {
+    $logo = '<span class="site-title" title="' . $sitename . '">' . htmlspecialchars($this->params->get('sitetitle')) . '</span>';
+} else {
+    $logo = '<span class="site-title" title="' . $sitename . '">' . $sitename . '</span>';
 }
 ?>
 <!DOCTYPE html>

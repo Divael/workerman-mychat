@@ -20,26 +20,26 @@ JFormHelper::loadFieldClass('list');
  */
 class JFormFieldModulesModule extends JFormFieldList
 {
-	/**
-	 * The form field type.
-	 *
-	 * @var    string
-	 * @since  3.4.2
-	 */
-	protected $type = 'ModulesModule';
+    /**
+     * The form field type.
+     *
+     * @var    string
+     * @since  3.4.2
+     */
+    protected $type = 'ModulesModule';
 
-	/**
-	 * Method to get the field options.
-	 *
-	 * @return  array  The field option objects.
-	 *
-	 * @since   3.4.2
-	 */
-	public function getOptions()
-	{
-		$clientId = JFactory::getApplication()->input->get('client_id', 0, 'int');
-		$options  = ModulesHelper::getModules($clientId);
+    /**
+     * Method to get the field options.
+     *
+     * @return  array  The field option objects.
+     *
+     * @since   3.4.2
+     */
+    public function getOptions()
+    {
+        $clientId = JFactory::getApplication()->input->get('client_id', 0, 'int');
+        $options  = ModulesHelper::getModules($clientId);
 
-		return array_merge(parent::getOptions(), $options);
-	}
+        return array_merge(parent::getOptions(), $options);
+    }
 }

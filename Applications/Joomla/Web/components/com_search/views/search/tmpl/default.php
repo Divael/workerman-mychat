@@ -24,8 +24,8 @@ JHtml::_('formbehavior.chosen', 'select');
 
 <?php echo $this->loadTemplate('form'); ?>
 <?php if ($this->error == null && count($this->results) > 0) :
-	echo $this->loadTemplate('results');
+    echo $this->loadTemplate('results');
 else :
-	echo $this->loadTemplate('error');
+    echo $this->loadTemplate('error');
 endif; ?>
 </div>

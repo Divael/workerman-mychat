@@ -18,134 +18,132 @@ use Joomla\Registry\Registry;
  */
 class JLinkedin
 {
-	/**
-	 * @var    Registry  Options for the Linkedin object.
-	 * @since  13.1
-	 */
-	protected $options;
+    /**
+     * @var    Registry  Options for the Linkedin object.
+     * @since  13.1
+     */
+    protected $options;
 
-	/**
-	 * @var    JHttp  The HTTP client object to use in sending HTTP requests.
-	 * @since  13.1
-	 */
-	protected $client;
+    /**
+     * @var    JHttp  The HTTP client object to use in sending HTTP requests.
+     * @since  13.1
+     */
+    protected $client;
 
-	/**
-	 * @var JLinkedinOAuth The OAuth client.
-	 * @since 13.1
-	 */
-	protected $oauth;
+    /**
+     * @var JLinkedinOAuth The OAuth client.
+     * @since 13.1
+     */
+    protected $oauth;
 
-	/**
-	 * @var    JLinkedinPeople  Linkedin API object for people.
-	 * @since  13.1
-	 */
-	protected $people;
+    /**
+     * @var    JLinkedinPeople  Linkedin API object for people.
+     * @since  13.1
+     */
+    protected $people;
 
-	/**
-	 * @var    JLinkedinGroups  Linkedin API object for groups.
-	 * @since  13.1
-	 */
-	protected $groups;
+    /**
+     * @var    JLinkedinGroups  Linkedin API object for groups.
+     * @since  13.1
+     */
+    protected $groups;
 
-	/**
-	 * @var    JLinkedinCompanies  Linkedin API object for companies.
-	 * @since  13.1
-	 */
-	protected $companies;
+    /**
+     * @var    JLinkedinCompanies  Linkedin API object for companies.
+     * @since  13.1
+     */
+    protected $companies;
 
-	/**
-	 * @var    JLinkedinJobs  Linkedin API object for jobs.
-	 * @since  13.1
-	 */
-	protected $jobs;
+    /**
+     * @var    JLinkedinJobs  Linkedin API object for jobs.
+     * @since  13.1
+     */
+    protected $jobs;
 
-	/**
-	 * @var    JLinkedinStream  Linkedin API object for social stream.
-	 * @since  13.1
-	 */
-	protected $stream;
+    /**
+     * @var    JLinkedinStream  Linkedin API object for social stream.
+     * @since  13.1
+     */
+    protected $stream;
 
-	/**
-	 * @var    JLinkedinCommunications  Linkedin API object for communications.
-	 * @since  13.1
-	 */
-	protected $communications;
+    /**
+     * @var    JLinkedinCommunications  Linkedin API object for communications.
+     * @since  13.1
+     */
+    protected $communications;
 
-	/**
-	 * Constructor.
-	 *
-	 * @param   JLinkedinOauth  $oauth    OAuth object
-	 * @param   Registry        $options  Linkedin options object.
-	 * @param   JHttp           $client   The HTTP client object.
-	 *
-	 * @since   13.1
-	 */
-	public function __construct(JLinkedinOauth $oauth = null, Registry $options = null, JHttp $client = null)
-	{
-		$this->oauth = $oauth;
-		$this->options = isset($options) ? $options : new Registry;
-		$this->client  = isset($client) ? $client : new JHttp($this->options);
+    /**
+     * Constructor.
+     *
+     * @param   JLinkedinOauth  $oauth    OAuth object
+     * @param   Registry        $options  Linkedin options object.
+     * @param   JHttp           $client   The HTTP client object.
+     *
+     * @since   13.1
+     */
+    public function __construct(JLinkedinOauth $oauth = null, Registry $options = null, JHttp $client = null)
+    {
+        $this->oauth = $oauth;
+        $this->options = isset($options) ? $options : new Registry;
+        $this->client  = isset($client) ? $client : new JHttp($this->options);
 
-		// Setup the default API url if not already set.
-		$this->options->def('api.url', 'https://api.linkedin.com');
-	}
+        // Setup the default API url if not already set.
+        $this->options->def('api.url', 'https://api.linkedin.com');
+    }
 
-	/**
-	 * Magic method to lazily create API objects
-	 *
-	 * @param   string  $name  Name of property to retrieve
-	 *
-	 * @return  JLinkedinObject  Linkedin API object (statuses, users, favorites, etc.).
-	 *
-	 * @since   13.1
-	 * @throws  InvalidArgumentException
-	 */
-	public function __get($name)
-	{
-		$class = 'JLinkedin' . ucfirst($name);
+    /**
+     * Magic method to lazily create API objects
+     *
+     * @param   string  $name  Name of property to retrieve
+     *
+     * @return  JLinkedinObject  Linkedin API object (statuses, users, favorites, etc.).
+     *
+     * @since   13.1
+     * @throws  InvalidArgumentException
+     */
+    public function __get($name)
+    {
+        $class = 'JLinkedin' . ucfirst($name);
 
-		if (class_exists($class))
-		{
-			if (false == isset($this->$name))
-			{
-				$this->$name = new $class($this->options, $this->client, $this->oauth);
-			}
+        if (class_exists($class)) {
+            if (false == isset($this->$name)) {
+                $this->$name = new $class($this->options, $this->client, $this->oauth);
+            }
 
-			return $this->$name;
-		}
+            return $this->$name;
+        }
 
-		throw new InvalidArgumentException(sprintf('Argument %s produced an invalid class name: %s', $name, $class));
-	}
+        throw new InvalidArgumentException(sprintf('Argument %s produced an invalid class name: %s', $name, $class));
+    }
 
-	/**
-	 * Get an option from the JLinkedin instance.
-	 *
-	 * @param   string  $key  The name of the option to get.
-	 *
-	 * @return  mixed  The option value.
-	 *
-	 * @since   13.1
-	 */
-	public function getOption($key)
-	{
-		return $this->options->get($key);
-	}
+    /**
+     * Get an option from the JLinkedin instance.
+     *
+     * @param   string  $key  The name of the option to get.
+     *
+     * @return  mixed  The option value.
+     *
+     * @since   13.1
+     */
+    public function getOption($key)
+    {
+        return $this->options->get($key);
+    }
 
-	/**
-	 * Set an option for the Linkedin instance.
-	 *
-	 * @param   string  $key    The name of the option to set.
-	 * @param   mixed   $value  The option value to set.
-	 *
-	 * @return  JLinkedin  This object for method chaining.
-	 *
-	 * @since   13.1
-	 */
-	public function setOption($key, $value)
-	{
-		$this->options->set($key, $value);
+    /**
+     * Set an option for the Linkedin instance.
+     *
+     * @param   string  $key    The name of the option to set.
+     * @param   mixed   $value  The option value to set.
+     *
+     * @return  JLinkedin  This object for method chaining.
+     *
+     * @since   13.1
+     */
+    public function setOption($key, $value)
+    {
+        $this->options->set($key, $value);
 
-		return $this;
-	}
+        return $this;
+    }
 }

@@ -18,7 +18,7 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers/html');
 	<legend><?php echo JText::_('COM_USERS_SETTINGS_FIELDSET_LABEL'); ?></legend>
 	<dl class="dl-horizontal">
 	<?php foreach ($fields as $field) :
-		if (!$field->hidden) : ?>
+        if (!$field->hidden) : ?>
 		<dt><?php echo $field->title; ?></dt>
 		<dd>
 			<?php if (JHtml::isRegistered('users.' . $field->id)) : ?>

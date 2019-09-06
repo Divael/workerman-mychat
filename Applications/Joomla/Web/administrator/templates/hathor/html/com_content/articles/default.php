@@ -24,7 +24,7 @@ $n         = count($this->items);
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_content&view=articles'); ?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -142,14 +142,14 @@ $n         = count($this->items);
 
 		<tbody>
 		<?php foreach ($this->items as $i => $item) :
-			$item->max_ordering = 0; //??
-			$ordering   = ($listOrder == 'a.ordering');
-			$canCreate  = $user->authorise('core.create',     'com_content.category.' . $item->catid);
-			$canEdit    = $user->authorise('core.edit',       'com_content.article.' . $item->id);
-			$canCheckin = $user->authorise('core.manage',     'com_checkin') || $item->checked_out == $userId || $item->checked_out == 0;
-			$canEditOwn = $user->authorise('core.edit.own',   'com_content.article.' . $item->id) && $item->created_by == $userId;
-			$canChange  = $user->authorise('core.edit.state', 'com_content.article.' . $item->id) && $canCheckin;
-			?>
+            $item->max_ordering = 0; //??
+            $ordering   = ($listOrder == 'a.ordering');
+            $canCreate  = $user->authorise('core.create', 'com_content.category.' . $item->catid);
+            $canEdit    = $user->authorise('core.edit', 'com_content.article.' . $item->id);
+            $canCheckin = $user->authorise('core.manage', 'com_checkin') || $item->checked_out == $userId || $item->checked_out == 0;
+            $canEditOwn = $user->authorise('core.edit.own', 'com_content.article.' . $item->id) && $item->created_by == $userId;
+            $canChange  = $user->authorise('core.edit.state', 'com_content.article.' . $item->id) && $canCheckin;
+            ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<th class="center">
 					<?php echo JHtml::_('grid.id', $i, $item->id); ?>
@@ -228,19 +228,19 @@ $n         = count($this->items);
 		</tbody>
 	</table>
 
-		<?php //Load the batch processing form. ?>
+		<?php //Load the batch processing form.?>
 		<?php if ($user->authorise('core.create', 'com_content')
-			&& $user->authorise('core.edit', 'com_content')
-			&& $user->authorise('core.edit.state', 'com_content')) : ?>
+            && $user->authorise('core.edit', 'com_content')
+            && $user->authorise('core.edit.state', 'com_content')) : ?>
 			<?php echo JHtml::_(
-				'bootstrap.renderModal',
-				'collapseModal',
-				array(
-					'title'  => JText::_('COM_CONTENT_BATCH_OPTIONS'),
-					'footer' => $this->loadTemplate('batch_footer'),
-				),
-				$this->loadTemplate('batch_body')
-			); ?>
+                'bootstrap.renderModal',
+                'collapseModal',
+                array(
+                    'title'  => JText::_('COM_CONTENT_BATCH_OPTIONS'),
+                    'footer' => $this->loadTemplate('batch_footer'),
+                ),
+                $this->loadTemplate('batch_body')
+            ); ?>
 		<?php endif; ?>
 
 	<?php echo $this->pagination->getListFooter(); ?>

@@ -20,7 +20,7 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_banners&view=clients'); ?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -84,12 +84,12 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 
 		<tbody>
 		<?php foreach ($this->items as $i => $item) :
-			$ordering   = ($listOrder == 'ordering');
-			$canCreate  = $user->authorise('core.create',     'com_banners');
-			$canEdit    = $user->authorise('core.edit',       'com_banners');
-			$canCheckin = $user->authorise('core.manage',     'com_checkin') || $item->checked_out == $user->get('id') || $item->checked_out == 0;
-			$canChange  = $user->authorise('core.edit.state', 'com_banners') && $canCheckin;
-			?>
+            $ordering   = ($listOrder == 'ordering');
+            $canCreate  = $user->authorise('core.create', 'com_banners');
+            $canEdit    = $user->authorise('core.edit', 'com_banners');
+            $canCheckin = $user->authorise('core.manage', 'com_checkin') || $item->checked_out == $user->get('id') || $item->checked_out == 0;
+            $canChange  = $user->authorise('core.edit.state', 'com_banners') && $canCheckin;
+            ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td class="center">
 					<?php echo JHtml::_('grid.id', $i, $item->id); ?>

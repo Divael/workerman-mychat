@@ -63,7 +63,7 @@ $this->addScriptOptions('system.installation', array('url' => JRoute::_('index.p
 			<img src="<?php echo $this->baseurl; ?>/template/images/joomla.png" alt="Joomla" />
 			<hr />
 			<h5>
-				<?php // Fix wrong display of Joomla!® in RTL language ?>
+				<?php // Fix wrong display of Joomla!® in RTL language?>
 				<?php $joomla  = '<a href="https://www.joomla.org" target="_blank">Joomla!</a><sup>' . (JFactory::getLanguage()->isRtl() ? '&#x200E;' : '') . '</sup>'; ?>
 				<?php $license = '<a href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html" target="_blank" rel="noopener noreferrer">' . JText::_('INSTL_GNU_GPL_LICENSE') . '</a>'; ?>
 				<?php echo JText::sprintf('JGLOBAL_ISFREESOFTWARE', $joomla, $license); ?>

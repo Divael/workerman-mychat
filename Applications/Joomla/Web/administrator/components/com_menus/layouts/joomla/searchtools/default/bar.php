@@ -12,15 +12,14 @@ defined('JPATH_BASE') or die;
 /** @var  array  $displayData */
 $data = $displayData;
 
-if ($data['view'] instanceof MenusViewItems)
-{
-	// We will get the menutype filter & remove it from the form filters
-	$menuTypeField = $data['view']->filterForm->getField('menutype');
+if ($data['view'] instanceof MenusViewItems) {
+    // We will get the menutype filter & remove it from the form filters
+    $menuTypeField = $data['view']->filterForm->getField('menutype');
 
-	// Add the client selector before the form filters.
-	$clientIdField = $data['view']->filterForm->getField('client_id');
+    // Add the client selector before the form filters.
+    $clientIdField = $data['view']->filterForm->getField('client_id');
 
-	if ($clientIdField): ?>
+    if ($clientIdField): ?>
 	<div class="js-stools-field-filter js-stools-client_id">
 		<?php echo $clientIdField->input; ?>
 	</div>
@@ -30,12 +29,9 @@ if ($data['view'] instanceof MenusViewItems)
 		<?php echo $menuTypeField->input; ?>
 	</div>
 	<?php
-}
-elseif ($data['view'] instanceof MenusViewMenus)
-{
-	// Add the client selector before the form filters.
-	$clientIdField = $data['view']->filterForm->getField('client_id');
-	?>
+} elseif ($data['view'] instanceof MenusViewMenus) {
+    // Add the client selector before the form filters.
+    $clientIdField = $data['view']->filterForm->getField('client_id'); ?>
 	<div class="js-stools-field-filter js-stools-client_id">
 		<?php echo $clientIdField->input; ?>
 	</div>

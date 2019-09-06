@@ -20,11 +20,11 @@ defined('FOF_INCLUDED') or die;
  */
 class FOFDatabaseDriverSqlazure extends FOFDatabaseDriverSqlsrv
 {
-	/**
-	 * The name of the database driver.
-	 *
-	 * @var    string
-	 * @since  12.1
-	 */
-	public $name = 'sqlazure';
+    /**
+     * The name of the database driver.
+     *
+     * @var    string
+     * @since  12.1
+     */
+    public $name = 'sqlazure';
 }

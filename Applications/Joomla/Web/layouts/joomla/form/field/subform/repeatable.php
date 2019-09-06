@@ -27,10 +27,9 @@ defined('_JEXEC') or die;
 extract($displayData);
 
 // Add script
-if ($multiple)
-{
-	JHtml::_('jquery.ui', array('core', 'sortable'));
-	JHtml::_('script', 'system/subform-repeatable.js', array('version' => 'auto', 'relative' => true));
+if ($multiple) {
+    JHtml::_('jquery.ui', array('core', 'sortable'));
+    JHtml::_('script', 'system/subform-repeatable.js', array('version' => 'auto', 'relative' => true));
 }
 
 $sublayout = empty($groupByFieldset) ? 'section' : 'section-byfieldsets';
@@ -49,10 +48,10 @@ $sublayout = empty($groupByFieldset) ? 'section' : 'section-byfieldsets';
 			</div>
 			<?php endif; ?>
 		<?php
-		foreach ($forms as $k => $form) :
-			echo $this->sublayout($sublayout, array('form' => $form, 'basegroup' => $fieldname, 'group' => $fieldname . $k, 'buttons' => $buttons));
-		endforeach;
-		?>
+        foreach ($forms as $k => $form) :
+            echo $this->sublayout($sublayout, array('form' => $form, 'basegroup' => $fieldname, 'group' => $fieldname . $k, 'buttons' => $buttons));
+        endforeach;
+        ?>
 		<?php if ($multiple) : ?>
 		<script type="text/subform-repeatable-template-section" class="subform-repeatable-template-section">
 		<?php echo $this->sublayout($sublayout, array('form' => $tmpl, 'basegroup' => $fieldname, 'group' => $fieldname . 'X', 'buttons' => $buttons)); ?>

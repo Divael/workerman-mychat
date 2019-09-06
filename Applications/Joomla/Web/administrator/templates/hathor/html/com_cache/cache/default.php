@@ -14,7 +14,7 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_cache'); ?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -44,21 +44,21 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 				<input type="checkbox" name="checkall-toggle" value="" title="<?php echo JText::_('JGLOBAL_CHECK_ALL'); ?>" onclick="Joomla.checkAll(this)" />
 			</th>
 			<th class="title nowrap">
-				<?php echo JHtml::_('grid.sort',  'COM_CACHE_GROUP', 'group', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort', 'COM_CACHE_GROUP', 'group', $listDirn, $listOrder); ?>
 			</th>
 			<th class="width-5 center nowrap">
-				<?php echo JHtml::_('grid.sort',  'COM_CACHE_NUMBER_OF_FILES', 'count', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort', 'COM_CACHE_NUMBER_OF_FILES', 'count', $listDirn, $listOrder); ?>
 			</th>
 			<th class="width-10 center">
-				<?php echo JHtml::_('grid.sort',  'COM_CACHE_SIZE', 'size', $listDirn, $listOrder); ?>
+				<?php echo JHtml::_('grid.sort', 'COM_CACHE_SIZE', 'size', $listDirn, $listOrder); ?>
 			</th>
 		</tr>
 	</thead>
 
 	<tbody>
 		<?php
-		$i = 0;
-		foreach ($this->data as $folder => $item) : ?>
+        $i = 0;
+        foreach ($this->data as $folder => $item) : ?>
 		<tr class="row<?php echo $i % 2; ?>">
 			<td>
 				<input type="checkbox" id="cb<?php echo $i;?>" name="cid[]" value="<?php echo $item->group; ?>" onclick="Joomla.isChecked(this.checked);" />

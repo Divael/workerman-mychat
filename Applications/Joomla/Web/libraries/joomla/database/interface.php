@@ -16,12 +16,12 @@ defined('JPATH_PLATFORM') or die;
 */
 interface JDatabaseInterface
 {
-	/**
-	 * Test to see if the connector is available.
-	 *
-	 * @return  boolean  True on success, false otherwise.
-	 *
-	 * @since   11.2
-	 */
-	public static function isSupported();
+    /**
+     * Test to see if the connector is available.
+     *
+     * @return  boolean  True on success, false otherwise.
+     *
+     * @since   11.2
+     */
+    public static function isSupported();
 }

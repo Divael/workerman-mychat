@@ -27,44 +27,39 @@ defined('_JEXEC') or die;
 extract($displayData);
 
 // Add script
-if ($multiple)
-{
-	JHtml::_('jquery.ui', array('core', 'sortable'));
-	JHtml::_('script', 'system/subform-repeatable.js', array('version' => 'auto', 'relative' => true));
+if ($multiple) {
+    JHtml::_('jquery.ui', array('core', 'sortable'));
+    JHtml::_('script', 'system/subform-repeatable.js', array('version' => 'auto', 'relative' => true));
 }
 
 // Build heading
 $table_head = '';
 
-if (!empty($groupByFieldset))
-{
-	foreach ($tmpl->getFieldsets() as $fieldset) {
-		$table_head .= '<th>' . JText::_($fieldset->label);
+if (!empty($groupByFieldset)) {
+    foreach ($tmpl->getFieldsets() as $fieldset) {
+        $table_head .= '<th>' . JText::_($fieldset->label);
 
-		if (!empty($fieldset->description))
-		{
-			$table_head .= '<br /><small style="font-weight:normal">' . JText::_($fieldset->description) . '</small>';
-		}
+        if (!empty($fieldset->description)) {
+            $table_head .= '<br /><small style="font-weight:normal">' . JText::_($fieldset->description) . '</small>';
+        }
 
-		$table_head .= '</th>';
-	}
+        $table_head .= '</th>';
+    }
 
-	$sublayout = 'section-byfieldsets';
-}
-else
-{
-	foreach ($tmpl->getGroup('') as $field) {
-		$table_head .= '<th>' . strip_tags($field->label);
-		$table_head .= '<br /><small style="font-weight:normal">' . JText::_($field->description) . '</small>';
-		$table_head .= '</th>';
-	}
+    $sublayout = 'section-byfieldsets';
+} else {
+    foreach ($tmpl->getGroup('') as $field) {
+        $table_head .= '<th>' . strip_tags($field->label);
+        $table_head .= '<br /><small style="font-weight:normal">' . JText::_($field->description) . '</small>';
+        $table_head .= '</th>';
+    }
 
-	$sublayout = 'section';
+    $sublayout = 'section';
 
-	// Label will not be shown for sections layout, so reset the margin left
-	JFactory::getDocument()->addStyleDeclaration(
-		'.subform-table-sublayout-section .controls { margin-left: 0px }'
-	);
+    // Label will not be shown for sections layout, so reset the margin left
+    JFactory::getDocument()->addStyleDeclaration(
+        '.subform-table-sublayout-section .controls { margin-left: 0px }'
+    );
 }
 ?>
 
@@ -92,10 +87,10 @@ else
 			</thead>
 			<tbody>
 			<?php
-			foreach ($forms as $k => $form) :
-				echo $this->sublayout($sublayout, array('form' => $form, 'basegroup' => $fieldname, 'group' => $fieldname . $k, 'buttons' => $buttons));
-			endforeach;
-			?>
+            foreach ($forms as $k => $form) :
+                echo $this->sublayout($sublayout, array('form' => $form, 'basegroup' => $fieldname, 'group' => $fieldname . $k, 'buttons' => $buttons));
+            endforeach;
+            ?>
 			</tbody>
 		</table>
 		<?php if ($multiple) : ?>

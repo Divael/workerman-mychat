@@ -18,73 +18,68 @@ defined('_JEXEC') or die;
  */
 class ModArchiveHelper
 {
-	/**
-	 * Retrieve list of archived articles
-	 *
-	 * @param   \Joomla\Registry\Registry  &$params  module parameters
-	 *
-	 * @return  array
-	 *
-	 * @since   1.5
-	 */
-	public static function getList(&$params)
-	{
-		// Get database
-		$db    = JFactory::getDbo();
-		$query = $db->getQuery(true);
-		$query->select($query->month($db->quoteName('created')) . ' AS created_month')
-			->select('MIN(' . $db->quoteName('created') . ') AS created')
-			->select($query->year($db->quoteName('created')) . ' AS created_year')
-			->from('#__content')
-			->where('state = 2')
-			->group($query->year($db->quoteName('created')) . ', ' . $query->month($db->quoteName('created')))
-			->order($query->year($db->quoteName('created')) . ' DESC, ' . $query->month($db->quoteName('created')) . ' DESC');
+    /**
+     * Retrieve list of archived articles
+     *
+     * @param   \Joomla\Registry\Registry  &$params  module parameters
+     *
+     * @return  array
+     *
+     * @since   1.5
+     */
+    public static function getList(&$params)
+    {
+        // Get database
+        $db    = JFactory::getDbo();
+        $query = $db->getQuery(true);
+        $query->select($query->month($db->quoteName('created')) . ' AS created_month')
+            ->select('MIN(' . $db->quoteName('created') . ') AS created')
+            ->select($query->year($db->quoteName('created')) . ' AS created_year')
+            ->from('#__content')
+            ->where('state = 2')
+            ->group($query->year($db->quoteName('created')) . ', ' . $query->month($db->quoteName('created')))
+            ->order($query->year($db->quoteName('created')) . ' DESC, ' . $query->month($db->quoteName('created')) . ' DESC');
 
-		// Filter by language
-		if (JFactory::getApplication()->getLanguageFilter())
-		{
-			$query->where('language in (' . $db->quote(JFactory::getLanguage()->getTag()) . ',' . $db->quote('*') . ')');
-		}
+        // Filter by language
+        if (JFactory::getApplication()->getLanguageFilter()) {
+            $query->where('language in (' . $db->quote(JFactory::getLanguage()->getTag()) . ',' . $db->quote('*') . ')');
+        }
 
-		$db->setQuery($query, 0, (int) $params->get('count'));
+        $db->setQuery($query, 0, (int) $params->get('count'));
 
-		try
-		{
-			$rows = (array) $db->loadObjectList();
-		}
-		catch (RuntimeException $e)
-		{
-			JFactory::getApplication()->enqueueMessage(JText::_('JERROR_AN_ERROR_HAS_OCCURRED'), 'error');
+        try {
+            $rows = (array) $db->loadObjectList();
+        } catch (RuntimeException $e) {
+            JFactory::getApplication()->enqueueMessage(JText::_('JERROR_AN_ERROR_HAS_OCCURRED'), 'error');
 
-			return;
-		}
+            return;
+        }
 
-		$app    = JFactory::getApplication();
-		$menu   = $app->getMenu();
-		$item   = $menu->getItems('link', 'index.php?option=com_content&view=archive', true);
-		$itemid = (isset($item) && !empty($item->id)) ? '&Itemid=' . $item->id : '';
+        $app    = JFactory::getApplication();
+        $menu   = $app->getMenu();
+        $item   = $menu->getItems('link', 'index.php?option=com_content&view=archive', true);
+        $itemid = (isset($item) && !empty($item->id)) ? '&Itemid=' . $item->id : '';
 
-		$i     = 0;
-		$lists = array();
+        $i     = 0;
+        $lists = array();
 
-		foreach ($rows as $row)
-		{
-			$date = JFactory::getDate($row->created);
+        foreach ($rows as $row) {
+            $date = JFactory::getDate($row->created);
 
-			$created_month = $date->format('n');
-			$created_year  = $date->format('Y');
+            $created_month = $date->format('n');
+            $created_year  = $date->format('Y');
 
-			$created_year_cal = JHtml::_('date', $row->created, 'Y');
-			$month_name_cal   = JHtml::_('date', $row->created, 'F');
+            $created_year_cal = JHtml::_('date', $row->created, 'Y');
+            $month_name_cal   = JHtml::_('date', $row->created, 'F');
 
-			$lists[$i] = new stdClass;
+            $lists[$i] = new stdClass;
 
-			$lists[$i]->link = JRoute::_('index.php?option=com_content&view=archive&year=' . $created_year . '&month=' . $created_month . $itemid);
-			$lists[$i]->text = JText::sprintf('MOD_ARTICLES_ARCHIVE_DATE', $month_name_cal, $created_year_cal);
+            $lists[$i]->link = JRoute::_('index.php?option=com_content&view=archive&year=' . $created_year . '&month=' . $created_month . $itemid);
+            $lists[$i]->text = JText::sprintf('MOD_ARTICLES_ARCHIVE_DATE', $month_name_cal, $created_year_cal);
 
-			$i++;
-		}
+            $i++;
+        }
 
-		return $lists;
-	}
+        return $lists;
+    }
 }

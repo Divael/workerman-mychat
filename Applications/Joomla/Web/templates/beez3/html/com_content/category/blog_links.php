@@ -22,7 +22,7 @@ JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
 <ol>
 
 <?php
-	foreach ($this->link_items as &$item) :
+    foreach ($this->link_items as &$item) :
 ?>
 		 <li>
 		  		<a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catid, $item->language)); ?>">

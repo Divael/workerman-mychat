@@ -36,13 +36,12 @@ endif;
 			</div>
 			<div class="controls">
 				<?php
-				// If multi-language site, make menu-type selection read-only
-				if (JLanguageMultilang::isEnabled() && $this->item['module'] === 'mod_menu' && $field->getAttribute('name') === 'menutype')
-				{
-					$field->__set('readonly', true);
-				}
-				echo $field->input;
-				?>
+                // If multi-language site, make menu-type selection read-only
+                if (JLanguageMultilang::isEnabled() && $this->item['module'] === 'mod_menu' && $field->getAttribute('name') === 'menutype') {
+                    $field->__set('readonly', true);
+                }
+                echo $field->input;
+                ?>
 			</div>
 		</div>
 	</li>

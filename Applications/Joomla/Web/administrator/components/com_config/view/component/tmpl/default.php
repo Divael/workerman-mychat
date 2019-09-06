@@ -26,7 +26,7 @@ JText::script('NOTICE');
 JText::script('MESSAGE');
 
 JFactory::getDocument()->addScriptDeclaration(
-	'
+    '
 	Joomla.submitbutton = function(task)
 	{
 		if (task === "config.cancel.component" || document.formvalidator.isValid(document.getElementById("component-form")))

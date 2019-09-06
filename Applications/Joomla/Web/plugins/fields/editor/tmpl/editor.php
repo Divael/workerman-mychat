@@ -10,9 +10,8 @@ defined('_JEXEC') or die;
 
 $value = $field->value;
 
-if ($value == '')
-{
-	return;
+if ($value == '') {
+    return;
 }
 
 echo JHTML::_('content.prepare', $value);

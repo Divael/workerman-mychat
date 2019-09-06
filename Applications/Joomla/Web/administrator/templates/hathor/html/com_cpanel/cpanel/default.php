@@ -14,9 +14,9 @@ use Joomla\Registry\Registry;
 
 echo JHtml::_('sliders.start', 'panel-sliders', array('useCookie' => '1'));
 if (JFactory::getUser()->authorise('core.manage', 'com_postinstall')) :
-	if ($this->postinstall_message_count):
-		echo JHtml::_('sliders.panel', JText::_('COM_CPANEL_MESSAGES_TITLE'), 'cpanel-panel-com-postinstall');
-	?>
+    if ($this->postinstall_message_count):
+        echo JHtml::_('sliders.panel', JText::_('COM_CPANEL_MESSAGES_TITLE'), 'cpanel-panel-com-postinstall');
+    ?>
 		<div class="modal-body">
 			<p>
 				<?php echo JText::_('COM_CPANEL_MESSAGES_BODY_NOCLOSE'); ?>
@@ -33,11 +33,10 @@ if (JFactory::getUser()->authorise('core.manage', 'com_postinstall')) :
 	<?php endif; ?>
 <?php endif;
 
-foreach ($this->modules as $module)
-{
-	$output = JModuleHelper::renderModule($module);
-	echo JHtml::_('sliders.panel', $module->title, 'cpanel-panel-' . $module->name);
-	echo $output;
+foreach ($this->modules as $module) {
+    $output = JModuleHelper::renderModule($module);
+    echo JHtml::_('sliders.panel', $module->title, 'cpanel-panel-' . $module->name);
+    echo $output;
 }
 
 echo JHtml::_('sliders.end');

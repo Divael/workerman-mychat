@@ -45,58 +45,50 @@ extract($displayData);
  * @var   mixed    $excluded        The users to exclude from the list of users
  */
 
-if (!$readonly)
-{
-	JHtml::_('behavior.modal', 'a.modal_' . $id);
-	JHtml::_('script', 'jui/fielduser.min.js', array('version' => 'auto', 'relative' => true));
+if (!$readonly) {
+    JHtml::_('behavior.modal', 'a.modal_' . $id);
+    JHtml::_('script', 'jui/fielduser.min.js', array('version' => 'auto', 'relative' => true));
 }
 
 $uri = new JUri('index.php?option=com_users&view=users&layout=modal&tmpl=component&required=0');
 
 $uri->setVar('field', $this->escape($id));
 
-if ($required)
-{
-	$uri->setVar('required', 1);
+if ($required) {
+    $uri->setVar('required', 1);
 }
 
-if (!empty($groups))
-{
-	$uri->setVar('groups', base64_encode(json_encode($groups)));
+if (!empty($groups)) {
+    $uri->setVar('groups', base64_encode(json_encode($groups)));
 }
 
-if (!empty($excluded))
-{
-	$uri->setVar('excluded', base64_encode(json_encode($excluded)));
+if (!empty($excluded)) {
+    $uri->setVar('excluded', base64_encode(json_encode($excluded)));
 }
 
 // Invalidate the input value if no user selected
-if ($this->escape($userName) === JText::_('JLIB_FORM_SELECT_USER'))
-{
-	$userName = '';
+if ($this->escape($userName) === JText::_('JLIB_FORM_SELECT_USER')) {
+    $userName = '';
 }
 
 $inputAttributes = array(
-	'type' => 'text', 'id' => $id, 'value' => $this->escape($userName)
+    'type' => 'text', 'id' => $id, 'value' => $this->escape($userName)
 );
 
-if ($size)
-{
-	$inputAttributes['size'] = (int) $size;
+if ($size) {
+    $inputAttributes['size'] = (int) $size;
 }
 
-if ($required)
-{
-	$inputAttributes['required'] = 'required';
+if ($required) {
+    $inputAttributes['required'] = 'required';
 }
 
-if (!$readonly)
-{
-	$inputAttributes['placeholder'] = JText::_('JLIB_FORM_SELECT_USER');
+if (!$readonly) {
+    $inputAttributes['placeholder'] = JText::_('JLIB_FORM_SELECT_USER');
 }
 
 $anchorAttributes = array(
-	'class' => 'btn btn-primary modal_' . $id, 'title' => JText::_('JLIB_FORM_CHANGE_USER'), 'rel' => '{handler: \'iframe\', size: {x: 800, y: 500}}'
+    'class' => 'btn btn-primary modal_' . $id, 'title' => JText::_('JLIB_FORM_CHANGE_USER'), 'rel' => '{handler: \'iframe\', size: {x: 800, y: 500}}'
 );
 
 ?>

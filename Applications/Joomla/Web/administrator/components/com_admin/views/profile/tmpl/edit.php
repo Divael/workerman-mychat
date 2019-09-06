@@ -40,7 +40,7 @@ $fieldsets = $this->form->getFieldsets();
 			<div class="control-label"><?php echo $field->label; ?></div>
 			<div class="controls">
 				<?php if ($field->fieldname == 'password2') : ?>
-					<?php // Disables autocomplete ?> <input type="password" style="display:none">
+					<?php // Disables autocomplete?> <input type="password" style="display:none">
 				<?php endif; ?>
 				<?php echo $field->input; ?>
 			</div>
@@ -50,11 +50,10 @@ $fieldsets = $this->form->getFieldsets();
 
 	<?php foreach ($fieldsets as $fieldset) : ?>
 		<?php
-		if ($fieldset->name == 'user_details')
-		{
-			continue;
-		}
-		?>
+        if ($fieldset->name == 'user_details') {
+            continue;
+        }
+        ?>
 		<?php echo JHtml::_('bootstrap.addTab', 'myTab', $fieldset->name, JText::_($fieldset->label)); ?>
 		<?php foreach ($this->form->getFieldset($fieldset->name) as $field) : ?>
 			<?php if ($field->hidden) : ?>

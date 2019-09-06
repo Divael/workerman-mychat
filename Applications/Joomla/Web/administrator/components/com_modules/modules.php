@@ -14,9 +14,8 @@ $user  = JFactory::getUser();
 $input = JFactory::getApplication()->input;
 
 if (($input->get('layout') !== 'modal' && $input->get('view') !== 'modules')
-	&& !$user->authorise('core.manage', 'com_modules'))
-{
-	throw new JAccessExceptionNotallowed(JText::_('JERROR_ALERTNOAUTHOR'), 403);
+    && !$user->authorise('core.manage', 'com_modules')) {
+    throw new JAccessExceptionNotallowed(JText::_('JERROR_ALERTNOAUTHOR'), 403);
 }
 
 $controller = JControllerLegacy::getInstance('Modules');

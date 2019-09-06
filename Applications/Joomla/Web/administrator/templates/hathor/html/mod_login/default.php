@@ -29,7 +29,7 @@ JHtml::_('behavior.keepalive');
 				</div>
 			</div>
 		<?php endif; ?>
-		<?php if (!empty ($langs)) : ?>
+		<?php if (!empty($langs)) : ?>
 			<label id="mod-login-language-lbl" for="lang"><?php echo JText::_('MOD_LOGIN_LANGUAGE'); ?></label>
 			<?php echo $langs; ?>
 		<?php endif; ?>

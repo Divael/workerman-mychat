@@ -22,28 +22,22 @@ $listDirn  = $this->escape($this->state->get('list.direction'));
 $saveOrder = $listOrder == 'fp.ordering';
 $columns   = 10;
 
-if (strpos($listOrder, 'publish_up') !== false)
-{
-	$orderingColumn = 'publish_up';
-}
-elseif (strpos($listOrder, 'publish_down') !== false)
-{
-	$orderingColumn = 'publish_down';
-}
-else
-{
-	$orderingColumn = 'created';
+if (strpos($listOrder, 'publish_up') !== false) {
+    $orderingColumn = 'publish_up';
+} elseif (strpos($listOrder, 'publish_down') !== false) {
+    $orderingColumn = 'publish_down';
+} else {
+    $orderingColumn = 'created';
 }
 
-if ($saveOrder)
-{
-	$saveOrderingUrl = 'index.php?option=com_content&task=featured.saveOrderAjax&tmpl=component';
-	JHtml::_('sortablelist.sortable', 'articleList', 'adminForm', strtolower($listDirn), $saveOrderingUrl);
+if ($saveOrder) {
+    $saveOrderingUrl = 'index.php?option=com_content&task=featured.saveOrderAjax&tmpl=component';
+    JHtml::_('sortablelist.sortable', 'articleList', 'adminForm', strtolower($listDirn), $saveOrderingUrl);
 }
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_content&view=featured'); ?>" method="post" name="adminForm" id="adminForm">
-	<?php if (!empty( $this->sidebar)) : ?>
+	<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -52,9 +46,9 @@ if ($saveOrder)
 		<div id="j-main-container">
 			<?php endif; ?>
 			<?php
-			// Search tools bar
-			echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));
-			?>
+            // Search tools bar
+            echo JLayoutHelper::render('joomla.searchtools.default', array('view' => $this));
+            ?>
 			<?php if (empty($this->items)) : ?>
 				<div class="alert alert-no-items">
 					<?php echo JText::_('JGLOBAL_NO_MATCHING_RESULTS'); ?>
@@ -115,28 +109,25 @@ if ($saveOrder)
 					<tbody>
 					<?php $count = count($this->items); ?>
 					<?php foreach ($this->items as $i => $item) :
-						$item->max_ordering = 0;
-						$ordering   = ($listOrder == 'fp.ordering');
-						$assetId    = 'com_content.article.' . $item->id;
-						$canCreate  = $user->authorise('core.create', 'com_content.category.' . $item->catid);
-						$canEdit    = $user->authorise('core.edit', 'com_content.article.' . $item->id);
-						$canCheckin = $user->authorise('core.manage', 'com_checkin') || $item->checked_out == $userId || $item->checked_out == 0;
-						$canChange  = $user->authorise('core.edit.state', 'com_content.article.' . $item->id) && $canCheckin;
-						?>
+                        $item->max_ordering = 0;
+                        $ordering   = ($listOrder == 'fp.ordering');
+                        $assetId    = 'com_content.article.' . $item->id;
+                        $canCreate  = $user->authorise('core.create', 'com_content.category.' . $item->catid);
+                        $canEdit    = $user->authorise('core.edit', 'com_content.article.' . $item->id);
+                        $canCheckin = $user->authorise('core.manage', 'com_checkin') || $item->checked_out == $userId || $item->checked_out == 0;
+                        $canChange  = $user->authorise('core.edit.state', 'com_content.article.' . $item->id) && $canCheckin;
+                        ?>
 						<tr class="row<?php echo $i % 2; ?>">
 							<td class="order nowrap center hidden-phone">
 								<?php
-								$iconClass = '';
+                                $iconClass = '';
 
-								if (!$canChange)
-								{
-									$iconClass = ' inactive';
-								}
-								elseif (!$saveOrder)
-								{
-									$iconClass = ' inactive tip-top hasTooltip" title="' . JHtml::_('tooltipText', 'JORDERINGDISABLED');
-								}
-								?>
+                                if (!$canChange) {
+                                    $iconClass = ' inactive';
+                                } elseif (!$saveOrder) {
+                                    $iconClass = ' inactive tip-top hasTooltip" title="' . JHtml::_('tooltipText', 'JORDERINGDISABLED');
+                                }
+                                ?>
 								<span class="sortable-handler<?php echo $iconClass ?>">
 								<span class="icon-menu" aria-hidden="true"></span>
 							</span>
@@ -152,13 +143,12 @@ if ($saveOrder)
 									<?php echo JHtml::_('jgrid.published', $item->state, $i, 'articles.', $canChange, 'cb', $item->publish_up, $item->publish_down); ?>
 									<?php echo JHtml::_('contentadministrator.featured', $item->featured, $i, $canChange); ?>
 									<?php // Create dropdown items and render the dropdown list.
-									if ($canChange)
-									{
-										JHtml::_('actionsdropdown.' . ((int) $item->state === 2 ? 'un' : '') . 'archive', 'cb' . $i, 'articles');
-										JHtml::_('actionsdropdown.' . ((int) $item->state === -2 ? 'un' : '') . 'trash', 'cb' . $i, 'articles');
-										echo JHtml::_('actionsdropdown.render', $this->escape($item->title));
-									}
-									?>
+                                    if ($canChange) {
+                                        JHtml::_('actionsdropdown.' . ((int) $item->state === 2 ? 'un' : '') . 'archive', 'cb' . $i, 'articles');
+                                        JHtml::_('actionsdropdown.' . ((int) $item->state === -2 ? 'un' : '') . 'trash', 'cb' . $i, 'articles');
+                                        echo JHtml::_('actionsdropdown.render', $this->escape($item->title));
+                                    }
+                                    ?>
 								</div>
 							</td>
 							<td class="has-context">
@@ -201,9 +191,9 @@ if ($saveOrder)
 							</td>
 							<td class="nowrap small hidden-phone">
 								<?php
-								$date = $item->{$orderingColumn};
-								echo $date > 0 ? JHtml::_('date', $date, JText::_('DATE_FORMAT_LC4')) : '-';
-								?>							</td>
+                                $date = $item->{$orderingColumn};
+                                echo $date > 0 ? JHtml::_('date', $date, JText::_('DATE_FORMAT_LC4')) : '-';
+                                ?>							</td>
 							<td class="center hidden-phone">
 								<span class="badge badge-info">
 								<?php echo (int) $item->hits; ?>

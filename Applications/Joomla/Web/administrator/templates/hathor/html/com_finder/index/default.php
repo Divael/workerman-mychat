@@ -49,7 +49,7 @@ JFactory::getDocument()->addScriptDeclaration("
 ");
 ?>
 <form action="<?php echo JRoute::_('index.php?option=com_finder&view=index');?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -114,13 +114,12 @@ JFactory::getDocument()->addScriptDeclaration("
 			<tr class="row0">
 				<td align="center" colspan="7">
 					<?php
-					if ($this->total == 0)
-					{
-						echo JText::_('COM_FINDER_INDEX_NO_DATA') . '  ' . JText::_('COM_FINDER_INDEX_TIP');
-					} else {
-						echo JText::_('COM_FINDER_INDEX_NO_CONTENT');
-					}
-					?>
+                    if ($this->total == 0) {
+                        echo JText::_('COM_FINDER_INDEX_NO_DATA') . '  ' . JText::_('COM_FINDER_INDEX_TIP');
+                    } else {
+                        echo JText::_('COM_FINDER_INDEX_NO_CONTENT');
+                    }
+                    ?>
 				</td>
 			</tr>
 		<?php endif; ?>
@@ -141,19 +140,18 @@ JFactory::getDocument()->addScriptDeclaration("
 				</td>
 				<td class="center nowrap">
 					<?php
-					$key = FinderHelperLanguage::branchSingular($item->t_title);
-					echo $lang->hasKey($key) ? JText::_($key) : $item->t_title;
-					?>
+                    $key = FinderHelperLanguage::branchSingular($item->t_title);
+                    echo $lang->hasKey($key) ? JText::_($key) : $item->t_title;
+                    ?>
 				</td>
 				<td class="nowrap">
 					<?php
-					if (strlen($item->url) > 80)
-					{
-						echo substr($item->url, 0, 70) . '...';
-					} else {
-						echo $item->url;
-					}
-					?>
+                    if (strlen($item->url) > 80) {
+                        echo substr($item->url, 0, 70) . '...';
+                    } else {
+                        echo $item->url;
+                    }
+                    ?>
 				</td>
 				<td class="center nowrap">
 					<?php echo JHtml::_('date', $item->indexdate, JText::_('DATE_FORMAT_LC4')); ?>

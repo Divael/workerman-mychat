@@ -23,7 +23,7 @@ $saveOrder = $listOrder == 'a.ordering';
 ?>
 
 <form action="<?php echo JRoute::_('index.php?option=com_weblinks&view=weblinks'); ?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -125,13 +125,13 @@ $saveOrder = $listOrder == 'a.ordering';
 
 		<tbody>
 		<?php foreach ($this->items as $i => $item) :
-			$ordering       = ($listOrder == 'a.ordering');
-			$item->cat_link = JRoute::_('index.php?option=com_categories&extension=com_weblinks&task=edit&type=other&cid[]=' . $item->catid);
-			$canCreate      = $user->authorise('core.create',     'com_weblinks.category.' . $item->catid);
-			$canEdit        = $user->authorise('core.edit',       'com_weblinks.category.' . $item->catid);
-			$canCheckin     = $user->authorise('core.manage',     'com_checkin') || $item->checked_out == $user->get('id') || $item->checked_out == 0;
-			$canChange      = $user->authorise('core.edit.state', 'com_weblinks.category.' . $item->catid) && $canCheckin;
-			?>
+            $ordering       = ($listOrder == 'a.ordering');
+            $item->cat_link = JRoute::_('index.php?option=com_categories&extension=com_weblinks&task=edit&type=other&cid[]=' . $item->catid);
+            $canCreate      = $user->authorise('core.create', 'com_weblinks.category.' . $item->catid);
+            $canEdit        = $user->authorise('core.edit', 'com_weblinks.category.' . $item->catid);
+            $canCheckin     = $user->authorise('core.manage', 'com_checkin') || $item->checked_out == $user->get('id') || $item->checked_out == 0;
+            $canChange      = $user->authorise('core.edit.state', 'com_weblinks.category.' . $item->catid) && $canCheckin;
+            ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td>
 					<?php echo JHtml::_('grid.id', $i, $item->id); ?>
@@ -192,7 +192,7 @@ $saveOrder = $listOrder == 'a.ordering';
 <?php echo $this->pagination->getListFooter(); ?>
 	<div class="clr"> </div>
 
-	<?php //Load the batch processing form. ?>
+	<?php //Load the batch processing form.?>
 	<?php echo $this->loadTemplate('batch'); ?>
 
 	<input type="hidden" name="task" value="" />

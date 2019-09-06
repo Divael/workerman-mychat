@@ -26,9 +26,9 @@ $menutypeid	= (int) $this->state->get('menutypeid');
 $assoc     = JLanguageAssociations::isEnabled() && $this->state->get('filter.client_id') == 0;;
 ?>
 
-<?php // Set up the filter bar. ?>
+<?php // Set up the filter bar.?>
 <form action="<?php echo JRoute::_('index.php?option=com_menus&view=items');?>" method="post" name="adminForm" id="adminForm">
-<?php if (!empty( $this->sidebar)) : ?>
+<?php if (!empty($this->sidebar)) : ?>
 	<div id="j-sidebar-container" class="span2">
 		<?php echo $this->sidebar; ?>
 	</div>
@@ -89,7 +89,7 @@ $assoc     = JLanguageAssociations::isEnabled() && $this->state->get('filter.cli
 		</div>
 	</fieldset>
 	<div class="clr"> </div>
-<?php //Set up the grid heading. ?>
+<?php //Set up the grid heading.?>
 	<table class="adminlist">
 		<thead>
 			<tr>
@@ -135,13 +135,13 @@ $assoc     = JLanguageAssociations::isEnabled() && $this->state->get('filter.cli
 
 		<tbody>
 		<?php
-		foreach ($this->items as $i => $item) :
-			$orderkey   = array_search($item->id, $this->ordering[$item->parent_id]);
-			$canCreate  = $user->authorise('core.create',     'com_menus.menu.' . $menutypeid);
-			$canEdit    = $user->authorise('core.edit',       'com_menus.menu.' . $menutypeid);
-			$canCheckin = $user->authorise('core.manage',     'com_checkin') || $item->checked_out == $user->get('id')|| $item->checked_out == 0;
-			$canChange  = $user->authorise('core.edit.state', 'com_menus.menu.' . $menutypeid) && $canCheckin;
-			?>
+        foreach ($this->items as $i => $item) :
+            $orderkey   = array_search($item->id, $this->ordering[$item->parent_id]);
+            $canCreate  = $user->authorise('core.create', 'com_menus.menu.' . $menutypeid);
+            $canEdit    = $user->authorise('core.edit', 'com_menus.menu.' . $menutypeid);
+            $canCheckin = $user->authorise('core.manage', 'com_checkin') || $item->checked_out == $user->get('id')|| $item->checked_out == 0;
+            $canChange  = $user->authorise('core.edit.state', 'com_menus.menu.' . $menutypeid) && $canCheckin;
+            ?>
 			<tr class="row<?php echo $i % 2; ?>">
 				<td class="center">
 					<?php echo JHtml::_('grid.id', $i, $item->id); ?>
@@ -215,8 +215,8 @@ $assoc     = JLanguageAssociations::isEnabled() && $this->state->get('filter.cli
 				</td>
 				<?php endif; ?>
 				<?php
-				if ($assoc):
-				?>
+                if ($assoc):
+                ?>
 				<td class="center">
 					<?php if ($item->association):?>
 						<?php echo JHtml::_('MenusHtml.Menus.association', $item->id);?>
@@ -238,17 +238,17 @@ $assoc     = JLanguageAssociations::isEnabled() && $this->state->get('filter.cli
 	<?php echo $this->pagination->getListFooter(); ?>
 	<div class="clr"> </div>
 
-	<?php //Load the batch processing form.is user is allowed ?>
+	<?php //Load the batch processing form.is user is allowed?>
 	<?php if ($user->authorise('core.create', 'com_menus') || $user->authorise('core.edit', 'com_menus')) : ?>
 		<?php echo JHtml::_(
-			'bootstrap.renderModal',
-			'collapseModal',
-			array(
-				'title'  => JText::_('COM_MENUS_BATCH_OPTIONS'),
-				'footer' => $this->loadTemplate('batch_footer'),
-			),
-			$this->loadTemplate('batch_body')
-		); ?>
+                    'bootstrap.renderModal',
+                    'collapseModal',
+                    array(
+                'title'  => JText::_('COM_MENUS_BATCH_OPTIONS'),
+                'footer' => $this->loadTemplate('batch_footer'),
+            ),
+                    $this->loadTemplate('batch_body')
+                ); ?>
 	<?php endif;?>
 
 	<input type="hidden" name="task" value="" />

@@ -16,18 +16,18 @@ defined('_JEXEC') or die;
  */
 class ContentCategories extends JCategories
 {
-	/**
-	 * Class constructor
-	 *
-	 * @param   array  $options  Array of options
-	 *
-	 * @since   11.1
-	 */
-	public function __construct($options = array())
-	{
-		$options['table'] = '#__content';
-		$options['extension'] = 'com_content';
+    /**
+     * Class constructor
+     *
+     * @param   array  $options  Array of options
+     *
+     * @since   11.1
+     */
+    public function __construct($options = array())
+    {
+        $options['table'] = '#__content';
+        $options['extension'] = 'com_content';
 
-		parent::__construct($options);
-	}
+        parent::__construct($options);
+    }
 }

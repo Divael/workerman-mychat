@@ -14,12 +14,11 @@ if ($this->maxLevel != 0 && count($this->children[$this->category->id]) > 0) :
 <ul class="list-striped list-condensed">
 <?php foreach ($this->children[$this->category->id] as $id => $child) : ?>
 	<?php
-	if ($this->params->get('show_empty_categories') || $child->numitems || count($child->getChildren())) :
-		if (!isset($this->children[$this->category->id][$id + 1]))
-		{
-			$class = ' class="last"';
-		}
-	?>
+    if ($this->params->get('show_empty_categories') || $child->numitems || count($child->getChildren())) :
+        if (!isset($this->children[$this->category->id][$id + 1])) {
+            $class = ' class="last"';
+        }
+    ?>
 	<li<?php echo $class; ?>>
 		<?php $class = ''; ?>
 			<h4 class="item-title">
@@ -40,14 +39,14 @@ if ($this->maxLevel != 0 && count($this->children[$this->category->id]) > 0) :
 				<?php endif; ?>
 			<?php endif; ?>
 
-			<?php if (count($child->getChildren()) > 0 ) :
-				$this->children[$child->id] = $child->getChildren();
-				$this->category = $child;
-				$this->maxLevel--;
-				echo $this->loadTemplate('children');
-				$this->category = $child->getParent();
-				$this->maxLevel++;
-			endif; ?>
+			<?php if (count($child->getChildren()) > 0) :
+                $this->children[$child->id] = $child->getChildren();
+                $this->category = $child;
+                $this->maxLevel--;
+                echo $this->loadTemplate('children');
+                $this->category = $child->getParent();
+                $this->maxLevel++;
+            endif; ?>
 	</li>
 	<?php endif; ?>
 <?php endforeach; ?>

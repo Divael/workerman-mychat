@@ -14,17 +14,14 @@ $input = JFactory::getApplication()->input;
 $lang  = JFactory::getLanguage();
 $style = JFactory::getApplication()->getUserStateFromRequest('media.list.layout', 'layout', 'thumbs', 'word');
 
-if (DIRECTORY_SEPARATOR == '\\')
-{
-	$base = str_replace(DIRECTORY_SEPARATOR, "\\\\", COM_MEDIA_BASE);
-}
-else
-{
-	$base = COM_MEDIA_BASE;
+if (DIRECTORY_SEPARATOR == '\\') {
+    $base = str_replace(DIRECTORY_SEPARATOR, "\\\\", COM_MEDIA_BASE);
+} else {
+    $base = COM_MEDIA_BASE;
 }
 
 JFactory::getDocument()->addScriptDeclaration(
-	"
+    "
 		var basepath = '" . $base . "';
 		var viewstyle = '" . $style . "';
 	"
@@ -37,9 +34,8 @@ JHtml::_('script', 'media/mediaelement-and-player.js', array('version' => 'auto'
 JHtml::_('stylesheet', 'media/mediaelementplayer.css', array('version' => 'auto', 'relative' => true));
 JHtml::_('stylesheet', 'system/mootree.css', array('version' => 'auto', 'relative' => true));
 
-if ($lang->isRtl())
-{
-	JHtml::_('stylesheet', 'system/mootree_rtl.css', array('version' => 'auto', 'relative' => true));
+if ($lang->isRtl()) {
+    JHtml::_('stylesheet', 'system/mootree_rtl.css', array('version' => 'auto', 'relative' => true));
 }
 ?>
 <div class="row-fluid">
@@ -124,25 +120,25 @@ if ($lang->isRtl())
 <?php // Pre render all the bootstrap modals on the parent window
 
 echo JHtml::_(
-	'bootstrap.renderModal',
-	'imagePreview',
-	array(
-		'title' => JText::_('COM_MEDIA_PREVIEW'),
-		'footer' => '<a type="button" class="btn" data-dismiss="modal" aria-hidden="true">'
-			. JText::_('JLIB_HTML_BEHAVIOR_CLOSE') . '</a>'
-	),
-	'<div id="image" style="text-align:center;"><img id="imagePreviewSrc" src="../media/jui/img/alpha.png" alt="preview" style="max-width:100%; max-height:300px;"/></div>'
+    'bootstrap.renderModal',
+    'imagePreview',
+    array(
+        'title' => JText::_('COM_MEDIA_PREVIEW'),
+        'footer' => '<a type="button" class="btn" data-dismiss="modal" aria-hidden="true">'
+            . JText::_('JLIB_HTML_BEHAVIOR_CLOSE') . '</a>'
+    ),
+    '<div id="image" style="text-align:center;"><img id="imagePreviewSrc" src="../media/jui/img/alpha.png" alt="preview" style="max-width:100%; max-height:300px;"/></div>'
 );
 
 echo JHtml::_(
-	'bootstrap.renderModal',
-	'videoPreview',
-	array(
-		'title' => JText::_('COM_MEDIA_PREVIEW'),
-		'footer' => '<a type="button" class="btn" data-dismiss="modal" aria-hidden="true">'
-			. JText::_('JLIB_HTML_BEHAVIOR_CLOSE') . '</a>'
-	),
-	'<div id="videoPlayer" style="z-index: -100;"><video id="mejsPlayer" style="height: 250px;"/></div>'
+    'bootstrap.renderModal',
+    'videoPreview',
+    array(
+        'title' => JText::_('COM_MEDIA_PREVIEW'),
+        'footer' => '<a type="button" class="btn" data-dismiss="modal" aria-hidden="true">'
+            . JText::_('JLIB_HTML_BEHAVIOR_CLOSE') . '</a>'
+    ),
+    '<div id="videoPlayer" style="z-index: -100;"><video id="mejsPlayer" style="height: 250px;"/></div>'
 );
 ?>
 	<!-- End Content -->

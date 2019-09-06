@@ -19,9 +19,8 @@ $showRightColumn = ($this->countModules('position-3') or $this->countModules('po
 $showbottom      = ($this->countModules('position-9') or $this->countModules('position-10') or $this->countModules('position-11'));
 $showleft        = ($this->countModules('position-4') or $this->countModules('position-7') or $this->countModules('position-5'));
 
-if ($showRightColumn == 0 and $showleft == 0)
-{
-	$showno = 0;
+if ($showRightColumn == 0 and $showleft == 0) {
+    $showno = 0;
 }
 
 JHtml::_('behavior.framework', true);
@@ -38,10 +37,9 @@ $option         = JFactory::getApplication()->input->getCmd('option', '');
 // Output as HTML5
 $this->setHtml5(true);
 
-if (in_array($option, $bootstrap))
-{
-	// Load optional rtl Bootstrap css and Bootstrap bugfixes
-	JHtml::_('bootstrap.loadCss', true, $this->direction);
+if (in_array($option, $bootstrap)) {
+    // Load optional rtl Bootstrap css and Bootstrap bugfixes
+    JHtml::_('bootstrap.loadCss', true, $this->direction);
 }
 
 // Add stylesheets
@@ -52,15 +50,13 @@ JHtml::_('stylesheet', 'print.css', array('version' => 'auto', 'relative' => tru
 JHtml::_('stylesheet', 'general.css', array('version' => 'auto', 'relative' => true));
 JHtml::_('stylesheet', htmlspecialchars($color, ENT_COMPAT, 'UTF-8') . '.css', array('version' => 'auto', 'relative' => true));
 
-if ($this->direction === 'rtl')
-{
-	JHtml::_('stylesheet', 'template_rtl.css', array('version' => 'auto', 'relative' => true));
-	JHtml::_('stylesheet', htmlspecialchars($color, ENT_COMPAT, 'UTF-8') . '_rtl.css', array('version' => 'auto', 'relative' => true));
+if ($this->direction === 'rtl') {
+    JHtml::_('stylesheet', 'template_rtl.css', array('version' => 'auto', 'relative' => true));
+    JHtml::_('stylesheet', htmlspecialchars($color, ENT_COMPAT, 'UTF-8') . '_rtl.css', array('version' => 'auto', 'relative' => true));
 }
 
-if ($color === 'image')
-{
-	$this->addStyleDeclaration("
+if ($color === 'image') {
+    $this->addStyleDeclaration("
 	.logoheader {
 		background: url('" . $this->baseurl . "/" . htmlspecialchars($headerImage) . "') no-repeat right;
 	}
@@ -107,9 +103,9 @@ JHtml::_('script', 'jui/html5.js', array('version' => 'auto', 'relative' => true
 						<?php if ($logo) : ?>
 							<img src="<?php echo $this->baseurl; ?>/<?php echo htmlspecialchars($logo); ?>"  alt="<?php echo htmlspecialchars($this->params->get('sitetitle')); ?>" />
 						<?php endif;?>
-						<?php if (!$logo AND $this->params->get('sitetitle')) : ?>
+						<?php if (!$logo and $this->params->get('sitetitle')) : ?>
 							<?php echo htmlspecialchars($this->params->get('sitetitle')); ?>
-						<?php elseif (!$logo AND $config->get('sitename')) : ?>
+						<?php elseif (!$logo and $config->get('sitename')) : ?>
 							<?php echo htmlspecialchars($config->get('sitename')); ?>
 						<?php endif; ?>
 						<span class="header1">
@@ -138,14 +134,18 @@ JHtml::_('script', 'jui/html5.js', array('version' => 'auto', 'relative' => true
 					</div>
 
 					<?php if ($navposition === 'left' and $showleft) : ?>
-						<nav class="left1 <?php if ($showRightColumn == null) { echo 'leftbigger';} ?>" id="nav">
+						<nav class="left1 <?php if ($showRightColumn == null) {
+    echo 'leftbigger';
+} ?>" id="nav">
 							<jdoc:include type="modules" name="position-7" style="beezDivision" headerLevel="3" />
 							<jdoc:include type="modules" name="position-4" style="beezHide" headerLevel="3" state="0 " />
 							<jdoc:include type="modules" name="position-5" style="beezTabs" headerLevel="2"  id="3" />
 						</nav><!-- end navi -->
 					<?php endif; ?>
 
-					<div id="<?php echo $showRightColumn ? 'wrapper' : 'wrapper2'; ?>" <?php if (isset($showno)){echo 'class="shownocolumns"';}?>>
+					<div id="<?php echo $showRightColumn ? 'wrapper' : 'wrapper2'; ?>" <?php if (isset($showno)) {
+    echo 'class="shownocolumns"';
+}?>>
 						<div id="main">
 
 							<?php if ($this->countModules('position-12')) : ?>
@@ -178,7 +178,9 @@ JHtml::_('script', 'jui/html5.js', array('version' => 'auto', 'relative' => true
 					<?php endif; ?>
 
 					<?php if ($navposition === 'center' and $showleft) : ?>
-						<nav class="left <?php if ($showRightColumn == null) { echo 'leftbigger'; } ?>" id="nav" >
+						<nav class="left <?php if ($showRightColumn == null) {
+    echo 'leftbigger';
+} ?>" id="nav" >
 
 							<jdoc:include type="modules" name="position-7"  style="beezDivision" headerLevel="3" />
 							<jdoc:include type="modules" name="position-4" style="beezHide" headerLevel="3" state="0 " />

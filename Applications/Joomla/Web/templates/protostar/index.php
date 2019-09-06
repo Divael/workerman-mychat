@@ -28,13 +28,10 @@ $task     = $app->input->getCmd('task', '');
 $itemid   = $app->input->getCmd('Itemid', '');
 $sitename = $app->get('sitename');
 
-if ($task === 'edit' || $layout === 'form')
-{
-	$fullWidth = 1;
-}
-else
-{
-	$fullWidth = 0;
+if ($task === 'edit' || $layout === 'form') {
+    $fullWidth = 1;
+} else {
+    $fullWidth = 0;
 }
 
 // Add JavaScript Frameworks
@@ -50,19 +47,17 @@ JHtml::_('script', 'jui/html5.js', array('version' => 'auto', 'relative' => true
 JHtml::_('stylesheet', 'template.css', array('version' => 'auto', 'relative' => true));
 
 // Use of Google Font
-if ($this->params->get('googleFont'))
-{
-	JHtml::_('stylesheet', '//fonts.googleapis.com/css?family=' . $this->params->get('googleFontName'));
-	$this->addStyleDeclaration("
+if ($this->params->get('googleFont')) {
+    JHtml::_('stylesheet', '//fonts.googleapis.com/css?family=' . $this->params->get('googleFontName'));
+    $this->addStyleDeclaration("
 	h1, h2, h3, h4, h5, h6, .site-title {
 		font-family: '" . str_replace('+', ' ', $this->params->get('googleFontName')) . "', sans-serif;
 	}");
 }
 
 // Template color
-if ($this->params->get('templateColor'))
-{
-	$this->addStyleDeclaration('
+if ($this->params->get('templateColor')) {
+    $this->addStyleDeclaration('
 	body.site {
 		border-top: 3px solid ' . $this->params->get('templateColor') . ';
 		background-color: ' . $this->params->get('templateBackgroundColor') . ';
@@ -92,35 +87,23 @@ JHtml::_('script', 'user.js', array('version' => 'auto', 'relative' => true));
 JHtml::_('bootstrap.loadCss', false, $this->direction);
 
 // Adjusting content width
-if ($this->countModules('position-7') && $this->countModules('position-8'))
-{
-	$span = 'span6';
-}
-elseif ($this->countModules('position-7') && !$this->countModules('position-8'))
-{
-	$span = 'span9';
-}
-elseif (!$this->countModules('position-7') && $this->countModules('position-8'))
-{
-	$span = 'span9';
-}
-else
-{
-	$span = 'span12';
+if ($this->countModules('position-7') && $this->countModules('position-8')) {
+    $span = 'span6';
+} elseif ($this->countModules('position-7') && !$this->countModules('position-8')) {
+    $span = 'span9';
+} elseif (!$this->countModules('position-7') && $this->countModules('position-8')) {
+    $span = 'span9';
+} else {
+    $span = 'span12';
 }
 
 // Logo file or site title param
-if ($this->params->get('logoFile'))
-{
-	$logo = '<img src="' . JUri::root() . $this->params->get('logoFile') . '" alt="' . $sitename . '" />';
-}
-elseif ($this->params->get('sitetitle'))
-{
-	$logo = '<span class="site-title" title="' . $sitename . '">' . htmlspecialchars($this->params->get('sitetitle'), ENT_COMPAT, 'UTF-8') . '</span>';
-}
-else
-{
-	$logo = '<span class="site-title" title="' . $sitename . '">' . $sitename . '</span>';
+if ($this->params->get('logoFile')) {
+    $logo = '<img src="' . JUri::root() . $this->params->get('logoFile') . '" alt="' . $sitename . '" />';
+} elseif ($this->params->get('sitetitle')) {
+    $logo = '<span class="site-title" title="' . $sitename . '">' . htmlspecialchars($this->params->get('sitetitle'), ENT_COMPAT, 'UTF-8') . '</span>';
+} else {
+    $logo = '<span class="site-title" title="' . $sitename . '">' . $sitename . '</span>';
 }
 ?>
 <!DOCTYPE html>
@@ -130,16 +113,16 @@ else
 	<jdoc:include type="head" />
 </head>
 <body class="site <?php echo $option
-	. ' view-' . $view
-	. ($layout ? ' layout-' . $layout : ' no-layout')
-	. ($task ? ' task-' . $task : ' no-task')
-	. ($itemid ? ' itemid-' . $itemid : '')
-	. ($params->get('fluidContainer') ? ' fluid' : '');
-	echo ($this->direction === 'rtl' ? ' rtl' : '');
+    . ' view-' . $view
+    . ($layout ? ' layout-' . $layout : ' no-layout')
+    . ($task ? ' task-' . $task : ' no-task')
+    . ($itemid ? ' itemid-' . $itemid : '')
+    . ($params->get('fluidContainer') ? ' fluid' : '');
+    echo($this->direction === 'rtl' ? ' rtl' : '');
 ?>">
 	<!-- Body -->
 	<div class="body" id="top">
-		<div class="container<?php echo ($params->get('fluidContainer') ? '-fluid' : ''); ?>">
+		<div class="container<?php echo($params->get('fluidContainer') ? '-fluid' : ''); ?>">
 			<!-- Header -->
 			<header class="header" role="banner">
 				<div class="header-inner clearfix">
@@ -200,7 +183,7 @@ else
 	</div>
 	<!-- Footer -->
 	<footer class="footer" role="contentinfo">
-		<div class="container<?php echo ($params->get('fluidContainer') ? '-fluid' : ''); ?>">
+		<div class="container<?php echo($params->get('fluidContainer') ? '-fluid' : ''); ?>">
 			<hr />
 			<jdoc:include type="modules" name="footer" style="none" />
 			<p class="pull-right">

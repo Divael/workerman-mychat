@@ -16,148 +16,131 @@ defined('_JEXEC') or die;
  */
 class TemplatesControllerStyle extends JControllerForm
 {
-	/**
-	 * The prefix to use with controller messages.
-	 *
-	 * @var		string
-	 * @since   1.6
-	 */
-	protected $text_prefix = 'COM_TEMPLATES_STYLE';
+    /**
+     * The prefix to use with controller messages.
+     *
+     * @var		string
+     * @since   1.6
+     */
+    protected $text_prefix = 'COM_TEMPLATES_STYLE';
 
-	/**
-	 * Method to save a template style.
-	 *
-	 * @param   string  $key     The name of the primary key of the URL variable.
-	 * @param   string  $urlVar  The name of the URL variable if different from the primary key (sometimes required to avoid router collisions).
-	 *
-	 * @return  boolean  True if successful, false otherwise.
-	 *
-	 * @since   1.6
-	 */
-	public function save($key = null, $urlVar = null)
-	{
-		if (!JSession::checkToken())
-		{
-			JFactory::getApplication()->redirect('index.php', JText::_('JINVALID_TOKEN'));
-		}
+    /**
+     * Method to save a template style.
+     *
+     * @param   string  $key     The name of the primary key of the URL variable.
+     * @param   string  $urlVar  The name of the URL variable if different from the primary key (sometimes required to avoid router collisions).
+     *
+     * @return  boolean  True if successful, false otherwise.
+     *
+     * @since   1.6
+     */
+    public function save($key = null, $urlVar = null)
+    {
+        if (!JSession::checkToken()) {
+            JFactory::getApplication()->redirect('index.php', JText::_('JINVALID_TOKEN'));
+        }
 
-		$document = JFactory::getDocument();
+        $document = JFactory::getDocument();
 
-		if ($document->getType() == 'json')
-		{
+        if ($document->getType() == 'json') {
+            $app   = JFactory::getApplication();
+            $lang  = JFactory::getLanguage();
+            $model = $this->getModel();
+            $table = $model->getTable();
+            $data  = $this->input->post->get('params', array(), 'array');
+            $checkin = property_exists($table, 'checked_out');
+            $context = $this->option . '.edit.' . $this->context;
+            $task = $this->getTask();
 
-			$app   = JFactory::getApplication();
-			$lang  = JFactory::getLanguage();
-			$model = $this->getModel();
-			$table = $model->getTable();
-			$data  = $this->input->post->get('params', array(), 'array');
-			$checkin = property_exists($table, 'checked_out');
-			$context = $this->option . '.edit.' . $this->context;
-			$task = $this->getTask();
+            $item = $model->getItem($app->getTemplate('template')->id);
 
-			$item = $model->getItem($app->getTemplate('template')->id);
+            // Setting received params
+            $item->set('params', $data);
 
-			// Setting received params
-			$item->set('params', $data);
+            $data = $item->getProperties();
+            unset($data['xml']);
 
-			$data = $item->getProperties();
-			unset($data['xml']);
+            $key = $table->getKeyName();
 
-			$key = $table->getKeyName();
+            // Access check.
+            if (!$this->allowSave($data, $key)) {
+                $app->enqueueMessage(JText::_('JLIB_APPLICATION_ERROR_SAVE_NOT_PERMITTED'), 'error');
 
-			// Access check.
-			if (!$this->allowSave($data, $key))
-			{
+                return false;
+            }
 
-				$app->enqueueMessage(JText::_('JLIB_APPLICATION_ERROR_SAVE_NOT_PERMITTED'), 'error');
+            JForm::addFormPath(JPATH_ADMINISTRATOR . '/components/com_templates/models/forms');
 
-				return false;
-			}
+            // Validate the posted data.
+            // Sometimes the form needs some posted data, such as for plugins and modules.
+            $form = $model->getForm($data, false);
 
-			JForm::addFormPath(JPATH_ADMINISTRATOR . '/components/com_templates/models/forms');
+            if (!$form) {
+                $app->enqueueMessage($model->getError(), 'error');
 
-			// Validate the posted data.
-			// Sometimes the form needs some posted data, such as for plugins and modules.
-			$form = $model->getForm($data, false);
+                return false;
+            }
 
-			if (!$form)
-			{
-				$app->enqueueMessage($model->getError(), 'error');
+            // Test whether the data is valid.
+            $validData = $model->validate($form, $data);
 
-				return false;
-			}
+            if ($validData === false) {
+                // Get the validation messages.
+                $errors = $model->getErrors();
 
-			// Test whether the data is valid.
-			$validData = $model->validate($form, $data);
+                // Push up to three validation messages out to the user.
+                for ($i = 0, $n = count($errors); $i < $n && $i < 3; $i++) {
+                    if ($errors[$i] instanceof Exception) {
+                        $app->enqueueMessage($errors[$i]->getMessage(), 'warning');
+                    } else {
+                        $app->enqueueMessage($errors[$i], 'warning');
+                    }
+                }
 
-			if ($validData === false)
-			{
-				// Get the validation messages.
-				$errors = $model->getErrors();
+                // Save the data in the session.
+                $app->setUserState($context . '.data', $data);
 
-				// Push up to three validation messages out to the user.
-				for ($i = 0, $n = count($errors); $i < $n && $i < 3; $i++)
-				{
-					if ($errors[$i] instanceof Exception)
-					{
-						$app->enqueueMessage($errors[$i]->getMessage(), 'warning');
-					}
-					else
-					{
-						$app->enqueueMessage($errors[$i], 'warning');
-					}
-				}
+                return false;
+            }
 
-				// Save the data in the session.
-				$app->setUserState($context . '.data', $data);
+            if (!isset($validData['tags'])) {
+                $validData['tags'] = null;
+            }
 
-				return false;
-			}
+            // Attempt to save the data.
+            if (!$model->save($validData)) {
+                // Save the data in the session.
+                $app->setUserState($context . '.data', $validData);
 
-			if (!isset($validData['tags']))
-			{
-				$validData['tags'] = null;
-			}
+                $app->enqueueMessage(JText::sprintf('JLIB_APPLICATION_ERROR_SAVE_FAILED', $model->getError()), 'error');
 
-			// Attempt to save the data.
-			if (!$model->save($validData))
-			{
-				// Save the data in the session.
-				$app->setUserState($context . '.data', $validData);
+                return false;
+            }
 
-				$app->enqueueMessage(JText::sprintf('JLIB_APPLICATION_ERROR_SAVE_FAILED', $model->getError()), 'error');
+            // Save succeeded, so check-in the record.
+            if ($checkin && $model->checkin($validData[$key]) === false) {
+                // Save the data in the session.
+                $app->setUserState($context . '.data', $validData);
 
-				return false;
-			}
+                // Check-in failed, so go back to the record and display a notice.
+                $app->enqueueMessage(JText::sprintf('JLIB_APPLICATION_ERROR_CHECKIN_FAILED', $model->getError()), 'error');
 
-			// Save succeeded, so check-in the record.
-			if ($checkin && $model->checkin($validData[$key]) === false)
-			{
-				// Save the data in the session.
-				$app->setUserState($context . '.data', $validData);
+                return false;
+            }
 
-				// Check-in failed, so go back to the record and display a notice.
-				$app->enqueueMessage(JText::sprintf('JLIB_APPLICATION_ERROR_CHECKIN_FAILED', $model->getError()), 'error');
+            // Redirect the user and adjust session state
+            // Set the record data in the session.
+            $recordId = $model->getState($this->context . '.id');
+            $this->holdEditId($context, $recordId);
+            $app->setUserState($context . '.data', null);
+            $model->checkout($recordId);
 
-				return false;
-			}
+            // Invoke the postSave method to allow for the child class to access the model.
+            $this->postSaveHook($model, $validData);
 
-			// Redirect the user and adjust session state
-			// Set the record data in the session.
-			$recordId = $model->getState($this->context . '.id');
-			$this->holdEditId($context, $recordId);
-			$app->setUserState($context . '.data', null);
-			$model->checkout($recordId);
-
-			// Invoke the postSave method to allow for the child class to access the model.
-			$this->postSaveHook($model, $validData);
-
-			return true;
-
-		}
-		else
-		{
-			parent::save($key, $urlVar);
-		}
-	}
+            return true;
+        } else {
+            parent::save($key, $urlVar);
+        }
+    }
 }

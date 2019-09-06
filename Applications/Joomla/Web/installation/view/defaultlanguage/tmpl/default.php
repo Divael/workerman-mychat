@@ -9,7 +9,7 @@
 defined('_JEXEC') or die;
 
 JFactory::getDocument()->addScriptDeclaration(
-<<<JS
+    <<<JS
 	jQuery(document).ready(function($) {
 		$(':input[name="jform[activateMultilanguage]"]').each(function(el){
 			$(this).click(function(){Install.toggle('installLocalisedContent', 'activateMultilanguage', 1);});
@@ -34,7 +34,7 @@ JS
 				<span class="icon-arrow-left"></span>
 				<?php echo JText::_('JPREVIOUS'); ?>
 			</a>
-			<?php // Check if there are languages in the list, if not you cannot move forward ?>
+			<?php // Check if there are languages in the list, if not you cannot move forward?>
 			<?php if ($this->items->administrator) : ?>
 				<a
 					class="btn btn-primary"
@@ -112,7 +112,9 @@ JS
 						type="radio"
 						name="administratorlang"
 						value="<?php echo $lang->language; ?>"
-						<?php if ($lang->published) echo 'checked="checked"'; ?>
+						<?php if ($lang->published) {
+    echo 'checked="checked"';
+} ?>
 					/>
 				</td>
 				<td align="center">
@@ -153,7 +155,9 @@ JS
 						type="radio"
 						name="frontendlang"
 						value="<?php echo $lang->language; ?>"
-						<?php if ($lang->published) echo 'checked="checked"'; ?>
+						<?php if ($lang->published) {
+    echo 'checked="checked"';
+} ?>
 					/>
 				</td>
 				<td align="center">
@@ -180,7 +184,7 @@ JS
 					<span class="icon-arrow-left"></span>
 					<?php echo JText::_('JPREVIOUS'); ?>
 				</a>
-				<?php // Check if there are languages in the list, if not you cannot move forward ?>
+				<?php // Check if there are languages in the list, if not you cannot move forward?>
 				<?php if ($this->items->administrator) : ?>
 					<a
 						class="btn btn-primary"

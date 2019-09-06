@@ -33,16 +33,16 @@ JFactory::getDocument()->addScriptDeclaration("
 </div>
 
 <?php echo JHtml::_(
-	'bootstrap.renderModal',
-	'multiLangModal',
-	array(
-		'title'       => JText::_('MOD_MULTILANGSTATUS'),
-		'url'         => JRoute::_('index.php?option=com_languages&view=multilangstatus&tmpl=component'),
-		'height'      => '400px',
-		'width'       => '800px',
-		'bodyHeight'  => '70',
-		'modalWidth'  => '80',
-		'footer'      => '<a class="btn" data-dismiss="modal" type="button" aria-hidden="true">'
-				. JText::_('JTOOLBAR_CLOSE') . '</a>',
-	)
+    'bootstrap.renderModal',
+    'multiLangModal',
+    array(
+        'title'       => JText::_('MOD_MULTILANGSTATUS'),
+        'url'         => JRoute::_('index.php?option=com_languages&view=multilangstatus&tmpl=component'),
+        'height'      => '400px',
+        'width'       => '800px',
+        'bodyHeight'  => '70',
+        'modalWidth'  => '80',
+        'footer'      => '<a class="btn" data-dismiss="modal" type="button" aria-hidden="true">'
+                . JText::_('JTOOLBAR_CLOSE') . '</a>',
+    )
 );

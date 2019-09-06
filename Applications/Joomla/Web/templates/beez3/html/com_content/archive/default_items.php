@@ -12,14 +12,12 @@ defined('_JEXEC') or die;
 $app = JFactory::getApplication();
 $templateparams = $app->getTemplate(true)->params;
 
-if (!$templateparams->get('html5', 0))
-{
-	require JPATH_BASE.'/components/com_content/views/archive/tmpl/default_items.php';
-	//evtl. ersetzen durch JPATH_COMPONENT.'/views/...'
+if (!$templateparams->get('html5', 0)) {
+    require JPATH_BASE.'/components/com_content/views/archive/tmpl/default_items.php';
+//evtl. ersetzen durch JPATH_COMPONENT.'/views/...'
 } else {
-JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
-$params = &$this->params;
-?>
+    JHtml::addIncludePath(JPATH_COMPONENT . '/helpers');
+    $params = &$this->params; ?>
 <ul id="archive-items">
 <?php foreach ($this->items as $i => $item) : ?>
 	<li class="row<?php echo $i % 2; ?>">
@@ -41,7 +39,7 @@ $params = &$this->params;
 <?php if ($params->get('show_parent_category')) : ?>
 		<dd class="parent-category-name">
 			<?php	$title = $this->escape($item->parent_title);
-					$url = '<a href="'.JRoute::_(ContentHelperRoute::getCategoryRoute($item->parent_slug)).'">'.$title.'</a>';?>
+    $url = '<a href="'.JRoute::_(ContentHelperRoute::getCategoryRoute($item->parent_slug)).'">'.$title.'</a>'; ?>
 			<?php if ($params->get('link_parent_category') && $item->parent_slug) : ?>
 				<?php echo JText::sprintf('COM_CONTENT_PARENT', $url); ?>
 				<?php else : ?>
@@ -53,7 +51,7 @@ $params = &$this->params;
 <?php if ($params->get('show_category')) : ?>
 		<dd class="category-name">
 			<?php	$title = $this->escape($item->category_title);
-					$url = '<a href="' . JRoute::_(ContentHelperRoute::getCategoryRoute($item->catslug)) . '">' . $title . '</a>'; ?>
+    $url = '<a href="' . JRoute::_(ContentHelperRoute::getCategoryRoute($item->catslug)) . '">' . $title . '</a>'; ?>
 			<?php if ($params->get('link_category') && $item->catslug) : ?>
 				<?php echo JText::sprintf('COM_CONTENT_CATEGORY', $url); ?>
 				<?php else : ?>
@@ -76,11 +74,11 @@ $params = &$this->params;
 		<?php echo JText::sprintf('COM_CONTENT_PUBLISHED_DATE_ON', JHtml::_('date', $item->publish_up, JText::_('DATE_FORMAT_LC2'))); ?>
 		</dd>
 <?php endif; ?>
-<?php if ($params->get('show_author') && !empty($item->author )) : ?>
+<?php if ($params->get('show_author') && !empty($item->author)) : ?>
 	<dd class="createdby">
 		<?php $author = $item->author; ?>
-		<?php $author = ($item->created_by_alias ?: $author);?>
-			<?php if (!empty($item->contact_link ) &&  $params->get('link_author') == true):?>
+		<?php $author = ($item->created_by_alias ?: $author); ?>
+			<?php if (!empty($item->contact_link) &&  $params->get('link_author') == true):?>
 				<?php echo JText::sprintf('COM_CONTENT_WRITTEN_BY', JHtml::_('link', $item->contact_link, $author)); ?>
 			<?php else :?>
 				<?php echo JText::sprintf('COM_CONTENT_WRITTEN_BY', $author); ?>
@@ -109,4 +107,5 @@ $params = &$this->params;
 	<span><?php echo $this->pagination->getPagesLinks(); ?></span>
 	<span><?php echo $this->pagination->getPagesCounter(); ?></span>
 </div>
-<?php } ?>
+<?php
+} ?>

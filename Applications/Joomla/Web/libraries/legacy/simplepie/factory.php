@@ -21,43 +21,41 @@ jimport('simplepie.simplepie');
  */
 class JSimplepieFactory
 {
-	/**
-	 * Get a parsed XML Feed Source
-	 *
-	 * @param   string   $url         URL for feed source.
-	 * @param   integer  $cache_time  Time to cache feed for (using internal cache mechanism).
-	 *
-	 * @return  SimplePie|boolean  SimplePie parsed object on success, false on failure.
-	 *
-	 * @since   3.0
-	 * @deprecated  3.0  Use JFeedFactory($url) instead.
-	 */
-	public static function getFeedParser($url, $cache_time = 0)
-	{
-		JLog::add(__METHOD__ . ' is deprecated.   Use JFeedFactory() or supply Simple Pie instead.', JLog::WARNING, 'deprecated');
+    /**
+     * Get a parsed XML Feed Source
+     *
+     * @param   string   $url         URL for feed source.
+     * @param   integer  $cache_time  Time to cache feed for (using internal cache mechanism).
+     *
+     * @return  SimplePie|boolean  SimplePie parsed object on success, false on failure.
+     *
+     * @since   3.0
+     * @deprecated  3.0  Use JFeedFactory($url) instead.
+     */
+    public static function getFeedParser($url, $cache_time = 0)
+    {
+        JLog::add(__METHOD__ . ' is deprecated.   Use JFeedFactory() or supply Simple Pie instead.', JLog::WARNING, 'deprecated');
 
-		$cache = JFactory::getCache('feed_parser', 'callback');
+        $cache = JFactory::getCache('feed_parser', 'callback');
 
-		if ($cache_time > 0)
-		{
-			$cache->setLifeTime($cache_time);
-		}
+        if ($cache_time > 0) {
+            $cache->setLifeTime($cache_time);
+        }
 
-		$simplepie = new SimplePie(null, null, 0);
+        $simplepie = new SimplePie(null, null, 0);
 
-		$simplepie->enable_cache(false);
-		$simplepie->set_feed_url($url);
-		$simplepie->force_feed(true);
+        $simplepie->enable_cache(false);
+        $simplepie->set_feed_url($url);
+        $simplepie->force_feed(true);
 
-		$contents = $cache->get(array($simplepie, 'init'), null, false, false);
+        $contents = $cache->get(array($simplepie, 'init'), null, false, false);
 
-		if ($contents)
-		{
-			return $simplepie;
-		}
+        if ($contents) {
+            return $simplepie;
+        }
 
-		JLog::add(JText::_('JLIB_UTIL_ERROR_LOADING_FEED_DATA'), JLog::WARNING, 'jerror');
+        JLog::add(JText::_('JLIB_UTIL_ERROR_LOADING_FEED_DATA'), JLog::WARNING, 'jerror');
 
-		return false;
-	}
+        return false;
+    }
 }

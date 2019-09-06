@@ -19,44 +19,44 @@ JFormHelper::loadFieldClass('list');
  */
 class JFormFieldHelpsite extends JFormFieldList
 {
-	/**
-	 * The form field type.
-	 *
-	 * @var    string
-	 * @since  1.6
-	 */
-	public $type = 'Helpsite';
+    /**
+     * The form field type.
+     *
+     * @var    string
+     * @since  1.6
+     */
+    public $type = 'Helpsite';
 
-	/**
-	 * Method to get the help site field options.
-	 *
-	 * @return  array  The field option objects.
-	 *
-	 * @since   1.6
-	 */
-	protected function getOptions()
-	{
-		// Merge any additional options in the XML definition.
-		$options = array_merge(parent::getOptions(), JHelp::createSiteList(JPATH_ADMINISTRATOR . '/help/helpsites.xml', $this->value));
+    /**
+     * Method to get the help site field options.
+     *
+     * @return  array  The field option objects.
+     *
+     * @since   1.6
+     */
+    protected function getOptions()
+    {
+        // Merge any additional options in the XML definition.
+        $options = array_merge(parent::getOptions(), JHelp::createSiteList(JPATH_ADMINISTRATOR . '/help/helpsites.xml', $this->value));
 
-		return $options;
-	}
+        return $options;
+    }
 
-	/**
-	 * Override to add refresh button
-	 *
-	 * @return  string  The field input markup.
-	 *
-	 * @since   3.2
-	 */
-	protected function getInput()
-	{
-		JHtml::_('script', 'system/helpsite.js', array('version' => 'auto', 'relative' => true));
+    /**
+     * Override to add refresh button
+     *
+     * @return  string  The field input markup.
+     *
+     * @since   3.2
+     */
+    protected function getInput()
+    {
+        JHtml::_('script', 'system/helpsite.js', array('version' => 'auto', 'relative' => true));
 
-		$showDefault = $this->getAttribute('showDefault') === 'false' ? 'false' : 'true';
+        $showDefault = $this->getAttribute('showDefault') === 'false' ? 'false' : 'true';
 
-		$html = parent::getInput();
-		$button = '<button
+        $html = parent::getInput();
+        $button = '<button
 						type="button"
 						class="btn btn-small"
 						id="helpsite-refresh"
@@ -66,6 +66,6 @@ class JFormFieldHelpsite extends JFormFieldList
 					<span>' . JText::_('JGLOBAL_HELPREFRESH_BUTTON') . '</span>
 					</button>';
 
-		return $html . $button;
-	}
+        return $html . $button;
+    }
 }

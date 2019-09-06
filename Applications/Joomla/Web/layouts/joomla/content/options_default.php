@@ -18,21 +18,17 @@ defined('JPATH_BASE') or die;
 	<?php endif; ?>
 
 	<?php
-	$fieldsnames = explode(',', $displayData->fieldsname);
+    $fieldsnames = explode(',', $displayData->fieldsname);
 
-	foreach ($fieldsnames as $fieldname)
-	{
-		foreach ($displayData->form->getFieldset($fieldname) as $field)
-		{
-			$datashowon = '';
+    foreach ($fieldsnames as $fieldname) {
+        foreach ($displayData->form->getFieldset($fieldname) as $field) {
+            $datashowon = '';
 
-			if ($field->showon)
-			{
-				JHtml::_('jquery.framework');
-				JHtml::_('script', 'jui/cms.js', array('version' => 'auto', 'relative' => true));
-				$datashowon = ' data-showon=\'' . json_encode(JFormHelper::parseShowOnConditions($field->showon, $field->formControl, $field->group)) . '\'';
-			}
-			?>
+            if ($field->showon) {
+                JHtml::_('jquery.framework');
+                JHtml::_('script', 'jui/cms.js', array('version' => 'auto', 'relative' => true));
+                $datashowon = ' data-showon=\'' . json_encode(JFormHelper::parseShowOnConditions($field->showon, $field->formControl, $field->group)) . '\'';
+            } ?>
 			<div class="control-group"<?php echo $datashowon; ?>>
 				<?php if (!isset($displayData->showlabel) || $displayData->showlabel) : ?>
 					<div class="control-label"><?php echo $field->label; ?></div>
@@ -41,7 +37,7 @@ defined('JPATH_BASE') or die;
 				<div class="controls"><?php echo $field->input; ?></div>
 			</div>
 			<?php
-		}
-	}
-	?>
+        }
+    }
+    ?>
 </fieldset>

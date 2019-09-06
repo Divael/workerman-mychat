@@ -37,7 +37,7 @@ jQuery(document).ready(function($){
 		</a>
 	</td>
 	<td class="dimensions">
-		<?php // Can we figure out the dimensions of the video? ?>
+		<?php // Can we figure out the dimensions of the video??>
 	</td>
 	<td class="filesize">
 		<?php echo JHtml::_('number.bytes', $this->_tmp_video->size); ?>

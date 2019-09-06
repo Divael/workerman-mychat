@@ -22,9 +22,8 @@ JHtml::_('script', 'jui/html5.js', array('version' => 'auto', 'relative' => true
 // Styles
 JHtml::_('stylesheet', 'templates/system/css/offline.css', array('version' => 'auto'));
 
-if ($this->direction === 'rtl')
-{
-	JHtml::_('stylesheet', 'templates/system/css/offline_rtl.css', array('version' => 'auto'));
+if ($this->direction === 'rtl') {
+    JHtml::_('stylesheet', 'templates/system/css/offline_rtl.css', array('version' => 'auto'));
 }
 
 JHtml::_('stylesheet', 'templates/system/css/general.css', array('version' => 'auto'));

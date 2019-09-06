@@ -18,25 +18,25 @@ JLoader::register('FinderIndexerParser', dirname(__DIR__) . '/parser.php');
  */
 class FinderIndexerParserRtf extends FinderIndexerParser
 {
-	/**
-	 * Method to process RTF input and extract the plain text.
-	 *
-	 * @param   string  $input  The input to process.
-	 *
-	 * @return  string  The plain text input.
-	 *
-	 * @since   2.5
-	 */
-	protected function process($input)
-	{
-		// Remove embedded pictures.
-		$input = preg_replace('#{\\\pict[^}]*}#mis', '', $input);
+    /**
+     * Method to process RTF input and extract the plain text.
+     *
+     * @param   string  $input  The input to process.
+     *
+     * @return  string  The plain text input.
+     *
+     * @since   2.5
+     */
+    protected function process($input)
+    {
+        // Remove embedded pictures.
+        $input = preg_replace('#{\\\pict[^}]*}#mis', '', $input);
 
-		// Remove control characters.
-		$input = str_replace(array('{', '}', "\\\n"), array(' ', ' ', "\n"), $input);
-		$input = preg_replace('#\\\([^;]+?);#mis', ' ', $input);
-		$input = preg_replace('#\\\[\'a-zA-Z0-9]+#mis', ' ', $input);
+        // Remove control characters.
+        $input = str_replace(array('{', '}', "\\\n"), array(' ', ' ', "\n"), $input);
+        $input = preg_replace('#\\\([^;]+?);#mis', ' ', $input);
+        $input = preg_replace('#\\\[\'a-zA-Z0-9]+#mis', ' ', $input);
 
-		return $input;
-	}
+        return $input;
+    }
 }
