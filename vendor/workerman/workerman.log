@@ -298,3 +298,78 @@ Stack trace:
 #8 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(101): Workerman\Worker::runAll()
 #9 {main}
 2019-09-05 08:08:21 pid:1 Worker process terminated
+2019-09-06 03:10:58 pid:1 Error: Call to a member function exec() on null in D:\Projects\aPHP\workerman-chat\Applications\TEST\Web\Main\main.php:14
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(216): include()
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Connection\TcpConnection.php(658): Workerman\WebServer->onMessage(Object(Workerman\Connection\TcpConnection), Array)
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Events\Select.php(294): Workerman\Connection\TcpConnection->baseRead(Resource id #24)
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2367): Workerman\Events\Select->loop()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#7 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#8 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(95): Workerman\Worker::runAll()
+#9 {main}
+2019-09-06 03:10:58 pid:1 Worker process terminated
+2019-09-06 03:50:56 pid:1 ParseError: syntax error, unexpected end of file in D:\Projects\aPHP\workerman-chat\Applications\TEST\Web\Main\main.php:64
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Connection\TcpConnection.php(658): Workerman\WebServer->onMessage(Object(Workerman\Connection\TcpConnection), Array)
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Events\Select.php(294): Workerman\Connection\TcpConnection->baseRead(Resource id #40)
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2367): Workerman\Events\Select->loop()
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#7 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(95): Workerman\Worker::runAll()
+#8 {main}
+2019-09-06 03:50:56 pid:1 Worker process terminated
+2019-09-06 03:57:21 pid:1 ParseError: syntax error, unexpected end of file in D:\Projects\aPHP\workerman-chat\Applications\TEST\Web\Main\main.php:59
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Connection\TcpConnection.php(658): Workerman\WebServer->onMessage(Object(Workerman\Connection\TcpConnection), Array)
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Events\Select.php(294): Workerman\Connection\TcpConnection->baseRead(Resource id #24)
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2367): Workerman\Events\Select->loop()
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#7 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(95): Workerman\Worker::runAll()
+#8 {main}
+2019-09-06 03:57:21 pid:1 Worker process terminated
+2019-09-06 03:58:58 pid:1 ParseError: syntax error, unexpected end of file in D:\Projects\aPHP\workerman-chat\Applications\TEST\Web\Main\main.php:59
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Connection\TcpConnection.php(658): Workerman\WebServer->onMessage(Object(Workerman\Connection\TcpConnection), Array)
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Events\Select.php(294): Workerman\Connection\TcpConnection->baseRead(Resource id #24)
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2367): Workerman\Events\Select->loop()
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#7 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(95): Workerman\Worker::runAll()
+#8 {main}
+2019-09-06 03:58:58 pid:1 Worker process terminated
+2019-09-06 05:34:10 pid:1 ParseError: syntax error, unexpected end of file in D:\Projects\aPHP\workerman-chat\Applications\TEST\Web\Main\main.php:49
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Connection\TcpConnection.php(658): Workerman\WebServer->onMessage(Object(Workerman\Connection\TcpConnection), Array)
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Events\Select.php(294): Workerman\Connection\TcpConnection->baseRead(Resource id #24)
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2367): Workerman\Events\Select->loop()
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#7 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(95): Workerman\Worker::runAll()
+#8 {main}
+2019-09-06 05:34:10 pid:1 Worker process terminated
+2019-09-06 05:48:40 pid:1 Worker process terminated
+2019-09-06 06:00:28 pid:1 Error: Call to undefined method PDOStatement::fetch_all() in D:\Projects\aPHP\workerman-chat\Applications\TEST\Web\Main\main.php:18
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(216): include()
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Connection\TcpConnection.php(658): Workerman\WebServer->onMessage(Object(Workerman\Connection\TcpConnection), Array)
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Events\Select.php(294): Workerman\Connection\TcpConnection->baseRead(Resource id #24)
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2367): Workerman\Events\Select->loop()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#7 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#8 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(95): Workerman\Worker::runAll()
+#9 {main}
+2019-09-06 06:00:28 pid:1 Worker process terminated

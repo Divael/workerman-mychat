@@ -27,7 +27,8 @@ $db = new Workerman\Basic\Medoo([
 $result = $db ->query('select DM_NO ,DM_NM,DM_IMG from [dbo].[dev_menu] where DID = '."'".'D0000413'."'".' order by DM_NO');
 $attr = $result;
 foreach($attr as $v)
-{
+{ 
+    Utils::_log("编号 {$v['DM_NO']} 名称 {$v['DM_NM']} 图片 {$v['DM_IMG']}");
     echo "<tr>
     <td>{$v['DM_NO']}</td>
     <td>{$v['DM_NM']}</td>

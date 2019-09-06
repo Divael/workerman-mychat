@@ -21,7 +21,7 @@ $db = new Medoo([
     'password' => 'hnwb@123'
 ]);
 
-$datas = $db->exec("select username,userpwd from test_user");
+$datas = $db->query("select username,userpwd from test_user");
 
 printf('数据库连接成功!'."\n");
 
