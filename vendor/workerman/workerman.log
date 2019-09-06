@@ -1,0 +1,300 @@
+2019-09-03 03:05:59 pid:1 Error: Class 'Utils' not found in D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php:33
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#6 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(43): Workerman\Worker::runAll()
+#7 {main}
+2019-09-03 03:05:59 pid:1 Worker process terminated
+2019-09-03 03:53:55 pid:1 Error: Call to undefined function alert() in D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php:36
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#6 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(44): Workerman\Worker::runAll()
+#7 {main}
+2019-09-03 03:53:55 pid:1 Worker process terminated
+2019-09-03 04:21:37 pid:1 Error: Class 'Timer' not found in D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php:41
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#6 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(61): Workerman\Worker::runAll()
+#7 {main}
+2019-09-03 04:21:37 pid:1 Worker process terminated
+2019-09-03 04:25:05 pid:1 Error: Class 'Timer' not found in D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php:41
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#6 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(61): Workerman\Worker::runAll()
+#7 {main}
+2019-09-03 04:25:05 pid:1 Worker process terminated
+2019-09-03 04:25:17 pid:1 Error: Class 'Timer' not found in D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php:41
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#6 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(61): Workerman\Worker::runAll()
+#7 {main}
+2019-09-03 04:25:17 pid:1 Worker process terminated
+2019-09-03 04:32:43 pid:1 Error: Class 'Timer' not found in D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php:53
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#6 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(82): Workerman\Worker::runAll()
+#7 {main}
+2019-09-03 04:32:43 pid:1 Worker process terminated
+2019-09-03 05:40:43 pid:1 InvalidArgumentException: Unsupported PDO driver: sqlsrv in D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Lib\Medoo.php:280
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(61): Workerman\Lib\Medoo->__construct(Array)
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#7 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(99): Workerman\Worker::runAll()
+#8 {main}
+2019-09-03 05:40:43 pid:1 Worker process terminated
+2019-09-03 05:42:08 pid:1 InvalidArgumentException: Unsupported PDO driver: sqlsrv in D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Lib\Medoo.php:280
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(71): Workerman\Lib\Medoo->__construct(Array)
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#7 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(109): Workerman\Worker::runAll()
+#8 {main}
+2019-09-03 05:42:08 pid:1 Worker process terminated
+2019-09-03 05:46:36 pid:1 InvalidArgumentException: Unsupported PDO driver: sqlsrv in D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Lib\Medoo.php:280
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(71): Workerman\Lib\Medoo->__construct(Array)
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#7 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(109): Workerman\Worker::runAll()
+#8 {main}
+2019-09-03 05:46:36 pid:1 Worker process terminated
+2019-09-03 05:46:40 pid:1 InvalidArgumentException: Unsupported PDO driver: sqlsrv in D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Lib\Medoo.php:280
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(71): Workerman\Lib\Medoo->__construct(Array)
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#7 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(109): Workerman\Worker::runAll()
+#8 {main}
+2019-09-03 05:46:40 pid:1 Worker process terminated
+2019-09-03 05:47:01 pid:1 InvalidArgumentException: Unsupported PDO driver: sqlsrv in D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Lib\Medoo.php:280
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(71): Workerman\Lib\Medoo->__construct(Array)
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#7 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(109): Workerman\Worker::runAll()
+#8 {main}
+2019-09-03 05:47:01 pid:1 Worker process terminated
+2019-09-03 05:48:32 pid:1 InvalidArgumentException: Unsupported PDO driver: sqlsrv in D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Lib\Medoo.php:280
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(71): Workerman\Lib\Medoo->__construct(Array)
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#7 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(109): Workerman\Worker::runAll()
+#8 {main}
+2019-09-03 05:48:32 pid:1 Worker process terminated
+2019-09-03 05:51:59 pid:1 InvalidArgumentException: Unsupported PDO driver: sqlsrv in D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Lib\Medoo.php:280
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(71): Workerman\Lib\Medoo->__construct(Array)
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#7 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(109): Workerman\Worker::runAll()
+#8 {main}
+2019-09-03 05:51:59 pid:1 Worker process terminated
+2019-09-03 05:52:38 pid:1 InvalidArgumentException: Unsupported PDO driver: sqlsrv in D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Lib\Medoo.php:280
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(71): Workerman\Lib\Medoo->__construct(Array)
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#7 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(109): Workerman\Worker::runAll()
+#8 {main}
+2019-09-03 05:52:38 pid:1 Worker process terminated
+2019-09-03 05:52:56 pid:1 InvalidArgumentException: Unsupported PDO driver: sqlsrv in D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Lib\Medoo.php:280
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(71): Workerman\Lib\Medoo->__construct(Array)
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#7 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(109): Workerman\Worker::runAll()
+#8 {main}
+2019-09-03 05:52:56 pid:1 Worker process terminated
+2019-09-03 05:55:31 pid:1 InvalidArgumentException: Unsupported PDO driver: sqlsrv in D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Lib\Medoo.php:280
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(71): Workerman\Lib\Medoo->__construct(Array)
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#7 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(109): Workerman\Worker::runAll()
+#8 {main}
+2019-09-03 05:55:31 pid:1 Worker process terminated
+2019-09-03 06:16:14 pid:1 Worker process terminated with ERROR: E_RECOVERABLE_ERROR "Object of class PDOStatement could not be converted to string in D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php on line 80"
+2019-09-03 06:17:37 pid:1 Worker process terminated with ERROR: E_RECOVERABLE_ERROR "Object of class PDOStatement could not be converted to string in D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php on line 78"
+2019-09-03 06:19:42 pid:1 Error: Cannot use object of type PDOStatement as array in D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php:78
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#6 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(108): Workerman\Worker::runAll()
+#7 {main}
+2019-09-03 06:19:42 pid:1 Worker process terminated
+2019-09-03 06:19:46 pid:1 Error: Cannot use object of type PDOStatement as array in D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php:78
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#6 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(108): Workerman\Worker::runAll()
+#7 {main}
+2019-09-03 06:19:46 pid:1 Worker process terminated
+2019-09-03 06:41:47 pid:1 Error: Class 'Workerman\Lib\Medoo' not found in D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php:68
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#6 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(111): Workerman\Worker::runAll()
+#7 {main}
+2019-09-03 06:41:47 pid:1 Worker process terminated
+2019-09-03 06:42:06 pid:1 Error: Class 'Workerman\Basic\Medoo' not found in D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php:68
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(105): {closure}(Object(Workerman\WebServer))
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2352): Workerman\WebServer->onWorkerStart(Object(Workerman\WebServer))
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#6 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(111): Workerman\Worker::runAll()
+#7 {main}
+2019-09-03 06:42:06 pid:1 Worker process terminated
+2019-09-03 14:48:55 pid:1 Error: Class 'app' not found in D:\Projects\aPHP\workerman-chat\Applications\TEST\Web\index.php:3
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(216): include()
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Connection\TcpConnection.php(658): Workerman\WebServer->onMessage(Object(Workerman\Connection\TcpConnection), Array)
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Events\Select.php(294): Workerman\Connection\TcpConnection->baseRead(Resource id #25)
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2367): Workerman\Events\Select->loop()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#7 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#8 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(98): Workerman\Worker::runAll()
+#9 {main}
+2019-09-03 14:48:55 pid:1 Worker process terminated
+2019-09-05 02:05:22 pid:1 Error: Call to undefined function pcntl_alarm() in D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Lib\Timer.php:174
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\Applications\TEST\Web\login.php(36): Workerman\Lib\Timer::delAll()
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(216): include('D:\\Projects\\aPH...')
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Connection\TcpConnection.php(658): Workerman\WebServer->onMessage(Object(Workerman\Connection\TcpConnection), Array)
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Events\Select.php(294): Workerman\Connection\TcpConnection->baseRead(Resource id #24)
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2367): Workerman\Events\Select->loop()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#7 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#8 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#9 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(98): Workerman\Worker::runAll()
+#10 {main}
+2019-09-05 02:05:22 pid:1 Worker process terminated
+2019-09-05 02:06:16 pid:1 Error: Call to undefined function pcntl_alarm() in D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Lib\Timer.php:174
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\Applications\TEST\Web\login.php(36): Workerman\Lib\Timer::delAll()
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(216): include('D:\\Projects\\aPH...')
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Connection\TcpConnection.php(658): Workerman\WebServer->onMessage(Object(Workerman\Connection\TcpConnection), Array)
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Events\Select.php(294): Workerman\Connection\TcpConnection->baseRead(Resource id #24)
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2367): Workerman\Events\Select->loop()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#7 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#8 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#9 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(98): Workerman\Worker::runAll()
+#10 {main}
+2019-09-05 02:06:16 pid:1 Worker process terminated
+2019-09-05 05:26:18 pid:1 Worker process terminated
+2019-09-05 08:08:13 pid:1 Error: Call to undefined function array_key_first() in D:\Projects\aPHP\workerman-chat\Applications\TEST\Web\Main\main.php:10
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(216): include()
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Connection\TcpConnection.php(658): Workerman\WebServer->onMessage(Object(Workerman\Connection\TcpConnection), Array)
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Events\Select.php(294): Workerman\Connection\TcpConnection->baseRead(Resource id #24)
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2367): Workerman\Events\Select->loop()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#7 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#8 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(101): Workerman\Worker::runAll()
+#9 {main}
+2019-09-05 08:08:13 pid:1 Worker process terminated
+2019-09-05 08:08:21 pid:1 Error: Call to undefined function array_key_first() in D:\Projects\aPHP\workerman-chat\Applications\TEST\Web\Main\main.php:10
+Stack trace:
+#0 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(216): include()
+#1 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Connection\TcpConnection.php(658): Workerman\WebServer->onMessage(Object(Workerman\Connection\TcpConnection), Array)
+#2 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Events\Select.php(294): Workerman\Connection\TcpConnection->baseRead(Resource id #24)
+#3 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(2367): Workerman\Events\Select->loop()
+#4 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\WebServer.php(84): Workerman\Worker->run()
+#5 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1353): Workerman\WebServer->run()
+#6 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(1296): Workerman\Worker::forkWorkersForWindows()
+#7 D:\Projects\aPHP\workerman-chat\vendor\workerman\workerman\Worker.php(509): Workerman\Worker::forkWorkers()
+#8 D:\Projects\aPHP\workerman-chat\Applications\TEST\start.php(101): Workerman\Worker::runAll()
+#9 {main}
+2019-09-05 08:08:21 pid:1 Worker process terminated

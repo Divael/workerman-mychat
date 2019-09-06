@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metafile
+	version="3"
+	client="installation" >
+	<name>简体中文（中国）</name>
+	<version>3.7</version>
+	<creationDate>2010-02-08</creationDate>
+	<author>Joomlagate</author>
+	<authorEmail>joomlagate@gmail.com</authorEmail>
+	<authorUrl>www.joomlagate.com</authorUrl>
+	<copyright>www.joomlagate.com</copyright>
+	<license>http://www.gnu.org/copyleft/gpl.html GNU/GPL</license>
+	<description>Simplified Chinese</description>
+	<files>
+		<filename>zh-CN.ini</filename>
+	</files>
+	<metadata>
+		<name>简体中文（中国）</name>
+		<tag>zh-CN</tag>
+		<rtl>0</rtl>
+	</metadata>
+	<params />
+</metafile>
